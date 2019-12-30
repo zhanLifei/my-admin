@@ -115,7 +115,6 @@ export default {
         this.templateDeep = this.currentDeep;
     },
     methods: {
-        zhangkaiClick(){console.log(123113);},
         aaaaaaaaaaaaa(){
             this.isShow = true;
         },

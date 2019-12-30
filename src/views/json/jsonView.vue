@@ -25,7 +25,7 @@
                     <li>
                         <label>deep</label>
                         <select v-model="deep">
-                            <option v-for="item in 10" :value="item">{{item}}</option>
+                            <option v-for="item in 10" :value="item" :key="item">{{item}}</option>
                         </select>
                     </li>
                     <li>
@@ -44,13 +44,13 @@
                     <li>
                         <label>font-size</label>
                         <select v-model="fontSize">
-                            <option v-for="item in 10" :value="item+11">{{item+11}}</option>
+                            <option v-for="item in 10" :value="item+11" :key="item">{{item+11}}</option>
                         </select>
                     </li>
                     <li>
                         <label for="line-height">line-height</label>
                         <select v-model="lineHeight">
-                            <option v-for="item in 20" :value="item*2+14">{{item*2+14}}</option>
+                            <option v-for="item in 20" :value="item*2+14" :key="item">{{item*2+14}}</option>
                         </select>
                     </li>
 
@@ -64,19 +64,19 @@
 </template>
 
 <script>
-    import jsonView from './json-view/index.vue';
+    import jsonView from '@/components/jsonView/json-view/index.vue';
+    import { treeData } from "../../../static/data";
     export default {
         components: {
             jsonView
         },
         data() {
             return {
-                json,
-                theme: '',
+                json: treeData,
+                theme: 'one-dark',
                 fontSize: 14,
                 lineHeight: 24,
                 deep: 4,
-                closed: false,
                 iconStyle: 'square',
                 closed: false,
                 color1: '',

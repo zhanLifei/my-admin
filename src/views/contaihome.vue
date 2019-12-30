@@ -23,7 +23,7 @@
               </template>
             </el-menu-item>
           </el-submenu>
-          <el-submenu>
+          <el-submenu index="2">
             <template slot="title">
               <i class="el-icon-star-on"></i>
               <span>jsonView</span>
@@ -34,7 +34,7 @@
               </template>
             </el-menu-item>
           </el-submenu>
-          <el-submenu index="2">
+          <el-submenu index="3">
             <template slot="title">
               <i class="el-icon-star-on"></i>
               <span>常用功能</span>
@@ -81,7 +81,7 @@
             </el-menu-item>
           </el-submenu>
           <!-- css3 -->
-          <el-submenu index="3">
+          <el-submenu index="4">
             <template slot="title">
               <i class="el-icon-goods"></i>
               <span>css3特效</span>

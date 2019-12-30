@@ -83,22 +83,6 @@
             >{{innerclosed ? (length+' items') : ''}}</span>
           </span>
           <span v-if="!length">{{isArray ? '[],' : '{},'}}</span>
-          <span
-            style="vertical-align: middle;
-                   color:#333;
-                   height: 1em;
-                   width: 1em;
-                   display: inline-block;
-                   border-radius: 50%;
-                   line-height: 1em;
-                   text-align: center;
-                   border: 1px solid #f10125;
-                   margin-left: 20px;"
-            @click="zhangkaiClick"
-            @mouseenter="aaaaaaaaaaaaa"
-            @mouseout="bbbbbbbbbb"
-            v-if="isShow"
-          >+</span>
         </p>
 
         <div v-if="!innerclosed && length" class="json-body">
@@ -126,7 +110,6 @@
               <span
                 :class="['json-value',getDataType(item.value)]"
               >{{`${typeof item.value==='string'?'"':''}${item.value}${typeof item.value==='string'?'"':''}${index ===items.length - 1 ? '' : ','}`}}</span>
-              <el-input v-model="input" placeholder="请输入内容"></el-input>
             </p>
           </template>
           <span v-if="!innerclosed" class="base-line"></span>

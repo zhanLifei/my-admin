@@ -101,7 +101,7 @@ export default new Router({
         {
           path: "/jsonView",
           name: "jsonView",
-          component: () => import("./views/jsonView.vue")
+          component: () => import("./views/json/jsonView.vue")
         }
       ]
     }
