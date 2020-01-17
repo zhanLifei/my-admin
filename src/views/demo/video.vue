@@ -16,7 +16,7 @@ export default {
   },
   data() {
     return {
-      videoSrc: 'https://jx5.178du.com/m3u82/index.php?url=https://cn1.ruioushang.com/hls/20190904/5c0c72408b30d8262264384fd4c204a4/1567544766/index.m3u8'
+      videoSrc: 'rtmp://172.16.1.65:1935/test1/myStream'
     };
   },
   computed: {
@@ -29,7 +29,7 @@ export default {
         sources: [
           {
             src: this.videoSrc,
-            type: "application/x-mpegURL"
+            type: "rtmp/flv"
           }
         ],
       };

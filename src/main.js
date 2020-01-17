@@ -7,6 +7,8 @@ import api from '@/api/api.js'       //http请求
 import ElementUI from "element-ui";
 import lego from "xlink-lego"; // 全量引入
 import "element-ui/lib/theme-chalk/index.css";
+import Message from "./components/ui/message/message";
+Vue.prototype.$messages = Message;
 // 导航守卫
 router.beforeEach((to, from, next) => {
   // 获取token值

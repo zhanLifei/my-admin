@@ -2,26 +2,34 @@
   <div>
     <XAnimateText class="animate-text-string" :time="3000" :value="value"></XAnimateText>
     <div class="box">
-      <img class="images" :src="src" />
+      <div class="timerColor">{{date}}</div>
     </div>
   </div>
 </template>
 
 <script>
+// 引入封装的格式化时间
+import { formatTime } from "../ulit/dateTime";
 export default {
+  
   data() {
     return {
-      value: `<p>vue - admin - dome。</p>
-            <DL><DT><A>21133</A></DT></DL>
-            `,
-      src: ""
+      value: `<p>vue - admin - dome。</p>`,
+      date: "",
+      timer: "",
+      isDialogShow:false
     };
   },
   mounted() {
     setTimeout(() => {
-      this.src =
-        "http://img4.imgtn.bdimg.com/it/u=401597183,250198679&fm=26&gp=0.jpg";
-    }, 3000);
+      this.timer = setInterval(() => {
+        this.date = formatTime(new Date(), "yyyy-MM-dd hh:mm:ss");
+      }, 1000);
+    }, 2000);
+  },
+  beforeDestroy() {
+    //清除定时器
+    clearInterval(this.timer);
   }
 };
 </script>
@@ -74,5 +82,9 @@ export default {
     filter: drop-shadow(0px 0px 1px rgb(68, 9, 197));
     color: rgb(117, 11, 216);
   }
+}
+.timerColor {
+  color: #ccc;
+  margin-top: 10px;
 }
 </style>

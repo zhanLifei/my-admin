@@ -69,6 +69,11 @@ export default new Router({
           component: () => import("./views/demo/render.vue")
         },
         {
+          path: "/images",
+          name: "images",
+          component: () => import("./views/demo/images.vue")
+        },
+        {
           path: "/css手机充电特效",
           name: "css手机充电特效",
           component: () => import("./views/css3/css手机充电特效.vue")
@@ -102,6 +107,11 @@ export default new Router({
           path: "/jsonView",
           name: "jsonView",
           component: () => import("./views/json/jsonView.vue")
+        },
+        {
+          path: "/packaging",
+          name: "packaging",
+          component: () => import("./views/packaging/index.vue")
         }
       ]
     }

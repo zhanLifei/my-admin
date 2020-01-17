@@ -14,7 +14,7 @@
         >
           <el-submenu index="1">
             <template slot="title">
-              <i class="el-icon-star-on"></i>
+              <i class="el-icon-share"></i>
               <span>我的书签</span>
             </template>
             <el-menu-item index="myBookmark">
@@ -25,6 +25,17 @@
           </el-submenu>
           <el-submenu index="2">
             <template slot="title">
+              <i class="el-icon-setting"></i>
+              <span>封装的组件</span>
+            </template>
+            <el-menu-item index="packaging">
+              <template slot="title">
+                <span>组件元件</span>
+              </template>
+            </el-menu-item>
+          </el-submenu>
+          <el-submenu index="3">
+            <template slot="title">
               <i class="el-icon-star-on"></i>
               <span>jsonView</span>
             </template>
@@ -34,9 +45,9 @@
               </template>
             </el-menu-item>
           </el-submenu>
-          <el-submenu index="3">
+          <el-submenu index="4">
             <template slot="title">
-              <i class="el-icon-star-on"></i>
+              <i class="el-icon-menu"></i>
               <span>常用功能</span>
             </template>
             <el-menu-item index="video">
@@ -76,12 +87,17 @@
             </el-menu-item>
             <el-menu-item index="render">
               <template slot="title">
-                <span>render</span>
+                <span>render表格组件</span>
+              </template>
+            </el-menu-item>
+            <el-menu-item index="images">
+              <template slot="title">
+                <span>上传图片</span>
               </template>
             </el-menu-item>
           </el-submenu>
           <!-- css3 -->
-          <el-submenu index="4">
+          <el-submenu index="5">
             <template slot="title">
               <i class="el-icon-goods"></i>
               <span>css3特效</span>
