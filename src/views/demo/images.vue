@@ -10,11 +10,21 @@
       <img :src="faceUrl" class="face" v-if="faceUrl" />
       <i @click="clearClick" v-if="isIconClear" class="clearIcon">x</i>
     </div>
+    <slot-name>
+      <div slot="onSlotName">
+        <div>这是子组件的文本</div>
+        <div>这是在父组件里插槽一个文本</div>
+      </div>
+    </slot-name>
   </div>
 </template>
 
 <script>
+import slotName from '../../components/slotName';
 export default {
+  components: {
+    slotName
+  },
   data() {
     return {
       isUploader: true,

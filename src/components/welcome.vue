@@ -1,8 +1,9 @@
 <template>
   <div>
-    <XAnimateText class="animate-text-string" :time="3000" :value="value"></XAnimateText>
+    <!-- <XAnimateText class="animate-text-string" :time="3000" :value="value"></XAnimateText> -->
     <div class="box">
-      <div class="timerColor">{{date}}</div>
+      <!-- <div class="timerColor">{{date}}</div> -->
+      <el-button @click="add"></el-button>
     </div>
   </div>
 </template>
@@ -17,8 +18,15 @@ export default {
       value: `<p>vue - admin - dome。</p>`,
       date: "",
       timer: "",
-      isDialogShow:false
+      isDialogShow:false,
+      formData:{}
     };
+  },
+  methods: {
+    add(){
+      this.$set(this.formData,'aaa',1321322232)
+      console.log(this.formData);
+    }
   },
   mounted() {
     setTimeout(() => {

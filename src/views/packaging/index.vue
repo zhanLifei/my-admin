@@ -11,6 +11,7 @@
     <Fl-botton @butClick="handclick" type="info" style="margin-right:10px">信息按钮</Fl-botton>
     <Fl-botton @butClick="handclick" style="margin-right:10px">朴素按钮</Fl-botton>
     <Dialogs :DialogShow="isDialogShow" @coles="coles"></Dialogs>
+    <Cascader></Cascader>
   </div>
 </template>
 
@@ -18,11 +19,14 @@
 import Dialogs from "../../common/Dialog";
 import FlBotton from "../../common/botton";
 import radio from "../../common/radio";
+import Cascader from "../../common/Cascader";
+
 export default {
   components: {
     Dialogs,
     FlBotton,
-    radio
+    radio,
+    Cascader
   },
   data() {
     return {
@@ -32,14 +36,16 @@ export default {
   methods: {
     handclick() {
       this.isDialogShow = true;
+      this.$index({message:'23443432',msg:'哈哈'});
+      this.$api({
+        method:'post',
+        url:'/category'
+      }).then(res=>{
+        console.log(res);
+      })
     },
     coles() {
       this.isDialogShow = false;
-      this.$messages({
-        type: "success",
-
-        message: "这是一个仿elemen的提示"
-      });
     }
   }
 };

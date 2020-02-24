@@ -15,11 +15,11 @@
           <el-submenu index="1">
             <template slot="title">
               <i class="el-icon-share"></i>
-              <span>我的书签</span>
+              <span>我的商城</span>
             </template>
             <el-menu-item index="myBookmark">
               <template slot="title">
-                <span>我的书签</span>
+                <span>京东商城</span>
               </template>
             </el-menu-item>
           </el-submenu>

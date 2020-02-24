@@ -1,39 +1,40 @@
 <template>
-  <div class="tree">
-    <tree-recursion v-for="(item ,index) in treeList" :key="index" :dataList="item"></tree-recursion>
-  </div>
+  <chart ref="chart1" :options="orgOptions" :auto-resize="true"></chart>
 </template>
 
 <script>
-import treeRecursion from "../../components/tree-recursion.vue";
-import index from "@/api/mock.js"; //模拟数据
 export default {
-  components: {
-    treeRecursion
-  },
   data() {
     return {
-      treeList: []
+      orgOptions: {}
     };
   },
   mounted() {
-    this.$api({
-      method: "post",
-      url: "/category"
-    })
-      .then(response => {
-        this.treeList = response.data.aside
-      })
-      .catch(function(error) {
-        alert(error);
-      });
+    this.orgOptions = {
+      xAxis: {
+        type: "category",
+        data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        splitLine: {
+          show: false
+        }
+      },
+      yAxis: {
+        type: "value",
+        splitLine: {
+          show: false
+        }
+      },
+      series: [
+        {
+          data: [820, 932, 901, 934, 1290, 1330, 1320],
+          type: "line",
+          smooth: true
+        }
+      ]
+    };
   }
 };
 </script>
 
-<style scoped>
-.tree {
-  position: relative;
-  padding-left: 30px;
-}
+<style>
 </style>
