@@ -8,17 +8,17 @@
           placeholder="请选择"
           @click="inputClick"
           @blur="funBlur"
-          :value="valueName"
+          :value="value"
         />
         <label></label>
-        <i class="clear" @click="clearIcon" v-if="valueName">+</i>
+        <i class="clear" @click="clearIcon" v-if="value">+</i>
       </div>
       <div class="conten" v-show="slectShow">
         <label class="label"></label>
         <div
           class="name"
-          @click="aaaa(item)"
-          v-for="(item,index) in slectName"
+          @click="handCheng(item)"
+          v-for="(item,index) in data"
           :key="index"
         >{{item.name}}</div>
       </div>
@@ -28,19 +28,19 @@
 
 <script>
 export default {
+  props: {
+    data:{
+      type:Array,
+      default: []
+    },
+    value:{
+      type: String,
+      default : ''
+    }
+  },
   data() {
     return {
       slectShow: false,
-      slectName: [
-        { name: "小明", value: "xiaomin" },
-        { name: "小红", value: "xiaohong" },
-        { name: "小强", value: "xiaoqiang" },
-        { name: "小强", value: "xiaoqiang" },
-        { name: "小强", value: "xiaoqiang" },
-        { name: "小强", value: "xiaoqiang" },
-        { name: "小强", value: "xiaoqiang" }
-      ],
-      valueName: ""
     };
   },
   methods: {
@@ -52,11 +52,11 @@ export default {
         this.slectShow = false;
       }, 150);
     },
-    aaaa(val) {
-      this.valueName = val.name;
+    handCheng(val) {
+      this.$emit('handCheng', val.name)
     },
     clearIcon(){
-        this.valueName = ''
+      this.$emit('clearIcon')
     }
   }
 };

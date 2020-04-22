@@ -5,13 +5,13 @@
     <radio checked>单选3</radio>
     <radio>单选4</radio>
     <br />
-    <Fl-botton @butClick="handclick" type="primary" style="margin-right:10px">普通按钮</Fl-botton>
+    <Fl-botton @butClick="handclick" type="primary" style="margin-right:10px;">普通按钮</Fl-botton>
     <Fl-botton @butClick="handclick" type="success" round style="margin-right:10px">成功按钮</Fl-botton>
     <Fl-botton @butClick="handclick" type="danger" style="margin-right:10px">危险按钮</Fl-botton>
     <Fl-botton @butClick="handclick" type="info" style="margin-right:10px">信息按钮</Fl-botton>
     <Fl-botton @butClick="handclick" style="margin-right:10px">朴素按钮</Fl-botton>
-    <Dialogs :DialogShow="isDialogShow" @coles="coles"></Dialogs>
-    <Cascader></Cascader>
+    <Dialog :DialogShow="isDialogShow" @coles="coles"></Dialog>
+    <Cascader :data='dataList' :value='value' @handCheng='handCheng' @clearIcon='clearIcon'></Cascader>
   </div>
 </template>
 
@@ -30,10 +30,19 @@ export default {
   },
   data() {
     return {
-      isDialogShow: false
+      isDialogShow: true,
+      value:'',
+      dataList:[
+        { name: "小明", value: "xiaomin" },
+        { name: "小红", value: "xiaohong" },
+        { name: "小强", value: "xiaoqiang" },
+      ]
     };
   },
   methods: {
+    handCheng(val){
+      this.value = val
+    },
     handclick() {
       this.isDialogShow = true;
       this.$index({message:'23443432',msg:'哈哈'});
@@ -44,6 +53,7 @@ export default {
         console.log(res);
       })
     },
+    clearIcon(){this.value = ''},
     coles() {
       this.isDialogShow = false;
     }

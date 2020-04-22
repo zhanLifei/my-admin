@@ -15,11 +15,11 @@
           <el-submenu index="1">
             <template slot="title">
               <i class="el-icon-share"></i>
-              <span>我的商城</span>
+              <span>功能组件</span>
             </template>
             <el-menu-item index="myBookmark">
               <template slot="title">
-                <span>京东商城</span>
+                <span>拖拽窗口</span>
               </template>
             </el-menu-item>
           </el-submenu>
@@ -70,9 +70,19 @@
                 <span>canvas</span>
               </template>
             </el-menu-item>
+            <el-menu-item index="canvas1">
+              <template slot="title">
+                <span>canvas1</span>
+              </template>
+            </el-menu-item>
             <el-menu-item index="table">
               <template slot="title">
                 <span>table表格</span>
+              </template>
+            </el-menu-item>
+            <el-menu-item index="tab">
+              <template slot="tit">
+                <span>tab栏</span>
               </template>
             </el-menu-item>
             <el-menu-item index="tree">
@@ -93,6 +103,16 @@
             <el-menu-item index="images">
               <template slot="title">
                 <span>上传图片</span>
+              </template>
+            </el-menu-item>
+            <el-menu-item index="quest">
+              <template slot="title">
+                <span>模板问卷</span>
+              </template>
+            </el-menu-item>
+            <el-menu-item index="dragend">
+              <template slot="title">
+                <span>拖拽排序</span>
               </template>
             </el-menu-item>
           </el-submenu>
@@ -120,6 +140,11 @@
             <el-menu-item index="css3照片特效">
               <template slot="title">
                 <span>css3照片特效</span>
+              </template>
+            </el-menu-item>
+            <el-menu-item index="switch">
+              <template slot="title">
+                <span>switch</span>
               </template>
             </el-menu-item>
           </el-submenu>

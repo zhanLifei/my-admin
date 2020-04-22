@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       total: 10,
-      pageSize: 4, //每页多少条数据
+      pageSize: 3, //每页多少条数据
       currentPage: 1, //当前第几页
       recordList: [
         {

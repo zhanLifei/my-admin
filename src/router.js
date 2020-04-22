@@ -44,6 +44,11 @@ export default new Router({
           component: () => import("./views/demo/canvas.vue")
         },
         {
+          path: "/canvas1",
+          name: "canvas1",
+          component: () => import("./views/demo/canvas1.vue")
+        },
+        {
           path: "/clone",
           name: "clone",
           component: () => import("./views/demo/clone.vue")
@@ -52,6 +57,11 @@ export default new Router({
           path: "/table",
           name: "table",
           component: () => import("./views/demo/table.vue")
+        },
+        {
+          path: "/tab",
+          name: "tab",
+          component: () => import("./views/demo/tab.vue")
         },
         {
           path: "/tree",
@@ -72,6 +82,16 @@ export default new Router({
           path: "/images",
           name: "images",
           component: () => import("./views/demo/images.vue")
+        },
+        {
+          path: "/quest",
+          name: "quest",
+          component: () => import("./views/demo/quest.vue")
+        },
+        {
+          path: "/dragend",
+          name: "/dragend",
+          component: () => import("./views/demo/dragend.vue")
         },
         {
           path: "/css手机充电特效",
@@ -97,6 +117,11 @@ export default new Router({
           path: "/css3照片特效",
           name: "css照片特效",
           component: () => import("./views/css3/css照片特效.vue")
+        },
+        {
+          path: '/switch',
+          name:'switch',
+          component: () => import("./views/css3/switch.vue")
         },
         {
           path: "/myBookmark",

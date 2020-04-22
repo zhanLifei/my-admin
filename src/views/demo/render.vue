@@ -15,21 +15,29 @@ export default {
       columns: [
         {
           title: "姓名",
-          key: "name",
+          props: "name",
         },
         {
           title: "年龄",
-          key: "age",
+          props: "age",
           sortTable: true
         },
         {
           title: "出生日期",
-          key: "birthday",
+          props: "birthday",
           sortTable: true
         },
         {
           title: "地址",
-          key: "adress"
+          props: "adress"
+        },
+        {
+          title: "婚姻状况",
+          props: "",
+        },
+        {
+          title: "籍贯",
+          props: ""
         }
       ],
       data: [

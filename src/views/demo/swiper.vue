@@ -1,29 +1,48 @@
 <template>
   <div class="boxswiper">
     <swiper :options="swiperOption">
-      <swiper-slide
-        v-for="(item,index) in banners"
-        :key="index"
-      >
-        <img
-          class="images"
-          :src="item.pic"
-          alt
-          @click="imgClick(index,item)"
-        />
+      <swiper-slide>
+        <img class="images" src="../../assets/微信图片_20200404105918.jpg" alt />
       </swiper-slide>
-      <div
-        class="swiper-pagination"
-        slot="pagination"
-      ></div>
-      <div
-        class="swiper-button-prev"
-        slot="button-prev"
-      ></div>
-      <div
-        class="swiper-button-next"
-        slot="button-next"
-      ></div>
+      <swiper-slide>
+        <img class="images" src="../../assets/微信图片_20200404105925.jpg" alt />
+      </swiper-slide>
+      <swiper-slide>
+        <img class="images" src="../../assets/微信图片_20200404105930.jpg" alt />
+      </swiper-slide>
+      <swiper-slide>
+        <img class="images" src="../../assets/微信图片_20200404105935.jpg" alt />
+      </swiper-slide>
+      <swiper-slide>
+        <img class="images" src="../../assets/微信图片_20200404105800.jpg" alt />
+      </swiper-slide>
+      <swiper-slide>
+        <img class="images" src="../../assets/微信图片_20200404105821.jpg" alt />
+      </swiper-slide>
+      <swiper-slide>
+        <img class="images" src="../../assets/微信图片_20200404105828.jpg" alt />
+      </swiper-slide>
+      <swiper-slide>
+        <img class="images" src="../../assets/微信图片_20200404105836.jpg" alt />
+      </swiper-slide>
+      <swiper-slide>
+        <img class="images" src="../../assets/微信图片_20200404105841.jpg" alt />
+      </swiper-slide>
+      <swiper-slide>
+        <img class="images" src="../../assets/微信图片_20200404105846.jpg" alt />
+      </swiper-slide>
+      <swiper-slide>
+        <img class="images" src="../../assets/微信图片_20200404105852.jpg" alt />
+      </swiper-slide>
+      <swiper-slide>
+        <img class="images" src="../../assets/微信图片_20200404105857.jpg" alt />
+      </swiper-slide>
+      <swiper-slide>
+        <img class="images" src="../../assets/微信图片_20200404105912.jpg" alt />
+      </swiper-slide>
+      <div class="swiper-pagination" slot="pagination"></div>
+      <div class="swiper-button-prev" slot="button-prev"></div>
+      <div class="swiper-button-next" slot="button-next"></div>
     </swiper>
   </div>
 </template>
@@ -36,31 +55,13 @@ export default {
     swiper,
     swiperSlide
   },
-  data () {
+  data() {
     return {
-      banners: [
-        { pic: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=990087231,1878185023&fm=26&gp=0.jpg" },
-        { pic: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1615699460,4215749679&fm=26&gp=0.jpg" },
-        { pic: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1615699460,4215749679&fm=26&gp=0.jpg" },
-        { pic: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1615699460,4215749679&fm=26&gp=0.jpg" },
-        { pic: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1615699460,4215749679&fm=26&gp=0.jpg" },
-        { pic: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1615699460,4215749679&fm=26&gp=0.jpg" },
-        { pic: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1615699460,4215749679&fm=26&gp=0.jpg" },
-        { pic: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1615699460,4215749679&fm=26&gp=0.jpg" },
-        { pic: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1615699460,4215749679&fm=26&gp=0.jpg" },
-        { pic: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1615699460,4215749679&fm=26&gp=0.jpg" },
-        { pic: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1615699460,4215749679&fm=26&gp=0.jpg" },
-        { pic: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1615699460,4215749679&fm=26&gp=0.jpg" },
-        { pic: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1615699460,4215749679&fm=26&gp=0.jpg" },
-        { pic: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1615699460,4215749679&fm=26&gp=0.jpg" },
-        { pic: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1615699460,4215749679&fm=26&gp=0.jpg" },
-        { pic: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3508652532,2245085660&fm=26&gp=0.jpg" }
-      ],
       swiperOption: {
-        slidesPerView: 4,
-        spaceBetween: 30,
-        slidesPerGroup: 4,
-        loop: false,  //是否循环,不循环
+        slidesPerView: 1,
+        spaceBetween: 20,
+        slidesPerGroup: 1,
+        loop: true, //是否循环,不循环
         loopFillGroupWithBlank: true,
         pagination: {
           el: ".swiper-pagination",
@@ -74,12 +75,11 @@ export default {
     };
   },
   methods: {
-    imgClick (index, item) {
-      this.image = item.pic
+    imgClick(index, item) {
+      this.image = item.pic;
     }
   },
-  mounted () {
-  }
+  mounted() {}
 };
 </script>
 
@@ -89,7 +89,8 @@ export default {
   background-color: #ccc;
 }
 .images {
-  width: 200px;
+  width: 100px;
   height: 100px;
+  display: inline-block;
 }
 </style>

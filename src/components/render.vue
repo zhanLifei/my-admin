@@ -45,6 +45,9 @@ export default {
                   //这是设置点击后的css属性 ,逻辑就是当我点击了会在函数中修改_sortType的值，在这里根据值去设定属性
                   on: col._sortType === "asc"
                 },
+                style:{
+                  color:'red'
+                },
                 on: {
                   click: function() {
                     _this.handleSortByAsc(index); //点击处理排序函数
@@ -58,6 +61,9 @@ export default {
               {
                 class: {
                   on: col._sortType === "desc"
+                },
+                style:{
+                  color:'red'
                 },
                 on: {
                   click: function() {
@@ -79,7 +85,7 @@ export default {
     this.currentData.forEach((row, index) => {
       var tds = [];
       _this.currentColumns.forEach(cell => {
-        tds.push(h("td", row[cell.key]));
+        tds.push(h("td", row[cell.props]));
       });
       if (index % 2 != 0) {
         trs.push(
@@ -153,7 +159,7 @@ export default {
   display: none;
 }
 table {
-  font-size: 12px;
+  font-size: 14px;
   margin-bottom: 24px;
   border-collapse: collapse;
   border-spacing: 0;
@@ -167,6 +173,8 @@ table tr.trStyle {
   background: #f7f7f7d8;
 }
 table th {
+  min-width: 100px;
+  text-align: center;
   font: 30px;
   background: #f7f7f7d8;
   color: #5c6b77;
@@ -177,7 +185,7 @@ table th,
 table td {
   padding: 5px 16px;
   border: 1px solid #e9e9e9;
-  text-align: left;
+  text-align: center;
 }
 table th a {
   display: inline-block;

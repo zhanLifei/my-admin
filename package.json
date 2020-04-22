@@ -37,6 +37,8 @@
     "postcss-pxtorem": "^4.0.1",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
     "video.js": "^7.6.0",
     "videojs-flash": "^2.2.0",
     "vue-template-compiler": "^2.6.10",
