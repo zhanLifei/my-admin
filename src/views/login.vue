@@ -22,7 +22,7 @@ export default {
     return {
       loginForm: {
         username: 'zhanlifei123',
-        password: ''
+        password: 'fei180123'
       },
       rules: {
         username: [

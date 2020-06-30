@@ -79,7 +79,6 @@ export default {
       this.quesList.splice(i, 1);
     },
     addClick(){
-      console.log(this.$refs.addNormal.data);
     }
   }
 };

@@ -1,9 +1,9 @@
 <template>
-<!-- 表格假数据分页版本1 -->
+<!-- 表格假数据分页版本2 -->
   <div>
     <div class="border">
       <!-- table -->
-      <el-table :data="newRecordList" style="width: 100%">
+      <el-table :data="newRecordList[currentPage-1]" style="width: 100%">
         <el-table-column prop="name" label="姓名" width="150"></el-table-column>
         <el-table-column prop="age" label="年龄" width="150"></el-table-column>
         <el-table-column prop="tel" label="电话" width="180"></el-table-column>
@@ -228,10 +228,21 @@ export default {
     },
     // 分页
     initPage() {
-      const start = (this.currentPage - 1) * this.pageSize;
-      const end = start + this.pageSize;
-      this.newRecordList = this.recordList.slice(start, end);
-      console.log(String(start),'至', String(end),'条数据')
+      this.total = this.recordList.length;
+      let arr = [];
+      let newArr = [];
+      this.recordList.map((item, index) => {
+        arr.push(item);
+        if ((index + 1) % this.pageSize == 0) {
+          newArr.push(arr);
+          arr = [];
+        } else {
+          if (index + 1 == this.recordList.length) {
+            newArr.push(arr);
+          }
+        }
+      });
+      this.newRecordList = newArr;
     }
   },
   mounted() {

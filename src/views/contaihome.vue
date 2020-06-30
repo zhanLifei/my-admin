@@ -115,6 +115,11 @@
                 <span>拖拽排序</span>
               </template>
             </el-menu-item>
+            <el-menu-item index="map">
+              <template slot="title">
+                <span>map遍历</span>
+              </template>
+            </el-menu-item>
           </el-submenu>
           <!-- css3 -->
           <el-submenu index="5">

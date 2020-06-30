@@ -1,42 +1,29 @@
 <template>
+    <div class="drag-table">
         <div class="table">
             <ul class="table-body">
                 <li class="table-row" v-for="(item, index) in tableData" :key="index"
-                :draggable="true"
+                draggable="true"
                 @dragstart="dragstartEvent($event, index)"
                 @dragend="dragendEvent($event, index)"
                 @dragenter="dragenterEvent"
                 @dragleave="dragleaveEvent"
                 @dragover="dragoverEvent">
-                    <!-- <div>{{index + 1}}</div> -->
-                    <div v-if="true">
-                        <el-input class="row-item" size="mini" :value="item.optLabel" v-model="item.optLabel"></el-input>
-                        <div class="row-item" style="padding-left: 30px;">
-                            <span class="icon-btn el-icon-rank"></span>
-                        </div>
-                        <slot :index="index" :val='item'>
-                        </slot>
-                    </div>
-
-                    <div>
-                        <XInput size="small" width="200px">
-                        <!-- <i class="blueColor el-icon-picture-outline" slot="prepend" :style="child.optImg?'color:#0b8dcb':'color:#fff'">
-                            <div class="clearImg" v-if="child.optImg!=''"><img :src="child.optImg" class="imagesClass"/><div class="clearIcon" @click="clearImg(index,i)">x</div></div>
-                        </i> -->
-                        <slot :index="index">
-                        </slot>
-                        </XInput>
+                    <div class="row-item">{{index + 10}}</div>
+                    <div class="row-item" v-for="(row, i) in rowData" :key="i" v-show="i !== 0">{{item[row.value]}}</div>
+                    <div class="row-item">
+                        <span class="icon-btn el-icon-rank"></span>
                     </div>
                 </li>
             </ul>
         </div>
-        
+    </div>
 </template>
 
 <script>
 export default {
     // tableData 表格数据  rowData 表头数据, 必须与表格数据的每一项对应, tableKey 表格以什么字段组成排序后的数组
-    props: ['tableData'],
+    props: ['tableData', 'rowData', 'tablekey'],
     data () {
         return {
             dragElement: null,
@@ -61,7 +48,9 @@ export default {
             list = [].slice.call(list, 0);
             this.sortArr = [];
             list.forEach(item => {
-                this.sortArr.push(item.children[0].firstElementChild.value);
+                this.tableData.forEach(i => {
+                    if (+item.children[1].innerText === +i[this.tablekey]) this.sortArr.push(i);
+                })
             })
             this.sortHandle();
             ev.preventDefault();
@@ -98,10 +87,12 @@ export default {
 
 <style lang="less" scoped>
 .table {
+    border: 1px solid #ebeef5;
     width: 100%;
     .table-head {
         width: 100%;
         overflow: hidden;
+        border-bottom: 1px solid #ebeef5;
         background: #f9f9f9;
         color: #63676b;
         display: flex;
@@ -125,6 +116,7 @@ export default {
         color: #63676b;
         .table-row {
             display: flex;
+            border-bottom: 1px solid #ebeef5;
             padding: 12px 0;
             word-wrap: normal;
             text-overflow: ellipsis;
@@ -133,6 +125,7 @@ export default {
             position: relative;
             width: 100%;
             div {
+                padding-left: 30px;
                 flex: 1;
             }
         }

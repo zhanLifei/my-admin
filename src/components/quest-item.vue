@@ -6,7 +6,7 @@
           <div class="titleNumber">第{{index+1}}题</div>
           <div style="width: 560px;">
             <el-form-item label="题目" prop="title">
-              <XInput size="mini" v-model="formData.documentList[index].ask">
+              <el-input size="mini" v-model="formData.documentList[index].ask">
                 <!-- <i class="blueColor el-icon-picture-outline" slot="prepend" :style="formData.documentList[index].askImg!=''?'color:#0b8dcb':'color:#fff'">
                   <div class="clearImg" v-if="formData.documentList[index].askImg!=''"><img :src="formData.documentList[index].askImg" class="imagesClass"/><div class="clearIcon" @click="clearaskImg(index)">x</div></div>
                 </i>
@@ -19,10 +19,10 @@
                     @upload-image="(a,b,c)=>{askImgLoadSuccess(a,b,c,index)}"
                   />
                 </i>-->
-              </XInput>
+              </el-input>
             </el-form-item>
             <el-form-item label="备注" style="matgin-left:5px">
-              <XInput size="mini" v-model="formData.documentList[index].remark">
+              <el-input size="mini" v-model="formData.documentList[index].remark">
                 <!-- <i class="blueColor el-icon-picture-outline" slot="prepend" :style="formData.documentList[index].remarkImg!=''?'color:#0b8dcb':'color:#fff'">
                   <div class="clearImg" v-if="formData.documentList[index].remarkImg!=''"><img :src="formData.documentList[index].remarkImg" class="imagesClass"/><div class="clearIcon" @click="clearremarkImg(index)">x</div></div>
                 </i>
@@ -35,7 +35,7 @@
                     @upload-image="(a,b,c)=>{remarkImgLoadSuccess(a,b,c,index)}"
                   />
                 </i>-->
-              </XInput>
+              </el-input>
             </el-form-item>
             <el-form-item label="类型" prop="type">
               <XSelect
@@ -58,16 +58,8 @@
 
             <!-- 单选多选 -->
             <div v-if="item=='radio' || item=='checkbox'">
-              <!-- <dragend-item>
-              <div slot="onSlotName">-->
-              <!-- <li v-for="(item,index) in data" :key="index" class="item" draggable="true"></li> -->
-              <!-- <li
-                    v-for="(child,i) in formData.documentList[index].options"
-                    :key="i"
-                    class="item"
-                    draggable="true"
-                  >
-                    <el-form-item prop="opLabel" :label="'选项'+ (i+1)">
+                <!-- <el-form-item prop="opLabel" v-for="(child,i) in formData.documentList[index].options"
+                    :key="i" :label="'选项'+ (i+1)">
                       <el-input
                         v-if="formData.documentList[index].isImg==false"
                         size="mini"
@@ -79,25 +71,19 @@
                         <el-button class="el-icon-picture-outline" slot="append"></el-button>
                       </el-input>
                       <span class="iconDel" v-if="i!=0" @click="delelConstruction(index,i)">+</span>
-                    </el-form-item>
-              </li>-->
-              <!-- </div> -->
-              <!-- </dragend-item> -->
-              <dragend-item>
-                <li
-                  slot="onSlotName"
-                  v-for="(item,index) in data"
-                  :key="index"
-                  class="item"
-                  draggable="true"
-                >
-                  {{item.id}}
-                  <input type="text" v-model="item.label" />
-                </li>
-              </dragend-item>
-              <el-form-item>
-                <div class="new-construction" @click="newConstruction(index)">新建选项</div>
-              </el-form-item>
+                  </el-form-item> -->
+
+                  <dragend-item
+                  :tableData="formData.documentList[index].options" 
+                  @sortHandle="(val)=>sortHandle(val,index)">
+                    <div slot-scope="scope">
+                        <span class="iconDel" v-if="formData.documentList[index].options.length!==1" @click="delelConstruction(index,scope.index)">+</span>
+                    </div>
+                  </dragend-item>
+                  
+                  <el-form-item>
+                    <div class="new-construction" @click="newConstruction(index)">新建选项</div>
+                  </el-form-item>
             </div>
             <!-- 满意度 -->
             <el-form-item>
@@ -141,12 +127,6 @@ export default {
   data() {
     return {
       text:'',
-      data: [
-        {label:'aa',id:'1'},
-        {label:'bb',id:'2'},
-        {label:'cc',id:'3'},
-        {label:'dd',id:'4'},
-      ],
       draging: null, //被拖拽的对象
       target: null, //目标对象
       labelPosition: "left",
@@ -185,13 +165,27 @@ export default {
     };
   },
   methods: {
+    sortHandle (val,index) {
+      let list = this.formData.documentList[index].options.map((item,i) =>{
+        return {
+          optId: item.optId,
+          optImg: item.optImg,
+          optLabel: val[i]
+        }
+      })
+      this.formData.documentList[index].options = []
+      this.$nextTick(()=> {
+        this.$set(this.formData.documentList[index],'options',list)
+      });
+      
+    },
     gettypeListClick(val, index) {
       this.isEdit = false;
       this.quesList.splice(index, 1, val);
       if (val == "radio" || val == "checkbox") {
-        this.formData.documentList[index].options = [{ optId: val + 1 }];
+        this.formData.documentList[index].options = [{ optId: val + (((1+Math.random())*0x10000)|0).toString(16).substring(1) }];
       } else {
-        this.formData.documentList[index].options = [{ optId: val + 1 }];
+        this.formData.documentList[index].options = [{ optId: val + (((1+Math.random())*0x10000)|0).toString(16).substring(1) }];
       }
     },
     delelClick(index) {
@@ -208,7 +202,7 @@ export default {
     newConstruction(index) {
       let params = this.formData.documentList[index].options;
       params.push({
-        optId: this.formData.documentList[index].type + (params.length + 1),
+        optId: this.formData.documentList[index].type + (((1+Math.random())*0x10000)|0).toString(16).substring(1),
         optLabel: "",
         optImg: ""
       });
@@ -292,12 +286,12 @@ export default {
   height: 25px;
 }
 .iconDel {
-  margin-left: 10px;
+  margin-left: 30px;
   font-size: 16px;
   -webkit-transform: rotate(-45deg);
   display: inline-block;
   position: absolute;
-  top: 2px;
+  top: 9px;
   left: 202px;
   cursor: pointer;
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
