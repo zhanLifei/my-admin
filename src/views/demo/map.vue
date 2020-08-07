@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import BIN from "bankcardinfo";
 export default {
   data() {
     return {
@@ -77,13 +78,15 @@ export default {
   },
   methods: {
     btnClick() {
-      let data = this.formData;
-      data.documentList.map((item, i) => {
-        item.seqNo = i + 2;
-      });
-
-      this.list.push(this.list[0]);
-      console.log(data);
+      BIN.getBankBin('6008888000252652658')
+            .then(data => {
+                if(data.bankName){
+                    console.log(data.bankName + data.cardTypeName)
+                }
+            }).catch(err => {
+                let errMsg = (err.split(':')[1]).split(',')[0]
+                console.log(errMsg )
+            });
     },
 
     deleClick(val, index) {

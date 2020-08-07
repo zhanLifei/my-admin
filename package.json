@@ -30,6 +30,7 @@
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-eslint": "^3.11.0",
     "@vue/cli-service": "^3.11.0",
+	"bankcardinfo": "^2.0.6",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
@@ -75,14 +76,6 @@
     "last 2 versions"
   ],
   "devServer": {
-    "proxy": {
-      "/api": {
-        "target": "https://biaochenxuying.cn/",
-        "changeOrigin": true,
-        "pathRewrite": {
-          "^/api": ""
-        }
-      }
-    }
+    "proxy": {}
   }
 }
