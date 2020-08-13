@@ -1,5 +1,5 @@
 export default {
     fullName(state) {
-        return `${state.firsName} ${state.lastName}`
+        return state.jsonData.filter(item=> item.name )
     }
 }

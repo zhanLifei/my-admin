@@ -110,77 +110,16 @@
         </div>
         <!-- 图形 -->
         <div class="quxiantu">
-          <div style="font-size:12px;margin-bottom:28px">工单统计</div>
-          <div class="statistical">
-            <div class="borderright">
-              <div class="font12">
-                报事报修
-                <div class="progress">
-                  <div class="progress-size" style="width: 20%;">
-                    <div class="progress-number" style="left:20%">20</div>
-                  </div>
-                </div>
-              </div>
-              <div class="font12">
-                投诉
-                <div class="progress">
-                  <div class="progress-size" style="width: 30%;">
-                    <div class="progress-number" style="left:30%">30</div>
-                  </div>
-                </div>
-              </div>
-              <div class="font12">
-                建议
-                <div class="progress">
-                  <div class="progress-size" style="width: 40%;">
-                    <div class="progress-number" style="left:40%">40</div>
-                  </div>
-                </div>
-              </div>
-              <div class="font12">
-                意见
-                <div class="progress">
-                  <div class="progress-size" style="width: 50%;">
-                    <div class="progress-number" style="left:50%">50</div>
-                  </div>
-                </div>
-              </div>
-              <div class="font12">
-                报事报修
-                <div class="progress">
-                  <div class="progress-size" style="width: 60%;">
-                    <div class="progress-number" style="left:60%">60</div>
-                  </div>
-                </div>
-              </div>
-              <div class="font12" style="margin-bottom:0">
-                其他
-                <div class="progress">
-                  <div class="progress-size" style="width: 90%;">
-                    <div class="progress-number" style="left:90%">90</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="borderright">
-              <div style="position: absolute;bottom: -20px;">0</div>
-            </div>
-            <div class="borderright">
-              <div style="position: absolute;bottom: -20px;">20</div>
-            </div>
-            <div class="borderright">
-              <div style="position: absolute;bottom: -20px;">40</div>
-            </div>
-            <div class="borderright">
-              <div style="position: absolute;bottom: -20px;">60</div>
-            </div>
-            <div class="borderright">
-              <div style="position: absolute;bottom: -20px;">80</div>
-            </div>
-            <div class="borderright">
-              <div style="position: absolute;bottom: -20px;">100</div>
-            </div>
-          </div>
+          <div class="quxiantu-title">工单统计</div>
+            <ve-bar
+              :data="orderData"
+              :settings="orderSettings"
+              :extend="cpuExtend"
+              :data-empty="dataEmpty"
+              width="96%"
+              height="300px"
+              style="position: absolute;left: 10px;top: 10px;"
+            ></ve-bar>
         </div>
       </div>
       <div v-if="current==1">
@@ -207,8 +146,8 @@
         <!-- 图形 -->
         <div class="quxiantu">
           <ve-line
-            :data="orderData"
-            :settings="orderSettings"
+            :data="orderData1"
+            :settings="orderSettings1"
             :yAxis="yAxis"
             height="300px"
             width="100%"
@@ -246,10 +185,12 @@
         <!-- 图形 -->
         <div class="quxiantu">
           <ve-line
-            :data="orderData1"
+            :data="orderData2"
             :yAxis="yAxis"
-            :settings="orderSettings1"
-            style="position: absolute;left: 0px;top: -47px;width: 520px;height: 140px;"
+            :settings="orderSettings2"
+            height="300px"
+            width="100%"
+            style="position: absolute;left:10px;top: 25px;"
           ></ve-line>
         </div>
       </div>
@@ -259,10 +200,12 @@
 
 <script>
 import VeLine from "v-charts/lib/line";
+import VeBar from "v-charts/lib/bar.common";
 import clone from "lodash";
 export default {
   components: {
-    VeLine
+    VeLine,
+    VeBar
   },
   data() {
     return {
@@ -281,6 +224,37 @@ export default {
           { type: "1/7", count: 1792 }
         ]
       },
+      cpuExtend: { 
+        minInterval: 1,
+        series: {
+          //柱子宽度设置barWidth
+          barWidth: 10,
+          itemStyle: {
+            //柱子圆角设置barBorderRadius
+            emphasis: {
+            barBorderRadius: 2
+            },
+            normal: {
+              barBorderRadius: 3,
+              color: function (params){
+              var colorList = ['#0094d8','#0094d8','#0094d8'];
+              return colorList[params.dataIndex];
+              }
+            },
+          }
+        }
+      },
+      orderSettings: {
+        //设置中文图例
+        labelMap: {
+          //date对应后台返回json数据的key，具体值根据接口字段来修改
+          type: "类型", //total对应后台返回son数据的value，具体值根据接口字段来修改
+          count: "工单统计"
+        },
+        itemStyle: {
+          color: "rgba(0, 145, 215, 0.9)"
+        },
+      },
       // 工单统计
       orderData1: {
         columns: ["type", "count"],
@@ -294,8 +268,22 @@ export default {
           { type: "1/7", count: 1792 }
         ]
       },
-      orderSettings1: { },
-      orderSettings: {
+      
+      // 工单统计
+      orderData2: {
+        columns: ["type", "count"],
+        rows: [
+          { type: "1/1", count: 200 },
+          { type: "1/2", count: 1235 },
+          { type: "1/3", count: 852 },
+          { type: "1/4", count: 2555 },
+          { type: "1/5", count: 4563 },
+          { type: "1/6", count: 8569 },
+          { type: "1/7", count: 1792 }
+        ]
+      },
+      orderSettings2: {},
+      orderSettings1: {
         //设置中文图例
         labelMap: {
           //date对应后台返回json数据的key，具体值根据接口字段来修改

@@ -235,6 +235,7 @@ export default {
     }
   },
   mounted() {
+    console.log(this.$route)
     this.initPage();
   }
 };

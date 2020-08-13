@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import vuedraggable from "@/components/dragend-item1.vue";
+import vuedraggable from "@/components/dragend-item.vue";
 export default {
   components: {
     vuedraggable

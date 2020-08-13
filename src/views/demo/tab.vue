@@ -24,42 +24,6 @@ export default {
   methods: {
     handleRetartClick(index) {
       this.current = index;
-      let arr = [
-        { name: "aaa", id: 1, value: "123" },
-        { name: "aaa", id: 1, value: "123" },
-        { name: "aaa", id: 1, value: "123" },
-        { name: "bbb", id: 1, value: "123" },
-        { name: "bbb", id: 1, value: "123" },
-        { name: "bbb", id: 1, value: "123" },
-        { name: "ccc", id: 1, value: "123" },
-        { name: "ccc", id: 1, value: "123" },
-        { name: "ccc", id: 1, value: "123" },
-        { name: "ddd", id: 1, value: "123" },
-        { name: "ddd", id: 1, value: "123" },
-        { name: "ddd", id: 1, value: "123" }
-      ];
-      //对数组进行分组
-      let map = {};
-      let newArr = [];
-      arr.forEach((item,i)=>{
-          let res = arr[i];
-          if(!map[res.name]) {
-              newArr.push({
-                  title: res.name,
-                  options: [res]
-              });
-              map[res.name] = res;
-          } else {
-              newArr.forEach((item,index)=>{
-                  let obj = newArr[index];
-                  if(obj.title == res.name) {
-                      obj.options.push(res);
-                      return
-                  }
-              })
-          }
-      })
-      console.log(newArr);
     }
   }
 };

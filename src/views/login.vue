@@ -66,7 +66,8 @@ export default {
     width: 400px;
     padding: 0px 40px 15px 40px;
     margin: 200px auto;
-    background: #2d3a4b;
+    background: #203347;
+    animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) ;
     .avatar {
       position: relative;
       left: 50%;
@@ -92,4 +93,18 @@ export default {
     background-color: #283443;
     border: 1px solid #3e4957;
 }
+
+
+@keyframes scale-in-center {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
 </style>
