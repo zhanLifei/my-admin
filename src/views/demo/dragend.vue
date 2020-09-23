@@ -2,7 +2,7 @@
   <dragend-item>
     <li slot="onSlotName" v-for="(item,index) in data" :key="index" class="item" draggable="true">
       {{item}}
-      <input type="text" />
+      <input type="text" :value="item"/>
     </li>
   </dragend-item>
 </template>

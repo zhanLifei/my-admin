@@ -81,7 +81,7 @@
               </template>
             </el-menu-item>
             <el-menu-item index="tab">
-              <template slot="tit">
+              <template slot="title">
                 <span>tab栏</span>
               </template>
             </el-menu-item>
@@ -103,6 +103,11 @@
             <el-menu-item index="images">
               <template slot="title">
                 <span>上传图片</span>
+              </template>
+            </el-menu-item>
+            <el-menu-item index="vueCropper">
+              <template slot="title">
+                <span>图片裁剪</span>
               </template>
             </el-menu-item>
             <el-menu-item index="quest">

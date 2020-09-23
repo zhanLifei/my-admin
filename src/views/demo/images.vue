@@ -3,7 +3,7 @@
     <div class="upload-area">
       <div class="image-uploader-item" v-if="isUploader">
         <span class="upload-hint-text">
-          <XIcon class="add-icon" type="applist-add-2" />
+          <span class="add-icon" type="applist-add-2">+</span>
         </span>
       </div>
       <input type="file" class="file-upload" @change="uploadPhoto" v-if="isFiles"/>
@@ -90,7 +90,7 @@ export default {
   width: 12px;
   text-align: center;
   border-radius: 50%;
-  background-color: #0b8dcb;
+  background-color: #e1e4e5;
   color: #091e44;
   top: -2px;
   right: -4px;
@@ -99,7 +99,8 @@ export default {
   font-style: normal;
 }
 .add-icon {
-  color: #0b8dcb;
+  color: #959ea2;
+  font-size: 60px;
 }
 .upload-hint-text {
   size: 100%;

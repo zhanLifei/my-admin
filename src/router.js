@@ -94,6 +94,11 @@ export default new Router({
           component: () => import("./views/demo/dragend.vue")
         },
         {
+          path: "/vueCropper",
+          name: "/vueCropper",
+          component: () => import("./views/demo/vue-cropper.vue")
+        },
+        {
           path: "/css手机充电特效",
           name: "css手机充电特效",
           component: () => import("./views/css3/css手机充电特效.vue")
