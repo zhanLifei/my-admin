@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "vuedraggable": "^2.16.0",
     "axios": "^0.19.0",
     "core-js": "^2.6.5",
     "echarts": "^4.6.0",
@@ -30,6 +31,7 @@
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-eslint": "^3.11.0",
     "@vue/cli-service": "^3.11.0",
+	"bankcardinfo": "^2.0.6",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",

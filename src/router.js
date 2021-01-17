@@ -49,9 +49,9 @@ export default new Router({
           component: () => import("./views/demo/canvas1.vue")
         },
         {
-          path: "/clone",
-          name: "clone",
-          component: () => import("./views/demo/clone.vue")
+          path: "/v-chart",
+          name: "v-chart",
+          component: () => import("./views/demo/v-chart.vue")
         },
         {
           path: "/table",
@@ -67,11 +67,6 @@ export default new Router({
           path: "/tree",
           name: "tree",
           component: () => import("./views/demo/tree.vue")
-        },
-        {
-          path: "/tree1",
-          name: "tree1",
-          component: () => import("./views/demo/tree1.vue")
         },
         {
           path: "/render",
@@ -94,35 +89,35 @@ export default new Router({
           component: () => import("./views/demo/dragend.vue")
         },
         {
-          path: "/vueCropper",
-          name: "/vueCropper",
-          component: () => import("./views/demo/vue-cropper.vue")
+          path: "/map",
+          name: "/map",
+          component: () => import("./views/demo/map.vue")
         },
-        {
-          path: "/css手机充电特效",
-          name: "css手机充电特效",
-          component: () => import("./views/css3/css手机充电特效.vue")
-        },
-        {
-          path: "/css手机充电特效1",
-          name: "css手机充电特效1",
-          component: () => import("./views/css3/css手机充电特效1.vue")
-        },
-        {
-          path: "/css手机充电特效2",
-          name: "css手机充电特效2",
-          component: () => import("./views/css3/css手机充电特效2.vue")
-        },
-        {
-          path: "/css手机充电特效3",
-          name: "css手机充电特效3",
-          component: () => import("./views/css3/css手机充电特效3.vue")
-        },
-        {
-          path: "/css3照片特效",
-          name: "css照片特效",
-          component: () => import("./views/css3/css照片特效.vue")
-        },
+        // {
+        //   path: "/css手机充电特效",
+        //   name: "css手机充电特效",
+        //   component: () => import("./views/css3/css手机充电特效.vue")
+        // },
+        // {
+        //   path: "/css手机充电特效1",
+        //   name: "css手机充电特效1",
+        //   component: () => import("./views/css3/css手机充电特效1.vue")
+        // },
+        // {
+        //   path: "/css手机充电特效2",
+        //   name: "css手机充电特效2",
+        //   component: () => import("./views/css3/css手机充电特效2.vue")
+        // },
+        // {
+        //   path: "/css手机充电特效3",
+        //   name: "css手机充电特效3",
+        //   component: () => import("./views/css3/css手机充电特效3.vue")
+        // },
+        // {
+        //   path: "/css3照片特效",
+        //   name: "css照片特效",
+        //   component: () => import("./views/css3/css照片特效.vue")
+        // },
         {
           path: '/switch',
           name:'switch',
@@ -142,6 +137,38 @@ export default new Router({
           path: "/packaging",
           name: "packaging",
           component: () => import("./views/packaging/index.vue")
+        },
+        {
+          path: "/vuex",
+          name: "vuex",
+          component: () => import("./views/vuex/index.vue"),
+          children: [
+            {
+              path: "/state",
+              name: "state",
+              component: () => import("./views/vuex/state.vue")
+            },
+            {
+              path: "/getter",
+              name: "getter",
+              component: () => import("./views/vuex/getter.vue")
+            },
+            {
+              path: "/mutation",
+              name: "mutation",
+              component: () => import("./views/vuex/mutation.vue")
+            },
+            {
+              path: "/action",
+              name: "action",
+              component: () => import("./views/vuex/action.vue")
+            },
+            {
+              path: "/module",
+              name: "module",
+              component: () => import("./views/vuex/module.vue")
+            },
+          ]
         }
       ]
     }

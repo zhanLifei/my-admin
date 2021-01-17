@@ -12,35 +12,7 @@
         </div>
       </el-col>
       <el-col :span="20" style="height:80vh;overflow: scroll;">
-        <div class="quesBox">
-          <div class="title">
-            <span class="required">*</span>
-            <input
-              class="inputTitle"
-              size="large"
-              placeholder="请输入问卷标题"
-              width="80%"
-              v-model="quesTitle"
-            />
-          </div>
-        </div>
-        <div class="quesBox">
-          <div class="juspan">
-            <span class="required1">*</span>
-            <el-input
-              type="textarea"
-              class="title-content"
-              v-model="description"
-              resize="none"
-              width="90%"
-            ></el-input>
-          </div>
-        </div>
         <add-normal ref="addNormal" :quesList="quesList" @deleteList="deleteList"></add-normal>
-        <div class="quesBox2">
-          <!-- <XButton type="ghost" style="margin-right:20px" @click.native="quxiaoAdd">取消</XButton> -->
-          <XButton type="primary" @click.native="addClick" v-if="quesList.length">确定</XButton>
-        </div>
       </el-col>
     </el-row>
   </div>
@@ -54,9 +26,6 @@ export default {
   },
   data() {
     return {
-      quesTitle: "",
-      description:
-        "为了给您提供更好的服务，希望您能抽出几分钟时间，将您的感受和建议告诉我们，我们非常重视每位用户的宝贵意见，期待您的参与！现在我们就马上开始吧！",
       quesSelechList: [
         { label: "单选题", value: "radio" },
         { label: "多选题", value: "checkbox" },
@@ -73,18 +42,31 @@ export default {
       this.$refs.addNormal.isAdd = true;
       this.$refs.addNormal.isEdit = true;
       this.quesList.push(item.value);
-    },
-    // 删除
-    deleteList(i) {
-      this.quesList.splice(i, 1);
-    },
-    addClick(){
-      console.log(this.$refs.addNormal.data);
     }
   }
 };
 </script>
+<style scoped>
+ /* 编辑滚动条样式 */
+    ::-webkit-scrollbar {
+        width: 8px !important;
+        height: 8px !important;
+        background: transparent !important;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: transparent !important;
+        border-radius: 8px !important;
+    }
 
+    :hover::-webkit-scrollbar-thumb {
+        background: hsla(0, 2%, 75%, 0.4) !important;
+    }
+
+    :hover::-webkit-scrollbar-track {
+        background: hsla(0, 2%, 75%, 0.1) !important;
+    }
+
+</style>
 <style lang="less" scoped>
 .dele {
   width: 80px;

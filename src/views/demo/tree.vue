@@ -1,40 +1,43 @@
 <template>
-  <chart ref="chart1" :options="orgOptions" :auto-resize="true"></chart>
+    <div id="tree1">
+        <tree :treeData="treeDataone"
+        :isAllOpen="false"
+        @inselectnode="selectnode"
+        @inpulldown="pulldown"
+        @incheckednode="checkednode"
+        :isShowcheck="true"
+        :isMultiple="true"
+        :depthShow="2"></tree>
+    </div>
+
 </template>
 
 <script>
+import tree from "@/components/tree-recursion";
+import { treeData } from "../../../static/data";
 export default {
   data() {
     return {
-      orgOptions: {}
+      treeDataone: treeData,
     };
   },
-  mounted() {
-    this.orgOptions = {
-      xAxis: {
-        type: "category",
-        data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-        splitLine: {
-          show: false
-        }
-      },
-      yAxis: {
-        type: "value",
-        splitLine: {
-          show: false
-        }
-      },
-      series: [
-        {
-          data: [820, 932, 901, 934, 1290, 1330, 1320],
-          type: "line",
-          smooth: true
-        }
-      ]
-    };
+  components: {
+    tree
+  },
+  methods: {
+    pulldown(obj, type) {
+      console.log(obj, type);
+    },
+    selectnode(obj) {
+      console.log(obj);
+    },
+    checkednode(arr) {
+      console.log(arr);
+    }
   }
 };
 </script>
 
 <style>
+
 </style>

@@ -60,9 +60,9 @@
                 <span>swiper轮播</span>
               </template>
             </el-menu-item>
-            <el-menu-item index="clone">
+            <el-menu-item index="v-chart">
               <template slot="title">
-                <span>clone克隆</span>
+                <span>图表</span>
               </template>
             </el-menu-item>
             <el-menu-item index="canvas">
@@ -77,7 +77,7 @@
             </el-menu-item>
             <el-menu-item index="table">
               <template slot="title">
-                <span>table表格</span>
+                <span>table假分页</span>
               </template>
             </el-menu-item>
             <el-menu-item index="tab">
@@ -88,11 +88,6 @@
             <el-menu-item index="tree">
               <template slot="title">
                 <span>tree</span>
-              </template>
-            </el-menu-item>
-            <el-menu-item index="tree1">
-              <template slot="title">
-                <span>tree1</span>
               </template>
             </el-menu-item>
             <el-menu-item index="render">
@@ -115,14 +110,19 @@
                 <span>模板问卷</span>
               </template>
             </el-menu-item>
-            <el-menu-item index="dragend">
+            <!-- <el-menu-item index="dragend">
               <template slot="title">
                 <span>拖拽排序</span>
               </template>
             </el-menu-item>
+            <el-menu-item index="map">
+              <template slot="title">
+                <span>map遍历</span>
+              </template>
+            </el-menu-item> -->
           </el-submenu>
           <!-- css3 -->
-          <el-submenu index="5">
+          <!-- <el-submenu index="5">
             <template slot="title">
               <i class="el-icon-goods"></i>
               <span>css3特效</span>
@@ -146,10 +146,41 @@
               <template slot="title">
                 <span>css3照片特效</span>
               </template>
-            </el-menu-item>
-            <el-menu-item index="switch">
+            </el-menu-item> -->
+            <!-- <el-menu-item index="switch">
               <template slot="title">
                 <span>switch</span>
+              </template>
+            </el-menu-item>
+          </el-submenu> -->
+          <el-submenu index="6">
+            <template slot="title">
+              <i class="el-icon-goods"></i>
+              <span>vuex的使用</span>
+            </template>
+            <el-menu-item index="state">
+              <template slot="title">
+                <span>state的使用</span>
+              </template>
+            </el-menu-item>
+            <el-menu-item index="getter">
+              <template slot="title">
+                <span>getter的使用</span>
+              </template>
+            </el-menu-item>
+            <el-menu-item index="mutation">
+              <template slot="title">
+                <span>mutation的使用</span>
+              </template>
+            </el-menu-item>
+            <el-menu-item index="action">
+              <template slot="title">
+                <span>action的使用</span>
+              </template>
+            </el-menu-item>
+            <el-menu-item index="module">
+              <template slot="title">
+                <span>module的使用</span>
               </template>
             </el-menu-item>
           </el-submenu>

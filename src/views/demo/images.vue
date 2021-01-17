@@ -3,7 +3,7 @@
     <div class="upload-area">
       <div class="image-uploader-item" v-if="isUploader">
         <span class="upload-hint-text">
-          <span class="add-icon" type="applist-add-2">+</span>
+          <i class="el-icon-plus" style="font-size:30px" type="applist-add-2" />
         </span>
       </div>
       <input type="file" class="file-upload" @change="uploadPhoto" v-if="isFiles"/>

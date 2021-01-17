@@ -1,7 +1,8 @@
 export default {
+    increment(state,n){
+        state.counts += n
+    },
     updateCount(state,data){
-        state.count = data
-        state.token = data
-        state.jsonData = data
+        state.count += data
     }
 }

@@ -47,8 +47,8 @@ export default {
       this.isDialogShow = true;
       this.$index({message:'23443432',msg:'哈哈'});
       this.$api({
-        method:'post',
-        url:'/category'
+        method:'get',
+        url:'/getArticleList'
       }).then(res=>{
         console.log(res);
       })
@@ -61,5 +61,6 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+
 </style>

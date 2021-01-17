@@ -111,15 +111,15 @@
         <!-- 图形 -->
         <div class="quxiantu">
           <div class="quxiantu-title">工单统计</div>
-          <ve-bar
-            :data="orderData"
-            :settings="orderSettings"
-            :extend="cpuExtend"
-            :data-empty="dataEmpty"
-            width="96%"
-            height="300px"
-            style="position: absolute;left: 10px;top: 10px;"
-          ></ve-bar>
+            <ve-bar
+              :data="orderData"
+              :settings="orderSettings"
+              :extend="cpuExtend"
+              :data-empty="dataEmpty"
+              width="96%"
+              height="300px"
+              style="position: absolute;left: 10px;top: 10px;"
+            ></ve-bar>
         </div>
       </div>
       <div v-if="current==1">
@@ -146,8 +146,8 @@
         <!-- 图形 -->
         <div class="quxiantu">
           <ve-line
-            :data="orderData2"
-            :settings="orderSettings2"
+            :data="orderData1"
+            :settings="orderSettings1"
             :yAxis="yAxis"
             height="300px"
             width="100%"
@@ -185,10 +185,12 @@
         <!-- 图形 -->
         <div class="quxiantu">
           <ve-line
-            :data="orderData1"
+            :data="orderData2"
             :yAxis="yAxis"
-            :settings="orderSettings1"
-            style="position: absolute;left: 0px;top: -47px;width: 520px;height: 140px;"
+            :settings="orderSettings2"
+            height="300px"
+            width="100%"
+            style="position: absolute;left:10px;top: 25px;"
           ></ve-line>
         </div>
       </div>
@@ -198,7 +200,7 @@
 
 <script>
 import VeLine from "v-charts/lib/line";
-import VeBar from "v-charts/lib/bar";
+import VeBar from "v-charts/lib/bar.common";
 import clone from "lodash";
 export default {
   components: {
@@ -223,32 +225,6 @@ export default {
           { type: "1/7", count: 1792 }
         ]
       },
-      // 工单统计
-      orderData1: {
-        columns: ["type", "count"],
-        rows: [
-          { type: "1/1", count: 1393 },
-          { type: "1/2", count: 3530 },
-          { type: "1/3", count: 2923 },
-          { type: "1/4", count: 1723 },
-          { type: "1/5", count: 3792 },
-          { type: "1/6", count: 2792 },
-          { type: "1/7", count: 1792 }
-        ]
-      },
-      // 工单统计
-      orderData: {
-        columns: ["type", "count"],
-        rows: [
-          { type: "1/1", count: 1393 },
-          { type: "1/2", count: 3530 },
-          { type: "1/3", count: 2923 },
-          { type: "1/4", count: 1723 },
-          { type: "1/5", count: 3792 },
-          { type: "1/6", count: 2792 },
-          { type: "1/7", count: 1792 }
-        ]
-      },
       cpuExtend: { 
         minInterval: 1,
         series: {
@@ -262,7 +238,7 @@ export default {
             normal: {
               barBorderRadius: 3,
               color: function (params){
-              var colorList = ['pink','blue','skyblue','red','yellow','#000','#eee'];
+              var colorList = ['#0094d8','#0094d8','#0094d8'];
               return colorList[params.dataIndex];
               }
             },
@@ -270,6 +246,45 @@ export default {
         }
       },
       orderSettings: {
+        //设置中文图例
+        labelMap: {
+          //date对应后台返回json数据的key，具体值根据接口字段来修改
+          type: "类型", //total对应后台返回son数据的value，具体值根据接口字段来修改
+          count: "工单统计"
+        },
+        itemStyle: {
+          color: "rgba(0, 145, 215, 0.9)"
+        },
+      },
+      // 工单统计
+      orderData1: {
+        columns: ["type", "count"],
+        rows: [
+          { type: "1/1", count: 1393 },
+          { type: "1/2", count: 3530 },
+          { type: "1/3", count: 2923 },
+          { type: "1/4", count: 1723 },
+          { type: "1/5", count: 3792 },
+          { type: "1/6", count: 2792 },
+          { type: "1/7", count: 1792 }
+        ]
+      },
+      
+      // 工单统计
+      orderData2: {
+        columns: ["type", "count"],
+        rows: [
+          { type: "1/1", count: 200 },
+          { type: "1/2", count: 1235 },
+          { type: "1/3", count: 852 },
+          { type: "1/4", count: 2555 },
+          { type: "1/5", count: 4563 },
+          { type: "1/6", count: 8569 },
+          { type: "1/7", count: 1792 }
+        ]
+      },
+      orderSettings2: {},
+      orderSettings1: {
         //设置中文图例
         labelMap: {
           //date对应后台返回json数据的key，具体值根据接口字段来修改

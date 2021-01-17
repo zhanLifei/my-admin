@@ -1,35 +1,29 @@
 <template>
-  <dragend-item>
-    <li slot="onSlotName" v-for="(item,index) in data" :key="index" class="item" draggable="true">
-      {{item}}
-      <input type="text" :value="item"/>
-    </li>
-  </dragend-item>
+  <vuedraggable>
+
+  </vuedraggable>
 </template>
 
 <script>
-import dragendItem from "../../components/dragend-item.vue";
+import vuedraggable from "@/components/dragend-item.vue";
 export default {
   components: {
-    dragendItem
+    vuedraggable
   },
-  data() {
-    return {
-      data: [1, 3, 4, 5, 6]
-    };
-  }
+  data () {
+        return {
+            list: [1,2,34,4,54,5]
+        }
+    },
+    updated() {
+        console.log(this.list)
+    },
+    methods: {
+        
+    }
 };
 </script>
 
 <style scoped>
-.item {
-  cursor: pointer;
-  height: 24px;
-  line-height: 24px;
-  /* background-color: #dbd7d7; */
-  border: 1px solid #d9d9d9;
-  border-radius: 4px;
-  color: #fff;
-  padding: 10px;
-}
+
 </style>
