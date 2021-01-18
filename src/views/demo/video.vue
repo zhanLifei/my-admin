@@ -1,9 +1,6 @@
 <template>
   <div class="app-container">
     <div><video-player :options="videoOption" class="video" /></div>
-    <!-- <div><video-player :options="videoOption" class="video" /></div> -->
-    <!-- <div><video-player :options="videoOption" class="video" /></div> -->
-    <!-- <div><video-player :options="videoOption" class="video" /></div> -->
   </div>
 </template>
 
@@ -16,7 +13,7 @@ export default {
   },
   data() {
     return {
-      videoSrc: 'rtmp://172.16.1.65:1935/test1/myStream'
+      videoSrc: 'rtmp://live.hkstv.hk.lxdns.com/live/hks1'
     };
   },
   computed: {

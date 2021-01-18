@@ -100,6 +100,11 @@
                 <span>上传图片</span>
               </template>
             </el-menu-item>
+            <el-menu-item index="vueCropper">
+              <template slot="title">
+                <span>图片裁剪</span>
+              </template>
+            </el-menu-item>
             <el-menu-item index="quest">
               <template slot="title">
                 <span>模板问卷</span>

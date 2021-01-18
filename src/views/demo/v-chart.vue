@@ -211,8 +211,9 @@ export default {
     return {
       current: 1,
       yAxis: {},
+      dataEmpty:true,
       // 工单统计
-      orderData: {
+      orderData2: {
         columns: ["type", "count"],
         rows: [
           { type: "1/1", count: 1393 },
@@ -284,6 +285,18 @@ export default {
       },
       orderSettings2: {},
       orderSettings1: {
+        //设置中文图例
+        labelMap: {
+          //date对应后台返回json数据的key，具体值根据接口字段来修改
+          type: "类型", //total对应后台返回son数据的value，具体值根据接口字段来修改
+          count: "工单统计"
+        },
+        itemStyle: {
+          color: "rgba(0, 145, 215, 0.9)"
+        },
+      },
+      orderSettings1: { },
+      orderSettings2: {
         //设置中文图例
         labelMap: {
           //date对应后台返回json数据的key，具体值根据接口字段来修改

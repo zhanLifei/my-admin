@@ -20,7 +20,7 @@ import Dialogs from "../../common/Dialog";
 import FlBotton from "../../common/botton";
 import radio from "../../common/radio";
 import Cascader from "../../common/Cascader";
-
+import mock from '../../api/mock.js'
 export default {
   components: {
     Dialogs,
