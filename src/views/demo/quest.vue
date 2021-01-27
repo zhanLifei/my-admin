@@ -12,7 +12,7 @@
         </div>
       </el-col>
       <el-col :span="20" style="height:80vh;overflow: scroll;">
-        <add-normal ref="addNormal" :quesList="quesList" @deleteList="deleteList"></add-normal>
+        <add-normal ref="addNormal" :quesList="quesList"></add-normal>
       </el-col>
     </el-row>
   </div>

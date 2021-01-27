@@ -84,14 +84,9 @@ export default new Router({
           component: () => import("./views/demo/quest.vue")
         },
         {
-          path: "/dragend",
-          name: "/dragend",
-          component: () => import("./views/demo/dragend.vue")
-        },
-        {
-          path: "/map",
-          name: "/map",
-          component: () => import("./views/demo/map.vue")
+          path: "/vueCropper",
+          name: "vueCropper",
+          component: () => import("./views/demo/vue-cropper.vue")
         },
         // {
         //   path: "/css手机充电特效",

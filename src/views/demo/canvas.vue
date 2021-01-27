@@ -1,4 +1,5 @@
 <template>
+<!-- 图片框线定位 -->
   <div>
     <div class="body-content">
       <img style="width:100%" ref="resImage" :src="imgPath"/>

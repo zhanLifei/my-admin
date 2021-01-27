@@ -26,6 +26,13 @@
                     <div class="new-construction" v-if="status !== 'view'" @click="newConstruction(index)">新建选项</div>
                   </el-form-item>
                 </div>
+                <div v-if="item.type=='textarea' || item.type=='text' ">
+                  多行文本题,文本题
+                </div>
+
+                <div v-if="item.type=='degreestar' || item.type=='degreesnum' ">
+                  星评,满意度
+                </div>
               </div>
               <div class="btnBox">
                 <div class="handles dele">拖拽</div>
