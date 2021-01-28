@@ -215,6 +215,12 @@ export default {
       localStorage.removeItem("zhanlifeiAdmin");
       this.$router.push({ path: "/login" });
     }
+  },
+  mounted(){
+     var token = localStorage.getItem("zhanlifeiAdmin");
+    if(!token) {
+      this.$router.push({ path: "/login" });
+    }
   }
 };
 </script>

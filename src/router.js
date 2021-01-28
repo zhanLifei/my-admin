@@ -4,13 +4,13 @@ import Router from "vue-router";
 Vue.use(Router);
 
 export default new Router({
-  mode: "history",
+  mode: "hash",
   base: process.env.BASE_URL,
   routes: [
     {
       name: 'default',
       path: '/',
-      redirect: { name: 'login' }
+      redirect: { name: 'welcome' }
     },
     {
       path: "/login",
@@ -18,16 +18,16 @@ export default new Router({
       component: () => import("./views/login.vue")
     },
     {
+      path: "/welcome",
+      name: "welcome",
+      component: () => import("@/components/welcome.vue")
+    },
+    {
       path: "/contaihome",
       name: "contaihome",
       component: () => import("./views/contaihome.vue"),
       redirect: { name: 'welcome' },
       children: [
-        {
-          path: "/welcome",
-          name: "welcome",
-          component: () => import("@/components/welcome.vue")
-        },
         {
           path: "/video",
           name: "video",
@@ -41,12 +41,13 @@ export default new Router({
         {
           path: "/canvas",
           name: "canvas",
+          meta: { autho: "canvas" },
           component: () => import("./views/demo/canvas.vue")
         },
         {
-          path: "/canvas1",
-          name: "canvas1",
-          component: () => import("./views/demo/canvas1.vue")
+          path: "/DragCard",
+          name: "DragCard",
+          component: () => import("./views/demo/DragCard.vue")
         },
         {
           path: "/v-chart",
