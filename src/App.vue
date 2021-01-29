@@ -14,5 +14,7 @@ html,body {
   top: 0;
   height: 100%;
   width: 100%;
+  background: #f2f2f2;
+  
 }
 </style>

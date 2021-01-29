@@ -192,7 +192,7 @@
             <i v-if="!iscollapse" class="el-icon-d-arrow-left" style="color:#304156"></i>
             <i v-if="iscollapse" class="el-icon-d-arrow-right" style="color:#304156"></i>
           </span>
-          <span class="system-title">111</span>
+          <span class="system-title">后台管理系统</span>
           <span class="welcome" @click="nextClick">退出</span>
         </el-header>
         <el-main>
@@ -242,6 +242,7 @@ export default {
     align-items: center;
     background-color: #fff;
     border-bottom: 2px solid #f4f5f6;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.1);
   }
   .logo {
     height: 60px;
@@ -262,7 +263,6 @@ export default {
   }
   .system-title {
     font-size: 28px;
-    color: white;
   }
   .welcome {
     color: #304156;
