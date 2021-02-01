@@ -70,9 +70,9 @@
                 <span>canvas</span>
               </template>
             </el-menu-item>
-            <el-menu-item index="canvas1">
+            <el-menu-item index="iframeDiv">
               <template slot="title">
-                <span>canvas1</span>
+                <span>iframeDiv</span>
               </template>
             </el-menu-item>
             <el-menu-item index="table">

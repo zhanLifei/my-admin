@@ -5,34 +5,14 @@
     </div>
     <div class="search">
       <div>
-        <el-input placeholder="请输入内容" v-model="input3" class="input-with-select">
-          <el-button slot="append" icon="el-icon-search"></el-button>
+        <el-input placeholder="请输入内容" v-model="inputText" class="input-with-select">
+          <el-button slot="append" icon="el-icon-search" @click="btnSave"></el-button>
         </el-input>
       </div>
       <div class="content">
-        <div class="item">
-          <img src="https://ss3.bdstatic.com/yrwDcj7w0QhBkMak8IuT_XF5ehU5bvGh7c50/logopic/6829dfa6c9b4714a6456796fd887c870_fullsize.jpg" alt="">
-          <div class="title">百度一下</div>
-        </div>
-        <div class="item">
-          <img src="https://dss1.bdstatic.com/6OF1bjeh1BF3odCf/it/u=31257802,2647597666&fm=74&app=80&f=JPEG&size=f121,121?sec=1880279984&t=b9d57536e3fcc6611daef043173bb298" alt="">
-          <div class="title">掘金</div>
-        </div>
-        <div class="item">
-          <img src="https://dss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=3857852323,2310389347&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=4e8d7d9ecd6e640fe939a95ce4f8f029" alt="">
-          <div class="title">知乎</div>
-        </div>
-        <div class="item">
-          <img src="http://pic.51yuansu.com/pic3/cover/03/44/05/5ba252440d02d_610.jpg!/fw/260/quality/90/unsharp/true/compress/true" alt="">
-          <div class="title">哔哩哔哩</div>
-        </div>
-        <div class="item">
-          <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1866778045,325297268&fm=26&gp=0.jpg" alt="">
-          <div class="title">GutHub</div>
-        </div>
-        <div class="item">
-          <img src="https://dss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=2601442671,1921184035&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=67922ee570b389cdd0a3c56dc0ad3bba" alt="">
-          <div class="title">CSDN</div>
+        <div class="item" v-for="item in urlList" :key="item">
+          <img :src="item.img" alt="">
+          <div class="title">{{item.name}}</div>
         </div>
       </div>
     </div>
@@ -41,7 +21,83 @@
 
 <script>
 export default {
-  
+  data(){
+    return {
+      inputText: '',
+      urlList: [
+        {
+          img: 'https://ss3.bdstatic.com/yrwDcj7w0QhBkMak8IuT_XF5ehU5bvGh7c50/logopic/6829dfa6c9b4714a6456796fd887c870_fullsize.jpg',
+          url: 'www.baidu.com',
+          name: '百度一下'
+        },
+        {
+          img: 'https://dss1.bdstatic.com/6OF1bjeh1BF3odCf/it/u=31257802,2647597666&fm=74&app=80&f=JPEG&size=f121,121?sec=1880279984&t=b9d57536e3fcc6611daef043173bb298',
+          url: '222222222',
+          name: '掘金'
+        },
+        {
+          img: 'https://dss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=3857852323,2310389347&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=4e8d7d9ecd6e640fe939a95ce4f8f029',
+          url: '222222222',
+          name: '知乎'
+        },
+        {
+          img: 'http://pic.51yuansu.com/pic3/cover/03/44/05/5ba252440d02d_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
+          url: '222222222',
+          name: '哔哩哔哩'
+        },
+        {
+          img: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1866778045,325297268&fm=26&gp=0.jpg',
+          url: '222222222',
+          name: 'GutHub'
+        },
+        {
+          img: 'https://dss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=2601442671,1921184035&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=67922ee570b389cdd0a3c56dc0ad3bba',
+          url: '222222222',
+          name: 'CSDN'
+        },
+        {
+          img: 'https://pic1.zhimg.com/v2-ca674b5186b28e2b0edae538ee5388d0_ipico.jpg',
+          url: '222222222',
+          name: 'LeetCode'
+        },
+        {
+          img: 'https://dss1.bdstatic.com/6OF1bjeh1BF3odCf/it/u=3533778697,2586993014&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=1dbed90be2871a78074bf731b6872ed0',
+          url: '222222222',
+          name: 'Vue'
+        },
+        {
+          img: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3866489056,1783249585&fm=26&gp=0.jpg',
+          url: '222222222',
+          name: 'React'
+        },
+        {
+          img: 'https://img.onlinedown.net/download/202008/153346-5f3f78dae16fa.jpg',
+          url: '222222222',
+          name: '蓝湖'
+        },
+        {
+          img: '1111111111',
+          url: '222222222',
+          name: '百度一下'
+        },
+        {
+          img: '1111111111',
+          url: '222222222',
+          name: '百度一下'
+        }
+      ]
+    }
+  },
+  methods:{
+    btnSave(){
+      this.$router.push({ 
+        path: "/iframeDiv",
+        query: {
+          value: this.inputText
+        }
+      });
+    }
+  }
   
 };
 </script>
@@ -73,6 +129,7 @@ export default {
     background: transparent;
     box-shadow: 0px 0px 10px #fff inset;
     border: 1px solid #fff;
+    color: #fff;
   }
   .content{
     background: rgba(0,0,0, .1);
@@ -81,6 +138,7 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    border-radius: 8px;
     .item{
       width: 25%;
       display: flex;
@@ -96,7 +154,7 @@ export default {
       margin: 10px 0;
     }
     .title{
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
   }
 }

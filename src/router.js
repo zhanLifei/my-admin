@@ -18,6 +18,11 @@ export default new Router({
       component: () => import("./views/login.vue")
     },
     {
+      path: "/iframeDiv",
+      name: "iframeDiv",
+      component: () => import("./views/demo/iframeDiv.vue")
+    },
+    {
       path: "/welcome",
       name: "welcome",
       component: () => import("@/components/welcome.vue")
@@ -26,7 +31,7 @@ export default new Router({
       path: "/contaihome",
       name: "contaihome",
       component: () => import("./views/contaihome.vue"),
-      redirect: { name: 'welcome' },
+      redirect: { name: 'myBookmark' },
       children: [
         {
           path: "/video",

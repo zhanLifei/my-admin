@@ -39,7 +39,7 @@ export default {
         if (valid && this.loginForm.username =='zhanlifei123' && this.loginForm.password =='fei180123') {
             localStorage.setItem('zhanlifeiAdmin', 'avsavavvasdsbbiuvbsvbaiubuibqivbbaoblvizhblid')
             // 进行路由跳转
-            this.$router.push({ name: 'welcome' })
+            this.$router.push({ name: 'contaihome' })
         } else {
           this.$message({
             message: '账户名或者密码错误',
