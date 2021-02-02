@@ -28,6 +28,11 @@ export default new Router({
       component: () => import("@/components/welcome.vue")
     },
     {
+      path: "/imagePreview",
+      name: "imagePreview",
+      component: () => import("@/components/image-preview.vue")
+    },
+    {
       path: "/contaihome",
       name: "contaihome",
       component: () => import("./views/contaihome.vue"),

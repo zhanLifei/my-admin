@@ -3,11 +3,12 @@
       <div class="headerTop">
           <div class="search">
             <el-input placeholder="请输入内容" v-model="inputText" class="input-with-select">
-                <el-button slot="append" icon="el-icon-search" @click="btnSave"></el-button>
+                <el-button slot="append" icon="el-icon-search" @click="onClickBtn"></el-button>
             </el-input>
           </div>
+          <span class="myadmin" @click="myAdemin">我的后台</span>
       </div>
-    <iframe key="1" style="border: none;width: 100%;height: 100vh;position: fixed;top: -32px;z-index: 1;" width="100%" height="800px" v-once :src="`https://www.baidu.com/s?wd=${value}&rsv_spt=1&rsv_iqid=0x880626eb00138abb&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&tn=baiduhome_pg&rsv_enter=1&rsv_dl=tb&rsv_sug3=15&rsv_sug1=15&rsv_sug7=100&rsv_t=1eb1OeuUvaLAUAQxJIs8wZRvEYDBs4SDA6u5a9zHF5h8QYKVcPubg5UJBr2bERempbSb&rsv_n=2&rsv_sug2=0&rsv_btype=i&inputT=15240&rsv_sug4=16213`" frameborder="0"></iframe>
+    <iframe :src="`https://www.baidu.com/s?wd=${value}`" frameborder=no scrolling=yes width='100%' style="height:100vh;position:fixed; z-index: 1;top: -32px;"></iframe>
   </div>
 </template>
 
@@ -18,6 +19,14 @@ export default {
             inputText: '',
             value: ''
         }
+    },
+    methods: {
+        onClickBtn(){
+            this.value = this.inputText
+        },
+        myAdemin(){
+            this.$router.push({ name: 'contaihome' })
+        },
     },
     created(){
         this.value = this.$route.query.value
@@ -47,6 +56,13 @@ export default {
             color: #fff;
             border: none;
         }
+    }
+    .myadmin{
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        color: #fff;
+        cursor: pointer;
     }
 }
 </style>

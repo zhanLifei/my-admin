@@ -10,8 +10,7 @@ html,body {
   padding: 0;
 }
 #app {
-  position: fixed;
-  top: 0;
+  position: absolute;
   height: 100%;
   width: 100%;
 }

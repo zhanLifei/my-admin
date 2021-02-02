@@ -1,5 +1,8 @@
 <template>
-  <div class="wappess">
+  <div class="wappess" :style="{background: 'url( '+ imageURL +') no-repeat center / 100% 100%'}">
+    <div class="top" @click="myAdemin">
+      <span class="el-icon-s-platform">  我的后台</span>
+    </div>
     <div class="baidu-box">
       <img src="../assets/baidu.png" alt="">
     </div>
@@ -10,10 +13,14 @@
         </el-input>
       </div>
       <div class="content">
-        <div class="item" v-for="item in urlList" :key="item">
+        <div class="item" v-for="item in urlList" :key="item.img">
           <img :src="item.img" alt="">
           <div class="title">{{item.name}}</div>
         </div>
+      </div>
+      <div class="footer-bg">
+        <el-button type="success" size='mini' round @click="switchType">切换背景</el-button>
+        <el-button type="success" size='mini' round @click="selectImages"><i class="el-icon-picture-outline"></i></el-button>
       </div>
     </div>
   </div>
@@ -24,6 +31,33 @@ export default {
   data(){
     return {
       inputText: '',
+      imageURL: 'https://tva4.sinaimg.cn/large/9bd9b167gy1g2rkvh7aw7j21hc0u0gwd.jpg',
+      imageGetList:[
+        {
+          name: '动漫',
+          preview: '',
+          url: 'http://api.btstu.cn/sjbz/api.php?lx=dongman&format=json',
+          type: 'api'
+        },
+        {
+          name: '美女',
+          preview: '',
+          url: 'http://api.btstu.cn/sjbz/api.php?lx=meizi&format=json',
+          type: 'api'
+        },
+        {
+          name: '风景',
+          preview: '',
+          url: 'http://api.btstu.cn/sjbz/api.php?lx=fengjing&format=json',
+          type: 'api'
+        },
+        {
+          name: '随机',
+          preview: '',
+          url: 'http://api.btstu.cn/sjbz/api.php?lx=suiji&format=json',
+          type: 'api'
+        }
+      ],
       urlList: [
         {
           img: 'https://ss3.bdstatic.com/yrwDcj7w0QhBkMak8IuT_XF5ehU5bvGh7c50/logopic/6829dfa6c9b4714a6456796fd887c870_fullsize.jpg',
@@ -81,7 +115,7 @@ export default {
           name: '百度一下'
         },
         {
-          img: '1111111111',
+          img: '3425255',
           url: '222222222',
           name: '百度一下'
         }
@@ -89,6 +123,15 @@ export default {
     }
   },
   methods:{
+    init(){
+      this.$api({
+        method:'GET',
+        url:'http://api.btstu.cn/sjbz/api.php?lx=fengjing&format=json'
+      }).then(res=>{
+        console
+        this.imageURL = res.data.imgurl
+      })
+    },
     btnSave(){
       this.$router.push({ 
         path: "/iframeDiv",
@@ -96,7 +139,22 @@ export default {
           value: this.inputText
         }
       });
+    },
+    myAdemin(){
+      this.$router.push({ name: 'contaihome' })
+    },
+    // 切换背景
+    switchType(){
+      this.init()
+    },
+    // 选择图库
+    selectImages(){
+      this.$router.push({ name: 'imagePreview' })
     }
+  },
+
+  created(){
+    // this.init()
   }
   
 };
@@ -106,8 +164,18 @@ export default {
 .wappess{
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0, .8);
-  padding-top: 100px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  padding-top: 5%;
+  box-sizing: border-box;
+  .top{
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    color: #fff;
+    cursor: pointer;
+  }
 }
 .baidu-box{
   width: 100%;
@@ -146,18 +214,21 @@ export default {
       align-items: center;
       color: #fff;
       font-size: 14px;
-    }
-    img{
-      width: 40%;
-      height: 100%;
-      border-radius: 8px;
-      margin: 10px 0;
-    }
-    .title{
-      margin-bottom: 20px;
+      img{
+        width: 40%;
+        border-radius: 8px;
+        margin: 10px 0;
+      }
+      .title{
+        margin-bottom: 20px;
+      }
     }
   }
 }
-
+.footer-bg{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
 
 </style>
