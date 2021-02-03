@@ -1,5 +1,5 @@
 <template>
-  <div class="wappess">
+  <div class="wrapper">
     <div class="headerTop">
         <div class="logo">
             <img src="../assets/toppic.jpg" alt="">
@@ -12,8 +12,15 @@
     </div>
     <div class="content-img">
       <div class="box" v-for="(item,index) in picList" :key="index">
-        <img :src="item.url" alt="">
-        <div class="title">{{item.title}}</div>
+        <!-- <img :src="item.url" alt=""> -->
+        <el-image 
+          class="img-item"
+          :src="item.url"
+          :preview-src-list="[item.url]">
+        </el-image>
+        <div class="title" @click="imageLook(item)">{{item.title}}
+          <div class="mast"><i class="el-icon-star-on"></i> 设为背景</div>
+        </div>
       </div>
     </div>
   </div>
@@ -63,7 +70,7 @@ export default {
       })
     },
     toIndex(){
-      this.$router.push({ name: 'welcome' })
+      this.$parent.$refs.DrawerRef.style.top = '100%';
     },
     navClick(item,index){
       let slse = this
@@ -72,6 +79,10 @@ export default {
       [1,2,3,4,5,6,7,8].forEach(function(index){
         slse.init(item.type)
       })
+    },
+    imageLook(params){
+      // 发送
+      new BroadcastChannel('test_channel').postMessage(params.url); 
     }
   },
   created () {
@@ -83,7 +94,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wappess{
+.wrapper{
   background-color: #eee;
   .headerTop{
     width: 100%;
@@ -133,7 +144,8 @@ export default {
       height: 300px;
       margin-bottom: 50px;
       background-color: #fff;
-      img{
+      
+      .img-item{
         width: 100%;
         height: 250px;
         vertical-align: middle;
@@ -141,8 +153,27 @@ export default {
       .title{
         text-align: center;
         line-height: 50px;
+        position: relative;
+        &:hover .mast,&:hover{
+            display: block;
+            color: #fff;
+            cursor: pointer;
+          }
+        .mast{
+          display: none;
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          left: 0;
+          background-color: rgba($color: #000000, $alpha: 0.7);
+          
+        }
       }
     }
   }
+  .box:hover{
+      transition: all 0.3s;
+      box-shadow: 4px 4px 6px rgba($color: #000000, $alpha: 0.3);
+    }
 }
 </style>
