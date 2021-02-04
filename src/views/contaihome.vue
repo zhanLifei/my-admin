@@ -12,175 +12,14 @@
           text-color="#bfcbd9"
           active-text-color="#399eff"
         >
-          <el-submenu index="1">
+          <el-submenu v-for="(item) in navList" :key="item.id" :index="item.id">
             <template slot="title">
-              <i class="el-icon-share"></i>
-              <span>功能组件</span>
+              <i :class="item.icon"></i>
+              <span>{{item.name}}</span>
             </template>
-            <el-menu-item index="myBookmark">
+            <el-menu-item v-for="(child) in item.children" :key="child.cid" :index="child.path">
               <template slot="title">
-                <span>拖拽窗口</span>
-              </template>
-            </el-menu-item>
-          </el-submenu>
-          <el-submenu index="2">
-            <template slot="title">
-              <i class="el-icon-setting"></i>
-              <span>封装的组件</span>
-            </template>
-            <el-menu-item index="packaging">
-              <template slot="title">
-                <span>组件元件</span>
-              </template>
-            </el-menu-item>
-          </el-submenu>
-          <el-submenu index="3">
-            <template slot="title">
-              <i class="el-icon-star-on"></i>
-              <span>jsonView</span>
-            </template>
-            <el-menu-item index="jsonView">
-              <template slot="title">
-                <span>jsonView</span>
-              </template>
-            </el-menu-item>
-          </el-submenu>
-          <el-submenu index="4">
-            <template slot="title">
-              <i class="el-icon-menu"></i>
-              <span>常用功能</span>
-            </template>
-            <el-menu-item index="video">
-              <template slot="title">
-                <span>video视频</span>
-              </template>
-            </el-menu-item>
-            <el-menu-item index="swiper">
-              <template slot="title">
-                <span>swiper轮播</span>
-              </template>
-            </el-menu-item>
-            <el-menu-item index="v-chart">
-              <template slot="title">
-                <span>图表</span>
-              </template>
-            </el-menu-item>
-            <el-menu-item index="canvas">
-              <template slot="title">
-                <span>canvas</span>
-              </template>
-            </el-menu-item>
-            <el-menu-item index="iframeDiv">
-              <template slot="title">
-                <span>iframeDiv</span>
-              </template>
-            </el-menu-item>
-            <el-menu-item index="table">
-              <template slot="title">
-                <span>table假分页</span>
-              </template>
-            </el-menu-item>
-            <el-menu-item index="tab">
-              <template slot="title">
-                <span>tab栏</span>
-              </template>
-            </el-menu-item>
-            <el-menu-item index="tree">
-              <template slot="title">
-                <span>tree</span>
-              </template>
-            </el-menu-item>
-            <el-menu-item index="render">
-              <template slot="title">
-                <span>render表格组件</span>
-              </template>
-            </el-menu-item>
-            <el-menu-item index="images">
-              <template slot="title">
-                <span>上传图片</span>
-              </template>
-            </el-menu-item>
-            <el-menu-item index="vueCropper">
-              <template slot="title">
-                <span>图片裁剪</span>
-              </template>
-            </el-menu-item>
-            <el-menu-item index="quest">
-              <template slot="title">
-                <span>模板问卷</span>
-              </template>
-            </el-menu-item>
-            <!-- <el-menu-item index="dragend">
-              <template slot="title">
-                <span>拖拽排序</span>
-              </template>
-            </el-menu-item>
-            <el-menu-item index="map">
-              <template slot="title">
-                <span>map遍历</span>
-              </template>
-            </el-menu-item> -->
-          </el-submenu>
-          <!-- css3 -->
-          <!-- <el-submenu index="5">
-            <template slot="title">
-              <i class="el-icon-goods"></i>
-              <span>css3特效</span>
-            </template>
-            <el-menu-item index="css手机充电特效">
-              <template slot="title">
-                <span>css手机充电特效</span>
-              </template>
-            </el-menu-item>
-            <el-menu-item index="css手机充电特效1">
-              <template slot="title">
-                <span>css手机充电特效1</span>
-              </template>
-            </el-menu-item>
-            <el-menu-item index="css手机充电特效2">
-              <template slot="title">
-                <span>css手机充电特效2</span>
-              </template>
-            </el-menu-item>
-            <el-menu-item index="css3照片特效">
-              <template slot="title">
-                <span>css3照片特效</span>
-              </template>
-            </el-menu-item> -->
-            <!-- <el-menu-item index="switch">
-              <template slot="title">
-                <span>switch</span>
-              </template>
-            </el-menu-item>
-          </el-submenu> -->
-          <el-submenu index="6">
-            <template slot="title">
-              <i class="el-icon-goods"></i>
-              <span>vuex的使用</span>
-            </template>
-            <el-menu-item index="state">
-              <template slot="title">
-                <span>state的使用</span>
-              </template>
-            </el-menu-item>
-            <el-menu-item index="getter">
-              <template slot="title">
-                <span>getter的使用</span>
-              </template>
-            </el-menu-item>
-            <el-menu-item index="mutation">
-              <template slot="title">
-                <span>mutation的使用</span>
-              </template>
-            </el-menu-item>
-            <el-menu-item index="action">
-              <template slot="title">
-                <span>action的使用</span>
-              </template>
-            </el-menu-item>
-            <el-menu-item index="module">
-              <template slot="title">
-                <span>module的使用</span>
+                <span>{{child.name}}</span>
               </template>
             </el-menu-item>
           </el-submenu>
@@ -192,23 +31,29 @@
             <i v-if="!iscollapse" class="el-icon-d-arrow-left" style="color:#304156"></i>
             <i v-if="iscollapse" class="el-icon-d-arrow-right" style="color:#304156"></i>
           </span>
-          <span class="system-title">111</span>
-          <span class="welcome" @click="nextClick">退出</span>
-        </el-header>
-        <el-main>
-          <router-view></router-view>
-        </el-main>
+          <div class="welcome">
+            <img src="../assets/toppic.jpg" alt="">
+            <el-dropdown>
+              <span class="el-dropdown-link">
+                湛礼飞<i class="el-icon-arrow-down el-icon--right"></i>
+              </span>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item style="text-align: center">修改密码 </el-dropdown-item>
+                <el-dropdown-item style="text-align: center" @click.native="nextClick">退出</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown></div>
+          </el-header>
+          <el-main>
+            <router-view></router-view>
+          </el-main>
+        </el-container>
       </el-container>
-    </el-container>
   </div>
 </template>
 <script>
+import base from '../ulit/base';
 export default {
-  data() {
-    return {
-      iscollapse: false
-    };
-  },
+  mixins:[base],
   methods: {
     nextClick() {
       // 清除token值并重定向login
@@ -229,6 +74,8 @@ export default {
   height: 100%;
   .el-menu {
     width: auto;
+    height: 100%;
+    border: none;
   }
   // 如果是展开状态,那么宽度就是200px,如果是合并状态,宽度:auto
   .el-menu:not(.el-menu--collapse) {
@@ -238,9 +85,6 @@ export default {
   .el-container {
     height: 100%;
   }
-  .el-aside {
-    background-color: #304156;
-  }
   .el-header {
     height: 50px !important;
     display: flex;
@@ -249,11 +93,8 @@ export default {
     background-color: #fff;
     border-bottom: 2px solid #f4f5f6;
   }
-  .logo {
-    height: 60px;
-    background: url(../assets/logo.png);
-    background-size: cover;
-    background-color: #fff;
+  /deep/ .el-submenu__title *{
+    vertical-align: baseline;
   }
   .toggle-btn {
     padding: 0 15px;
@@ -271,7 +112,16 @@ export default {
     color: white;
   }
   .welcome {
-    color: #304156;
+    font-size: 14px;
+    height: 30px;
+    vertical-align: middle;
+    img{
+      width: 30px;
+      height: 100%;
+      border-radius: 50%;
+      vertical-align: middle;
+      margin-right: 5px;
+    }
   }
 }
 </style>

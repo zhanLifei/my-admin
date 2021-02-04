@@ -1,0 +1,18 @@
+ /* 设置滚动条样式 */
+ ::-webkit-scrollbar {
+    width: 8px !important;
+    height: 8px !important;
+    background: transparent !important;
+}
+::-webkit-scrollbar-thumb {
+    background: transparent !important;
+    border-radius: 8px !important;
+}
+
+:hover::-webkit-scrollbar-thumb {
+    background: hsla(0, 1%, 60%, 0.4) !important;
+}
+
+:hover::-webkit-scrollbar-track {
+    background: hsla(0, 2%, 75%, 0.1) !important;
+}

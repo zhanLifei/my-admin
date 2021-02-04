@@ -81,49 +81,54 @@ export default {
       ],
       urlList: [
         {
-          img: 'https://dss1.bdstatic.com/6OF1bjeh1BF3odCf/it/u=31257802,2647597666&fm=74&app=80&f=JPEG&size=f121,121?sec=1880279984&t=b9d57536e3fcc6611daef043173bb298',
+          img: require('../assets/icon/juejin-icon.jpg'),
           url: 'https://juejin.cn/',
           name: '掘金'
         },
         {
-          img: 'https://dss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=3857852323,2310389347&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=4e8d7d9ecd6e640fe939a95ce4f8f029',
+          img: require('../assets/icon/zhihu-icon.png'),
           url: 'https://www.zhihu.com',
           name: '知乎'
         },
         {
-          img: 'http://pic.51yuansu.com/pic3/cover/03/44/05/5ba252440d02d_610.jpg!/fw/260/quality/90/unsharp/true/compress/true',
+          img: require('../assets/icon/bilibili-icon.jpg'),
           url: 'https://www.bilibili.com/',
           name: '哔哩哔哩'
         },
         {
-          img: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1866778045,325297268&fm=26&gp=0.jpg',
+          img: require('../assets/icon/GitHub.jpg'),
           url: 'https://github.com/',
           name: 'GutHub'
         },
         {
-          img: 'https://dss0.bdstatic.com/6Ox1bjeh1BF3odCf/it/u=2601442671,1921184035&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=67922ee570b389cdd0a3c56dc0ad3bba',
+          img: require('../assets/icon/CSDN-icon.png'),
           url: 'https://www.csdn.net/',
           name: 'CSDN'
         },
         {
-          img: 'https://pic1.zhimg.com/v2-ca674b5186b28e2b0edae538ee5388d0_ipico.jpg',
+          img: require('../assets/icon/LeetCode-icon.png'),
           url: 'https://leetcode-cn.com/',
           name: 'LeetCode'
         },
         {
-          img: 'https://dss1.bdstatic.com/6OF1bjeh1BF3odCf/it/u=3533778697,2586993014&fm=74&app=80&f=PNG&size=f121,121?sec=1880279984&t=1dbed90be2871a78074bf731b6872ed0',
+          img: require('../assets/icon/vue-icon.png'),
           url: 'https://cn.vuejs.org/',
           name: 'Vue'
         },
         {
-          img: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3866489056,1783249585&fm=26&gp=0.jpg',
+          img: require('../assets/icon/react-icon.png'),
           url: 'https://react.docschina.org/',
           name: 'React'
         },
         {
-          img: 'https://img.onlinedown.net/download/202008/153346-5f3f78dae16fa.jpg',
+          img: require('../assets/icon/langhu-icon.jpg'),
           url: 'https://lanhuapp.com/',
           name: '蓝湖'
+        },
+        {
+          img: require('../assets/icon/element-icon.png'),
+          url: 'https://element.eleme.cn/2.15/#/zh-CN/component/quickstart',
+          name: 'Elenent-UI'
         },
       ]
     }
@@ -228,14 +233,14 @@ export default {
   }
   .content{
     background: rgba(0,0,0, .1);
-    padding: 20px 15px;
+    padding: 20px 15px 0;
     margin-top: 40px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     border-radius: 8px;
     .item{
-      width: 25%;
+      width: 20%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -243,11 +248,12 @@ export default {
       font-size: 14px;
       img{
         width: 40%;
-        border-radius: 8px;
+        border-radius: 50%;
         margin: 10px 0;
       }
       .title{
         display: inline-block;
+        font-size: 12px;
         margin-bottom: 20px;
       }
     }
@@ -264,7 +270,7 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: saddlebrown;
   transition: all 1s;
+  overflow: auto;
 }
 </style>

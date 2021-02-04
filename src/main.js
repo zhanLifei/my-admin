@@ -30,9 +30,10 @@ new Vue({
 router.beforeEach((to, from, next) => {
   // 获取token值
   var token = localStorage.getItem("zhanlifeiAdmin");
-  if (token || to.path === "/login") {
+  if (token || to.path === "/login" || to.path === "/welcome" || to.path === "/iframeDiv") {
     next();
   } else if (!token || to.path === "/login") {
+    console.log(111111111);
     next({ name: "login" });
   }
 });
