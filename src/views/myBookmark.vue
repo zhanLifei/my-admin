@@ -1,22 +1,34 @@
 <template>
-  <!-- <div class="boss" ref="box">
-      <div class="box" @mousedown="boxMousedown"></div>
-  </div>-->
-  <div class="Dialog" v-show="DialogShow">
-    <div class="Dialog-warbox" ref="box">
-      <div class="Dialog-title" @mousedown="boxMousedown">
-        提示
-        <div @click="coles" class="Dialog-clear">+</div>
+  <div class="wappess">
+      <div class="effect">
+        <h2 class="title">优选资源</h2>
+        <div class="ant-page-header-content">
+          <div class="text">发现编程世界的满天星辰 ✨</div>
+        </div>
+        <div class="extraImg"><img alt="图片" src="https://gw.alipayobjects.com/zos/rmsportal/RzwpdLnhmvDJToTdfDPe.png"></div>
       </div>
-      <div class="Dialog-coenten">
-        <div>这是可以拖动的窗口</div>
+
+      <div class="effect">
+        
       </div>
-      <div class="Dialog-footer">
-        <Fl-botton @butClick="okclick" type="primary" style="margin-right:10px">确定</Fl-botton>
-        <Fl-botton @butClick="handclick" type="success">取消</Fl-botton>
+      <!-- 拖拽弹窗 -->
+      <div class="Dialog" v-show="DialogShow">
+        <div class="Dialog-warbox" ref="box">
+          <div class="Dialog-title" @mousedown="boxMousedown">
+            提示
+            <div @click="coles" class="Dialog-clear">+</div>
+          </div>
+          <div class="Dialog-coenten">
+            <div>这是可以拖动的窗口</div>
+          </div>
+          <div class="Dialog-footer">
+            <Fl-botton @butClick="okclick" type="primary" style="margin-right:10px">确定</Fl-botton>
+            <Fl-botton @butClick="handclick" type="success">取消</Fl-botton>
+          </div>
+        </div>
       </div>
-    </div>
   </div>
+  
 </template>
 
 <script>
@@ -25,7 +37,7 @@ export default {
   components: { FlBotton },
   data() {
     return {
-      DialogShow: true,
+      DialogShow: false,
       x: "",
       y: ""
     };
@@ -82,7 +94,48 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.wappess{
+  background: #f1f1f1;
+  .effect{
+    width: 100%;
+    height: 133px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    background: #fff;
+    box-shadow: 0 2px 2px rgba($color: #000, $alpha: 0.1);
+    position: relative;
+    .title{
+      margin-right: 12px;
+      margin-bottom: 0;
+      color: rgba(0,0,0,.85);
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 32px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .ant-page-header-content{
+      padding-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      .text{
+        font-size: 14px;
+      }
+    }
+    .extraImg{
+      width: 150px;
+      position: absolute;
+      right: 50px;
+      top: 16px;
+      img{
+        width: 100%;
+      }
+    }
+  }
+}
 .Dialog {
   width: 100vw;
   height: 100vh;

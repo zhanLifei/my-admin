@@ -249,6 +249,9 @@ export default {
     background-color: #fff;
     border-bottom: 2px solid #f4f5f6;
   }
+  /deep/ .el-main {
+    padding: 0;
+  }
   .logo {
     height: 60px;
     background: url(../assets/logo.png);
