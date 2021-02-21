@@ -1,6 +1,6 @@
 <template>
   <div>
-    <render-table :columns="columns" :tableData="data"></render-table>
+    <render-table ref="ssss" :columns="columns" :tableData="data"></render-table>
   </div>
 </template>
 
@@ -99,6 +99,9 @@ export default {
       })
       console.log(row.name)
     }
+  },
+  mounted () {
+    console.log(this.$refs.ssss);
   }
 };
 </script>

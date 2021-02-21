@@ -1,95 +1,225 @@
 <template>
   <div class="wappess">
-      <div class="effect">
-        <h2 class="title">优选资源</h2>
+      <div class="effect resources">
+        <h2 class="title">深圳地铁成本大数据管理平台</h2>
         <div class="ant-page-header-content">
-          <div class="text">发现编程世界的满天星辰 ✨</div>
+          <div class="text">建设成本管理 ✨</div>
         </div>
         <div class="extraImg"><img alt="图片" src="https://gw.alipayobjects.com/zos/rmsportal/RzwpdLnhmvDJToTdfDPe.png"></div>
       </div>
-
-      <div class="effect">
-        
+      <div class="container">
+        <div class="effect pd20">
+          <div class="search">
+            <div class="transparent-search">
+              <el-input placeholder="请输入内容" class="input-with-select">
+                <el-button slot="append" icon="el-icon-search"></el-button>
+              </el-input>
+            </div>
+          </div>
+          <!-- 分类筛选 -->
+          <screen-page></screen-page>
+        </div>
       </div>
-      <!-- 拖拽弹窗 -->
-      <div class="Dialog" v-show="DialogShow">
-        <div class="Dialog-warbox" ref="box">
-          <div class="Dialog-title" @mousedown="boxMousedown">
-            提示
-            <div @click="coles" class="Dialog-clear">+</div>
-          </div>
-          <div class="Dialog-coenten">
-            <div>这是可以拖动的窗口</div>
-          </div>
-          <div class="Dialog-footer">
-            <Fl-botton @butClick="okclick" type="primary" style="margin-right:10px">确定</Fl-botton>
-            <Fl-botton @butClick="handclick" type="success">取消</Fl-botton>
-          </div>
+      <div class="container">
+        <div class="effect item-box pd15">
+          <render-table
+            :selection='true'
+            :columns="columnsData"
+            :tableData="newDataList[pageParams.currentPage-1]"
+            :page="pageParams"
+            @page-update="pageUpdate"
+            @size-update="sizeUpdate">
+          </render-table>
         </div>
       </div>
   </div>
-  
 </template>
 
 <script>
-import FlBotton from "../common/botton";
+import renderTable from "@/components/renderTable";
+import screenPage from "@/components/screenPage";
 export default {
-  components: { FlBotton },
+  components: { renderTable, screenPage },
   data() {
     return {
-      DialogShow: false,
-      x: "",
-      y: ""
+      newDataList: [],
+      pageParams: {
+        total: 10,
+        pageSize: 1, //每页多少条数据
+        currentPage: 1, //当前第几页
+      },
+      columnsData: [
+        {
+          label: "建设名称",
+          prop: "buildingName",
+          width: '100px',
+          render: (h, props) => {
+            return h(
+              "a",
+              {
+                style: {
+                  color: '#ff9600',
+                  cursor: 'pointer',
+                },
+                on: {
+                  click: () => {
+                    this.onClick(props.row);
+                  }
+                },
+              },
+              props.row.buildingName
+            );
+          },
+        },
+        {
+          label: "总线路长度(正线公里)",
+          width:98,
+          align:'center',
+          prop: "lineLength"
+        },
+        {
+          label: "平均站间距(km)",
+          width:98,
+          align:'center',
+          prop: "avgDistance"
+        },
+        {
+          label: "总建设规模(亿元)",
+          width:98,
+          align:'center',
+          prop: "total"
+        },
+        {
+          label: "线路指标(亿元/正线公里)",
+          width:106,
+          align:'center',
+          prop: "lineIndex"
+        },
+        {
+          label: "编制范围",
+          align:'center',
+          prop: "preparationScope",
+          render: (h, props) => {
+            return h("span", {class:'textOverflow',attrs: {title:props.row.preparationScope}}, props.row.preparationScope);
+          },
+        },
+        {
+          label: "阶段",
+          align:'center',
+          prop: "renderPhase"
+        },
+        {
+          label: "地区",
+          align:'center',
+          prop: "area",
+          render: (h, props) => {
+            return h("span", {class:'textOverflow',attrs: {title:props.row.area}}, props.row.area);
+          },
+        },
+        {
+          label: "版本类型",
+          align:'center',
+          prop: "versionName"
+        },
+        {
+          label: "编制时间",
+          align:'center',
+          prop: "preparationTime"
+        }
+      ],
+      dataList: [
+        {
+          buildingName: "12号线一期",
+          lineLength: '40.54',
+          avgDistance: "1.27",
+          total: "404.44",
+          lineIndex: "9.98",
+          preparationScope: "左炮台站~海上田园东",
+          renderPhase: "估算",
+          area: "南山区，宝安区",
+          versionName: "批复版",
+          preparationTime: "2015-09"
+        },
+        {
+          buildingName: "13号线一期",
+          lineLength: '40.54',
+          avgDistance: "1.27",
+          total: "404.44",
+          lineIndex: "9.98",
+          preparationScope: "岗厦北站~沙田站",
+          renderPhase: "估算",
+          area: "福田区，罗湖区，龙岗区，坪山区",
+          versionName: "批复版",
+          preparationTime: "2015-09"
+        },
+        {
+          buildingName: "14号线一期",
+          lineLength: '40.54',
+          avgDistance: "1.27",
+          total: "404.44",
+          lineIndex: "9.98",
+          preparationScope: "大运站~田心站",
+          renderPhase: "估算",
+          area: "龙岗区，坪山区",
+          versionName: "批复版",
+          preparationTime: "2015-09"
+        },
+        {
+          buildingName: "15号线一期",
+          lineLength: '40.54',
+          avgDistance: "1.27",
+          total: "404.44",
+          lineIndex: "9.98",
+          preparationScope: "福田口岸站-新南站",
+          renderPhase: "估算",
+          area: "福田区，龙华新区，龙岗区",
+          versionName: "批复版",
+          preparationTime: "2015-09"
+        }
+      ],
     };
   },
+  computed: {
+    
+  },
   methods: {
-    boxMousedown(ev) {
-      this.x = ev.clientX - this.$refs.box.offsetLeft;
-      this.y = ev.clientY - this.$refs.box.offsetTop;
-      this.init();
+    handleChange(value) {
+      console.log(value);
     },
-    init() {
-      document.onmousemove = ev => {
-        let l = ev.clientX - this.x;
-
-        let t = ev.clientY - this.y;
-
-        if (l < 0) {
-          l = 0;
-        } else if (
-          l >
-          document.documentElement.clientWidth - this.$refs.box.offsetWidth
-        ) {
-          l = document.documentElement.clientWidth - this.$refs.box.offsetWidth;
+    
+    tagsBtnClick(index){
+      this.active = index
+    },
+    pageUpdate(val){
+      this.pageParams.currentPage = val;
+      this.initPage();
+    },
+    sizeUpdate(val){
+      this.pageParams.pageSize = val;
+      this.initPage();
+    },
+    // 分页
+    initPage() {
+      this.pageParams.total = this.dataList.length;
+      let arr = [];
+      let newArr = [];
+      this.dataList.map((item, index) => {
+        arr.push(item);
+        if ((index + 1) % this.pageParams.pageSize == 0) {
+          newArr.push(arr);
+          arr = [];
+        } else {
+          if (index + 1 == this.dataList.length) {
+            newArr.push(arr);
+          }
         }
-
-        if (t < 0) {
-          t = 0;
-        } else if (
-          t >
-          document.documentElement.clientHeight - this.$refs.box.offsetHeight
-        ) {
-          t =
-            document.documentElement.clientHeight - this.$refs.box.offsetHeight;
-        }
-
-        this.$refs.box.style.left = l + "px";
-
-        this.$refs.box.style.top = t + "px";
-      };
-      document.onmouseup = ev => {
-        document.onmousemove = null;
-
-        document.onmouseup = null;
-      };
-    },
-    okclick() {
-      this.DialogShow = false;
-    },
-    handclick() {
-      this.DialogShow = false;
-    },
-    coles(){this.DialogShow = false;}
+      });
+      this.newDataList = newArr;
+      console.log(this.newDataList);
+    }
+  },
+  mounted() {
+    this.initPage();
   }
 };
 </script>
@@ -97,14 +227,11 @@ export default {
 <style lang="scss" scoped>
 .wappess{
   background: #f1f1f1;
-  .effect{
+  padding-bottom: 1px;
+  .resources{
     width: 100%;
     height: 133px;
     padding: 20px;
-    margin-bottom: 15px;
-    box-sizing: border-box;
-    background: #fff;
-    box-shadow: 0 2px 2px rgba($color: #000, $alpha: 0.1);
     position: relative;
     .title{
       margin-right: 12px;
@@ -135,39 +262,24 @@ export default {
       }
     }
   }
-}
-.Dialog {
-  width: 100vw;
-  height: 100vh;
-  margin: 10% 30%;
-}
-.Dialog-warbox {
-  width: 30%;
-  background-color: #fff;
-  border-radius: 3px;
-  position: absolute;
-  filter: drop-shadow(0px 0px 5px rgb(195, 191, 191));
-}
-.Dialog-title {
-  padding: 10px;
-  font-size: 18px;
-  cursor: move;
-}
-.Dialog-coenten {
-  padding: 30px 20px 100px 20px;
-}
-.Dialog-footer {
-  padding: 10px 15px 15px;
-  margin: 0 auto;
-  position: absolute;
-  right: 10px;
-  bottom: 0;
-}
-.Dialog-clear {
-  font-size: 24px;
-  float: right;
-  line-height: 18px;
-  cursor: pointer;
-  transform: translateY(2px) rotate(45deg);
+  // 搜索
+  .search{
+    width: 350px;
+    
+    .transparent-search{
+        /deep/ .el-input__inner{border: 1px solid #F3F3F3;color: #333;height: 32px;}
+        /deep/ .el-input-group__append{
+          height: 31px;
+          padding: 0 10px;
+          background: #ff9600;
+          border: 1px solid #F3F3F3;
+          color: #fff;
+          border-left: none;
+      }
+    }
+  }
+  .container .item-box{
+    width: 100%;
+  }
 }
 </style>

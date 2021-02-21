@@ -129,6 +129,8 @@ export default {
     },
     // 新建选项
     newConstruction(index) {
+      
+      console.log(this.$parent);
       if(this.formData.documentList[index].options.length >= 10) {
         this.$Message.error('选项数目最多10个！')
         return
@@ -190,6 +192,9 @@ export default {
     //     // this.delayedDragging = true
     //   })
     // }
+  },
+  mounted () {
+    
   },
   created () {
     // 阻止火狐浏览器默认的拖拽搜索行为

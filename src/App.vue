@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import "@/styles/base.css";
+import "@/styles/base.scss";
 export default {
 
 }
@@ -15,6 +15,7 @@ export default {
 html,body {
   margin: 0;
   padding: 0;
+  color: #333;
 }
 #app {
   position: absolute;

@@ -38,6 +38,9 @@ export default {
     };
   },
   methods: {
+    aaa(){
+      console.log(55555555555);
+    },
     singleChoice(item) {
       this.$refs.addNormal.isAdd = true;
       this.$refs.addNormal.isEdit = true;

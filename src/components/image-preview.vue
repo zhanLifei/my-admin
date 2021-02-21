@@ -70,6 +70,7 @@ export default {
       })
     },
     toIndex(){
+      
       this.$parent.$refs.DrawerRef.style.top = '100%';
     },
     navClick(item,index){
@@ -86,6 +87,7 @@ export default {
     }
   },
   created () {
+    console.log(this.$parent.imageURL);
     [1,2,3,4,5,6,7,8].forEach((index)=>{
         this.init('fengjing')
     })

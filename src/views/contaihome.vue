@@ -96,6 +96,9 @@ export default {
   /deep/ .el-submenu__title *{
     vertical-align: baseline;
   }
+  /deep/ .el-main{
+    padding: 0;
+  }
   .toggle-btn {
     padding: 0 15px;
     margin-left: -20px;
