@@ -1,25 +1,95 @@
 <template>
     <!-- 分类筛选 -->
     <div class="classification">
-        <div>
-            <div class="label inline-block" style="margin-top: 8px;width: 83px;text-align: left">
-            <i class="el-icon-orange"></i>
-            <label style="vertical-align: top;color: #333">筛选条件：</label>
+        <div class="search-type">
+            <div class="flex-fs custom-type">
+                <span>筛选条件:</span>
+                <div class="t-wrap">
+                <ul class="flex-cw">
+                    <li class="active">概算</li>
+                </ul>
+                </div>
             </div>
-            <div class="inline-block" style="vertical-align: top;width: 50%;height:33px;overflow: hidden;line-height:33px;transition: all 0.5s;font-size: 13px">
-            <span v-for="(item,index) in ['概算',]" :key="index" class="mgr25 inline-block cursor-pointer;" style="color: #ff9600">{{item}}</span>
+
+            <div class="flex-fs custom-type">
+                <span>阶段:</span>
+                <div class="t-wrap">
+                <ul class="flex-cw">
+                    <li :class="{active: curCompanyTypeCode === ''}" @click="toggleCompanyType('')">全部</li>
+                    <li 
+                        :class="{active: curCompanyTypeCode === index}"
+                        v-for="(item, index) in screenList[0].children" 
+                        :key="index"
+                        @click="toggleCompanyType(index)">
+                        {{item}}
+                    </li>
+                </ul>
+                </div>
             </div>
-        </div>
-        <div v-for="(item,index) in screenList" :key="index">
-            <div class="label inline-block" style="margin-top: 8px">
-                <label style="vertical-align: top;">{{item.title}}：</label>
+            <div class="flex-fs custom-type">
+                <span>规划区:</span>
+                <div class="t-wrap">
+                <ul class="flex-cw">
+                    <li :class="{active: curQuoteTypeCode === ''}" @click="toggleQuoteType('')">全部</li>
+                    <li 
+                        :class="{active: curQuoteTypeCode === index}"
+                        v-for="(item, index) in screenList[1].children" 
+                        :key="index"
+                        @click="toggleQuoteType(index)">
+                        {{item}}
+                    </li>
+                </ul>
+                </div>
             </div>
-            <div class="inline-block" style="vertical-align: top;width: 80%;overflow: hidden;line-height:33px;transition: all 0.5s;font-size: 13px" :style="arrowType == true && item.children.length>8 ? 'height:76px;': 'height:37px;'">
-                <span class="mgr25 inline-block cursor-pointer" style="color: #ff9600">全部</span>
-                <span v-for="(child,i) in item.children" :key="i" class="mgr25 inline-block cursor-pointer" :style="{color: index == active ? '#ff9600' : '#333'}">{{child}}</span>
+            <div class="flex-fs custom-type">
+                <span>线路:</span>
+                <div class="t-wrap">
+                <ul class="flex-cw">
+                    <li :class="{active: curCheckState === ''}" @click="toggleCheckState('')">全部</li>
+                    <li 
+                    :class="{active: curCheckState === index}"
+                    v-for="(item, index) in screenList[2].children" 
+                    :key="index"
+                    @click="toggleCheckState(index)">
+                    {{item}}
+                    </li>
+                </ul>
+                </div>
             </div>
-            <div class="inline-block" style="vertical-align: top;width: 10%;line-height:33px" v-if="item.children.length>8">
-                <span class="mgr25 font13 inline-block orange-color cursor-pointer" @click="arrowClick"><i :class="arrowType == true ? 'el-icon-arrow-down': 'el-icon-arrow-up' "></i>{{arrowType == true ? '展开': '收起'}}</span>
+            <div class="flex-fs custom-type">
+                <span>地区:</span>
+                <div class="t-wrap">
+                <ul class="flex-cw">
+                    <li :class="{active: curQuoteState === ''}" @click="toggleQuoteState('')">全部</li>
+                    <li 
+                    :class="{active: curQuoteState === index}"
+                    v-for="(item, index) in screenList[3].children"
+                    :key="index"
+                    @click="toggleQuoteState(index)">
+                    {{item}}
+                    </li>
+                </ul>
+                </div>
+            </div>
+            <div class="flex-c custom-type">
+                <span>适用时间:</span>
+                <div class="com-time-search">
+                    <el-date-picker
+                        v-model="validStartDate"
+                        type="date"
+                        placeholder="选择日期"
+                        @change="toggleDate('start')">
+                    </el-date-picker>
+                </div>
+                <span class="c-line"></span>
+                <div class="com-time-search">
+                    <el-date-picker
+                        v-model="validEndDate"
+                        type="date"
+                        placeholder="选择日期"
+                        @change="toggleDate('end')">
+                    </el-date-picker>
+                </div>
             </div>
         </div>
     </div>
@@ -29,8 +99,10 @@
 export default {
     data () {
         return {
-            active: null,
-            arrowType: true,
+            curCompanyTypeCode: '',
+            curQuoteTypeCode: '',
+            curCheckState: '',
+            curQuoteState: '',
             screenList: [
                 {
                     title: '阶段',
@@ -52,8 +124,25 @@ export default {
         }
     },
     methods: {
-        arrowClick(){
-            this.arrowType = !this.arrowType
+        toggleCompanyType(typeCode) {
+            this.curCompanyTypeCode = typeCode
+            this.getUsersList()
+        },
+        toggleQuoteType(typeCode) {
+            this.curQuoteTypeCode = typeCode
+            this.getUsersList()
+        },
+        toggleCheckState(state) {
+            this.curCheckState = state
+            this.getUsersList()
+        },
+        toggleQuoteState(state) {
+            this.curQuoteState = state
+            this.getUsersList()
+        },
+        // 选择适用时间
+        toggleDate(type) {
+            this.getUsersList()
         },
     }
 }
@@ -62,18 +151,76 @@ export default {
 <style lang="scss" scoped>
 .classification{
     margin-top: 15px;
-    .label{
-        vertical-align: middle;
-        color: #999;
-        font-size: 13px;
-        display: inline-block;
-        width: 83px;
-        text-align: right;
-        label{
-        vertical-align: text-top;
-        margin-left: 5px;
-        font-size: 13px;
+    .search-type {
+        padding: 10px 0px;
+        width: 100%;
+        .custom-type,
+        .norm-type {
+            > span {
+                margin-right: 15px;
+                color: #999;
+                font-size: 13px;
+                text-align: right;
+                width: 55px;
+                white-space: nowrap;
+            }
+            .c-line {
+                margin: 0 10px;
+                width: 10px;
+                height: 1px;
+                background: #8B99BF;
+            }
+            .t-wrap {
+                max-width: 100%;
+                box-sizing: border-box;
+                ul {
+                    margin-bottom: 10px;
+                    &.all-list {
+                        padding: 5px 12px;
+                        background: #fff;
+                        box-shadow: 0px 1px 4px 0px rgba(12, 18, 56, 0.15);
+                        border-radius: 5px;
+                        li {
+                            padding-top: 8px;
+                            padding-bottom: 8px;
+                            &:last-child {
+                                margin-right: 0;
+                            }
+                        }
+                    }
+                    li {
+                        padding-bottom: 8px;
+                        margin-right: 24px;
+                        font-size: 13px;
+                        color: #666;
+                        cursor: pointer;
+                        &.active {
+                        color: #ff9600;
+                        }
+                        &:hover {
+                        color: #ff9600;
+                        }
+                    }
+                }
+            }
         }
     }
+}
+.com-time-search {
+  .el-date-editor.el-input {
+      box-shadow: 0px 1px 4px 0px rgba(12, 18, 56, 0.15);
+      border-radius: 5px;
+  }
+  /deep/.el-date-editor.el-input, 
+  /deep/.el-date-editor .el-input__inner {
+      width: 161px;
+      height: 32px;
+      line-height: 32px;
+      border: none;
+      font-size: 13px;
+  }
+  /deep/.el-input__icon {
+      line-height: 32px;
+  }
 }
 </style>
