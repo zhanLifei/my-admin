@@ -126,6 +126,11 @@ export default {
                 path: "quest",
                 name: "模板问卷",
               },
+              {
+                cid: "5-16",
+                path: "slot",
+                name: "slot插槽",
+              },
             ],
           },
           {

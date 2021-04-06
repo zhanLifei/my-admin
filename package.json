@@ -12,6 +12,7 @@
     "core-js": "^2.6.5",
     "echarts": "^4.6.0",
     "element-ui": "^2.15.0",
+    "fastscan": "^1.0.6",
     "konva": "^4.0.5",
     "lodash": "^4.17.11",
     "mux.js": "^5.9.1",

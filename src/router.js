@@ -99,11 +99,11 @@ export default new Router({
           name: "vueCropper",
           component: () => import("./views/demo/vue-cropper.vue")
         },
-        // {
-        //   path: "/css手机充电特效",
-        //   name: "css手机充电特效",
-        //   component: () => import("./views/css3/css手机充电特效.vue")
-        // },
+        {
+          path: "/slot",
+          name: "slot",
+          component: () => import("./views/demo/slot.vue")
+        },
         // {
         //   path: "/css手机充电特效1",
         //   name: "css手机充电特效1",

@@ -22,6 +22,14 @@
       </div>
       <div class="container">
         <div class="effect item-box pd15">
+          <el-button plain size='small' icon='el-icon-circle-plus-outline'>设置典型工程</el-button>
+          <el-button plain size='small' icon='el-icon-remove-outline'>取消典型工程</el-button>
+          <el-button plain size='small' icon='el-icon-download'>导出台账</el-button>
+          <el-button plain size='small' icon='el-icon-paperclip'>费用完整</el-button>
+          <el-button plain size='small' icon='el-icon-view'>项目体检</el-button>
+          <el-button style="float: right" plain size='small' icon='el-icon-setting'>设置展示字段</el-button>
+          <el-checkbox style="float: right;margin-top:6px;margin-left: 15px" v-model="checked1">同步实施费</el-checkbox>
+          <el-checkbox style="float: right;margin-top:6px" v-model="checked2">典型工程</el-checkbox>
           <render-table
             :selection='true'
             :columns="columnsData"
@@ -43,9 +51,11 @@ export default {
   data() {
     return {
       newDataList: [],
+      checked1: true,
+      checked2: false,
       pageParams: {
         total: 10,
-        pageSize: 1, //每页多少条数据
+        pageSize: 3, //每页多少条数据
         currentPage: 1, //当前第几页
       },
       columnsData: [
@@ -175,7 +185,55 @@ export default {
           area: "福田区，龙华新区，龙岗区",
           versionName: "批复版",
           preparationTime: "2015-09"
-        }
+        },
+        {
+          buildingName: "16号线一期",
+          lineLength: '40.54',
+          avgDistance: "1.27",
+          total: "404.44",
+          lineIndex: "9.98",
+          preparationScope: "左炮台站~海上田园东",
+          renderPhase: "估算",
+          area: "南山区，宝安区",
+          versionName: "批复版",
+          preparationTime: "2015-09"
+        },
+        {
+          buildingName: "17号线一期",
+          lineLength: '40.54',
+          avgDistance: "1.27",
+          total: "404.44",
+          lineIndex: "9.98",
+          preparationScope: "岗厦北站~沙田站",
+          renderPhase: "估算",
+          area: "福田区，罗湖区，龙岗区，坪山区",
+          versionName: "批复版",
+          preparationTime: "2015-09"
+        },
+        {
+          buildingName: "18号线一期",
+          lineLength: '40.54',
+          avgDistance: "1.27",
+          total: "404.44",
+          lineIndex: "9.98",
+          preparationScope: "大运站~田心站",
+          renderPhase: "估算",
+          area: "龙岗区，坪山区",
+          versionName: "批复版",
+          preparationTime: "2015-09"
+        },
+        {
+          buildingName: "19号线一期",
+          lineLength: '40.54',
+          avgDistance: "1.27",
+          total: "404.44",
+          lineIndex: "9.98",
+          preparationScope: "福田口岸站-新南站",
+          renderPhase: "估算",
+          area: "福田区，龙华新区，龙岗区",
+          versionName: "批复版",
+          preparationTime: "2015-09"
+        },
       ],
     };
   },
@@ -215,12 +273,8 @@ export default {
         }
       });
       this.newDataList = newArr;
-      console.log(this.newDataList);
     }
   },
-  mounted() {
-    this.initPage();
-  }
 };
 </script>
 

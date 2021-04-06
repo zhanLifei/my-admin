@@ -15,11 +15,11 @@
           <el-submenu v-for="(item) in navList" :key="item.id" :index="item.id">
             <template slot="title">
               <i :class="item.icon"></i>
-              <span>{{item.name}}</span>
+              <span @click="item.children.length>0 ? 'navClick(item)' : '' ">{{item.name}}</span>
             </template>
             <el-menu-item v-for="(child) in item.children" :key="child.cid" :index="child.path">
               <template slot="title">
-                <span>{{child.name}}</span>
+                <span @click="navClick(child)">{{child.name}}</span>
               </template>
             </el-menu-item>
           </el-submenu>
@@ -43,6 +43,9 @@
               </el-dropdown-menu>
             </el-dropdown></div>
           </el-header>
+          <div class="effect pd15 pdl20">
+            <span class="pd5 pdlr15 mgr15" :style="item.active" style="color: #fff;font-size:12px" v-for="(item,index) in list" :key="index">{{item.title}} <i class="mgl10">●</i></span>
+          </div>
           <el-main>
             <router-view></router-view>
           </el-main>
@@ -54,11 +57,29 @@
 import base from '../ulit/base';
 export default {
   mixins:[base],
+  data(){
+    return {
+      
+      list: [
+        {
+          id: '1',
+          title: '我的导航',
+          active: 'background: #4292cf;',
+        }
+      ]
+    }
+  },
   methods: {
     nextClick() {
       // 清除token值并重定向login
       localStorage.removeItem("zhanlifeiAdmin");
       this.$router.push({ path: "/login" });
+    },
+    navClick(obj){
+      this.list.map((item)=>{
+        item.active = 'background: #ccc;'
+      })
+      this.list.push({id: obj.id,title:obj.name,active: 'background: #4292cf;'})
     }
   },
   mounted(){
@@ -126,5 +147,8 @@ export default {
       margin-right: 5px;
     }
   }
+}
+.active{
+  
 }
 </style>

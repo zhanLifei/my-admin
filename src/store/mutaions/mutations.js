@@ -1,4 +1,4 @@
-export default {
+var mutations = {
     increment(state,n){
         state.counts += n
     },
@@ -6,3 +6,6 @@ export default {
         state.count += data
     }
 }
+
+
+export default mutations

@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import { index } from '@/api/mock'
 export default {
   computed: {
     counts(){
@@ -19,6 +20,15 @@ export default {
         this.$store.commit('increment',parseInt(20))
       }, 1000);
     }
+  },
+  mounted(){
+    console.log(this.$api)
+    // index.$api({
+    //     method: 'GET',
+    //     url: '/index'
+    //   }).then(res=>{
+    //     console.log(111111111111,res)
+    //   })
   }
 }
 </script>

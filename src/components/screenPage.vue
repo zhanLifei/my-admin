@@ -103,6 +103,8 @@ export default {
             curQuoteTypeCode: '',
             curCheckState: '',
             curQuoteState: '',
+            validStartDate:'',
+            validEndDate:'',
             screenList: [
                 {
                     title: '阶段',
@@ -126,23 +128,19 @@ export default {
     methods: {
         toggleCompanyType(typeCode) {
             this.curCompanyTypeCode = typeCode
-            this.getUsersList()
         },
         toggleQuoteType(typeCode) {
             this.curQuoteTypeCode = typeCode
-            this.getUsersList()
         },
         toggleCheckState(state) {
             this.curCheckState = state
-            this.getUsersList()
         },
         toggleQuoteState(state) {
             this.curQuoteState = state
-            this.getUsersList()
         },
         // 选择适用时间
         toggleDate(type) {
-            this.getUsersList()
+            
         },
     }
 }
