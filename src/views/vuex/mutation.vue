@@ -23,12 +23,12 @@ export default {
   },
   mounted(){
     console.log(this.$api)
-    // index.$api({
-    //     method: 'GET',
-    //     url: '/index'
-    //   }).then(res=>{
-    //     console.log(111111111111,res)
-    //   })
+    index.$api({
+        method: 'GET',
+        url: '/index'
+      }).then(res=>{
+        console.log(111111111111,res)
+      })
   }
 }
 </script>
