@@ -35,7 +35,6 @@ router.beforeEach((to, from, next) => {
   if (token || to.path === "/login" || to.path === "/welcome" || to.path === "/iframeDiv") {
     next();
   } else if (!token || to.path === "/login") {
-    console.log(111111111);
     next({ name: "login" });
   }
 });

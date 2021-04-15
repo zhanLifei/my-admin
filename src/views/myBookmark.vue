@@ -17,7 +17,7 @@
             </div>
           </div>
           <!-- 分类筛选 -->
-          <screen-page></screen-page>
+          <screen-page :screenList='screenList' @screeningToggleQuote='screeningToggleQuote'></screen-page>
         </div>
       </div>
       <div class="container">
@@ -32,6 +32,7 @@
           <el-checkbox style="float: right;margin-top:6px" v-model="checked2">典型工程</el-checkbox>
           <render-table
             :selection='true'
+            :loading='loading'
             :columns="columnsData"
             :tableData="newDataList[pageParams.currentPage-1]"
             :page="pageParams"
@@ -47,11 +48,14 @@
 import renderTable from "@/components/renderTable";
 import screenPage from "@/components/screenPage";
 import { dataList } from '@/api/dataList'
+import { screenList } from '@/api/screenList'
 export default {
   components: { renderTable, screenPage },
   data() {
     return {
       newDataList: [],
+      screenList: [],
+      loading: false,
       checked1: true,
       checked2: false,
       pageParams: {
@@ -145,6 +149,24 @@ export default {
     
   },
   methods: {
+    // 筛选
+    screeningToggleQuote(obj, arr){
+      let dataList = this.dataList.filter(item=>{
+        if(arr.includes(item.area) || arr.includes(item.buildingName) || arr.includes(item.renderPhase)) {
+          return item
+        }
+      })
+      this.loading = true;
+      setTimeout(() => {
+        if(arr.length == 0){
+          this.initPage(this.dataList);
+        } else {
+          this.initPage(dataList);
+        }
+        this.loading = false;
+      }, 1000);
+      
+    },
     handleChange(value) {
       console.log(value);
     },
@@ -154,24 +176,24 @@ export default {
     },
     pageUpdate(val){
       this.pageParams.currentPage = val;
-      this.initPage();
+      this.initPage(this.dataList);
     },
     sizeUpdate(val){
       this.pageParams.pageSize = val;
-      this.initPage();
+      this.initPage(this.dataList);
     },
     // 分页
-    initPage() {
-      this.pageParams.total = this.dataList.length;
+    initPage(list) {
+      this.pageParams.total = list.length;
       let arr = [];
       let newArr = [];
-      this.dataList.map((item, index) => {
+      list.map((item, index) => {
         arr.push(item);
         if ((index + 1) % this.pageParams.pageSize == 0) {
           newArr.push(arr);
           arr = [];
         } else {
-          if (index + 1 == this.dataList.length) {
+          if (index + 1 == list.length) {
             newArr.push(arr);
           }
         }
@@ -180,9 +202,19 @@ export default {
     }
   },
   mounted(){
+    // 表格接口
     dataList().then((res) => {
-      this.dataList = res.data.data;
-      this.initPage()
+      this.loading = true;
+        setTimeout(() => {
+          this.dataList = res.data.data;
+          this.initPage(this.dataList)
+          this.loading = false;
+        }, 1000);
+      
+    })
+    // 筛选接口
+    screenList().then((res) => {
+        this.screenList = res.data.data
     })
   }
 };

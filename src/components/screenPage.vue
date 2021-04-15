@@ -52,15 +52,23 @@
 </template>
 
 <script>
-import { screenList } from '@/api/screenList'
+// import { screenList } from '@/api/screenList'
 export default {
+    props:{
+        screenList:{
+            type: Array,
+            default() {
+                return [];
+            },
+        }
+    },
     data () {
         return {
             curCompanyTypeCode: [],
             curCompanyArr: [],
             validStartDate:'',
             validEndDate:'',
-            screenList: []
+            // screenList: []
         }
     },
     methods: {
@@ -78,10 +86,10 @@ export default {
                 // 删除筛选
                 this.screeningInit(item.innerText)
             })
+            this.$emit('screeningToggleQuote',this.curCompanyArr, this.curCompanyTypeCode)
         },
         // 筛选
         toggleQuoteType(type, rowindex, item, index) {
-            
             // 单选
             if(type=='radio'){
                 // 如果点击的是包含已有的筛选字段就删除已有的
@@ -120,7 +128,7 @@ export default {
                     this.curCompanyArr.push(item)
                 }
             }
-            
+            this.$emit('screeningToggleQuote',this.curCompanyArr, this.curCompanyTypeCode)
         },
         // 删除
         removerScreen(obj){
@@ -134,7 +142,7 @@ export default {
             }
             // 删除筛选
             this.screeningInit(obj.name)
-
+            this.$emit('screeningToggleQuote',this.curCompanyArr, this.curCompanyTypeCode)
         },
         // 重置
         resetClick(){
@@ -144,6 +152,7 @@ export default {
             })
             this.curCompanyTypeCode = [];
             this.curCompanyArr = [];
+            this.$emit('screeningToggleQuote',this.curCompanyArr, this.curCompanyTypeCode)
         },
         screeningInit(name, rowindex, isTrue){
             let thes = this;
@@ -166,16 +175,6 @@ export default {
             
         },
     },
-    watch: {
-        'curCompanyArr'( newName , oldNmame){
-            console.log(newName)
-        }
-    },
-    mounted(){
-        screenList().then((res) => {
-            this.screenList = res.data.data
-        })
-    }
 }
 </script>
 

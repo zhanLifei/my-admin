@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-table :data="tableData">
+    <el-table :data="tableData" v-loading="loading">
       <el-table-column type='selection' width="40" v-if="selection"></el-table-column>
       <el-table-column
         v-for="(column,index) in columns"
@@ -77,6 +77,10 @@ export default {
       type: Boolean,
       default: false
     },
+    loading: {
+      type: Boolean,
+      default: false
+    },
     page: {
       type: Object,
       default: {}
@@ -84,7 +88,6 @@ export default {
   },
   data() {
     return {
-      
     };
   },
   methods: {
