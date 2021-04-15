@@ -1,38 +1,30 @@
 <template>
-<div>
-  <div>{{counts}}</div>
-  <el-button @click="toClick">同步修改counts</el-button>
-</div>
+  <div>
+    <div>{{ counts }}</div>
+    <el-button @click="toClick">同步修改counts</el-button>
+  </div>
 </template>
 
 <script>
-import { index } from '@/api/mock'
 export default {
   computed: {
-    counts(){
-      return this.$store.state.counts
-    }
+    counts() {
+      return this.$store.state.counts;
+    },
   },
 
   methods: {
-    toClick(){
+    toClick() {
       setInterval(() => {
-        this.$store.commit('increment',parseInt(20))
+        this.$store.commit("increment", parseInt(20));
       }, 1000);
-    }
+    },
   },
-  mounted(){
-    console.log(this.$api)
-    index.$api({
-        method: 'GET',
-        url: '/index'
-      }).then(res=>{
-        console.log(111111111111,res)
-      })
-  }
-}
+  mounted() {
+
+  },
+};
 </script>
 
 <style>
-
 </style>

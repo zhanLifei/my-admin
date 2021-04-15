@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import cleatstore from "./store/store";
+import "@/api/mock.js"; //模拟数据 
 import Vuex from "vuex";
 import api from '@/api/api.js'       //http请求
 import ElementUI from "element-ui";
@@ -11,6 +12,7 @@ import Message from "./components/ui/message/message";
 import index from "./components/ui/demo/index";
 import ECharts from 'vue-echarts'
 import 'echarts/lib/chart/line'
+
 Vue.component('chart', ECharts)
 Vue.prototype.$messages = Message;
 Vue.prototype.$index = index;

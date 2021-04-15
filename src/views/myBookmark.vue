@@ -46,6 +46,7 @@
 <script>
 import renderTable from "@/components/renderTable";
 import screenPage from "@/components/screenPage";
+import { dataList } from '@/api/dataList'
 export default {
   components: { renderTable, screenPage },
   data() {
@@ -55,14 +56,14 @@ export default {
       checked2: false,
       pageParams: {
         total: 10,
-        pageSize: 3, //每页多少条数据
+        pageSize: 5, //每页多少条数据
         currentPage: 1, //当前第几页
       },
       columnsData: [
         {
           label: "建设名称",
           prop: "buildingName",
-          width: '100px',
+          width: 100,
           render: (h, props) => {
             return h(
               "a",
@@ -137,104 +138,7 @@ export default {
           prop: "preparationTime"
         }
       ],
-      dataList: [
-        {
-          buildingName: "12号线一期",
-          lineLength: '40.54',
-          avgDistance: "1.27",
-          total: "404.44",
-          lineIndex: "9.98",
-          preparationScope: "左炮台站~海上田园东",
-          renderPhase: "估算",
-          area: "南山区，宝安区",
-          versionName: "批复版",
-          preparationTime: "2015-09"
-        },
-        {
-          buildingName: "13号线一期",
-          lineLength: '40.54',
-          avgDistance: "1.27",
-          total: "404.44",
-          lineIndex: "9.98",
-          preparationScope: "岗厦北站~沙田站",
-          renderPhase: "估算",
-          area: "福田区，罗湖区，龙岗区，坪山区",
-          versionName: "批复版",
-          preparationTime: "2015-09"
-        },
-        {
-          buildingName: "14号线一期",
-          lineLength: '40.54',
-          avgDistance: "1.27",
-          total: "404.44",
-          lineIndex: "9.98",
-          preparationScope: "大运站~田心站",
-          renderPhase: "估算",
-          area: "龙岗区，坪山区",
-          versionName: "批复版",
-          preparationTime: "2015-09"
-        },
-        {
-          buildingName: "15号线一期",
-          lineLength: '40.54',
-          avgDistance: "1.27",
-          total: "404.44",
-          lineIndex: "9.98",
-          preparationScope: "福田口岸站-新南站",
-          renderPhase: "估算",
-          area: "福田区，龙华新区，龙岗区",
-          versionName: "批复版",
-          preparationTime: "2015-09"
-        },
-        {
-          buildingName: "16号线一期",
-          lineLength: '40.54',
-          avgDistance: "1.27",
-          total: "404.44",
-          lineIndex: "9.98",
-          preparationScope: "左炮台站~海上田园东",
-          renderPhase: "估算",
-          area: "南山区，宝安区",
-          versionName: "批复版",
-          preparationTime: "2015-09"
-        },
-        {
-          buildingName: "17号线一期",
-          lineLength: '40.54',
-          avgDistance: "1.27",
-          total: "404.44",
-          lineIndex: "9.98",
-          preparationScope: "岗厦北站~沙田站",
-          renderPhase: "估算",
-          area: "福田区，罗湖区，龙岗区，坪山区",
-          versionName: "批复版",
-          preparationTime: "2015-09"
-        },
-        {
-          buildingName: "18号线一期",
-          lineLength: '40.54',
-          avgDistance: "1.27",
-          total: "404.44",
-          lineIndex: "9.98",
-          preparationScope: "大运站~田心站",
-          renderPhase: "估算",
-          area: "龙岗区，坪山区",
-          versionName: "批复版",
-          preparationTime: "2015-09"
-        },
-        {
-          buildingName: "19号线一期",
-          lineLength: '40.54',
-          avgDistance: "1.27",
-          total: "404.44",
-          lineIndex: "9.98",
-          preparationScope: "福田口岸站-新南站",
-          renderPhase: "估算",
-          area: "福田区，龙华新区，龙岗区",
-          versionName: "批复版",
-          preparationTime: "2015-09"
-        },
-      ],
+      dataList: [],
     };
   },
   computed: {
@@ -275,12 +179,17 @@ export default {
       this.newDataList = newArr;
     }
   },
+  mounted(){
+    dataList().then((res) => {
+      this.dataList = res.data.data;
+      this.initPage()
+    })
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 .wappess{
-  background: #f1f1f1;
   padding-bottom: 1px;
   .resources{
     width: 100%;
@@ -334,6 +243,10 @@ export default {
   }
   .container .item-box{
     width: 100%;
+  }
+
+  /deep/ .el-table-column--selection .cell{
+    padding-right: 10px;
   }
 }
 </style>

@@ -2,57 +2,22 @@
   <!-- 轮播图 -->
   <div class="boxswiper">
     <swiper class="swiper" :options="swiperOption">
-      <swiper-slide>Slide 1</swiper-slide>
-      <swiper-slide>Slide 2</swiper-slide>
-      <swiper-slide>Slide 3</swiper-slide>
-      <swiper-slide>Slide 4</swiper-slide>
-      <swiper-slide>Slide 5</swiper-slide>
-      <swiper-slide>Slide 6</swiper-slide>
-      <swiper-slide>Slide 7</swiper-slide>
-      <swiper-slide>Slide 8</swiper-slide>
-      <swiper-slide>Slide 9</swiper-slide>
-      <swiper-slide>Slide 10</swiper-slide>
+      <swiper-slide v-for="(item,index) in ['Slide1', 'Slide2','Slide3', 'Slide4','Slide5', 'Slide6','Slide7', 'Slide8','Slide9', 'Slide10']" :key="index" >{{item}}</swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
 
     <swiper class="swiper" :options="swiperOption1">
-      <swiper-slide>Slide 1</swiper-slide>
-      <swiper-slide>Slide 2</swiper-slide>
-      <swiper-slide>Slide 3</swiper-slide>
-      <swiper-slide>Slide 4</swiper-slide>
-      <swiper-slide>Slide 5</swiper-slide>
-      <swiper-slide>Slide 6</swiper-slide>
-      <swiper-slide>Slide 7</swiper-slide>
-      <swiper-slide>Slide 8</swiper-slide>
-      <swiper-slide>Slide 9</swiper-slide>
-      <swiper-slide>Slide 10</swiper-slide>
+      <swiper-slide v-for="(item,index) in ['Slide1', 'Slide2','Slide3', 'Slide4','Slide5', 'Slide6','Slide7', 'Slide8','Slide9', 'Slide10']" :key="index" >{{item}}</swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
 
     <swiper class="swiper" :options="swiperOption2">
-      <swiper-slide>Slide 1</swiper-slide>
-      <swiper-slide>Slide 2</swiper-slide>
-      <swiper-slide>Slide 3</swiper-slide>
-      <swiper-slide>Slide 4</swiper-slide>
-      <swiper-slide>Slide 5</swiper-slide>
-      <swiper-slide>Slide 6</swiper-slide>
-      <swiper-slide>Slide 7</swiper-slide>
-      <swiper-slide>Slide 8</swiper-slide>
-      <swiper-slide>Slide 9</swiper-slide>
-      <swiper-slide>Slide 10</swiper-slide>
+      <swiper-slide v-for="(item,index) in ['Slide1', 'Slide2','Slide3', 'Slide4','Slide5', 'Slide6','Slide7', 'Slide8','Slide9', 'Slide10']" :key="index" >{{item}}</swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
 
     <swiper class="swiper" :options="swiperOption3">
-      <swiper-slide>Slide 1</swiper-slide>
-      <swiper-slide>Slide 2</swiper-slide>
-      <swiper-slide>Slide 3</swiper-slide>
-      <swiper-slide>Slide 4</swiper-slide>
-      <swiper-slide>Slide 5</swiper-slide>
-      <swiper-slide>Slide 6</swiper-slide>
-      <swiper-slide>Slide 7</swiper-slide>
-      <swiper-slide>Slide 8</swiper-slide>
-      <swiper-slide>Slide 9</swiper-slide>
+      <swiper-slide v-for="(item,index) in ['Slide1', 'Slide2','Slide3', 'Slide4','Slide5', 'Slide6','Slide7', 'Slide8','Slide9', 'Slide10']" :key="index" >{{item}}</swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
       <div class="swiper-button-prev" slot="button-prev"></div>
       <div class="swiper-button-next" slot="button-next"></div>
@@ -146,9 +111,7 @@ export default {
     };
   },
   methods: {},
-  mounted() {
-    
-  },
+  mounted() {},
 };
 </script>
 

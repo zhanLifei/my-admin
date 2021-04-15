@@ -21,7 +21,7 @@
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page="page.currentPage"
-        :page-sizes="[1,2,3,4]"
+        :page-sizes="[5,10,15,20]"
         :page-size="page.pageSize"
         :total="page.total"
         layout="total, sizes, prev, pager, next, jumper"
@@ -98,7 +98,6 @@ export default {
     },
   },
   mounted () {
-    console.log(this.$parent.columns);
   }
 };
 </script>
@@ -115,5 +114,11 @@ export default {
   th>.cell{
     padding-left: 13px;
   }
+  th, tr{
+    background: transparent;
+  }
+}
+/deep/ .el-table, /deep/ .el-table__expanded-cell {
+  background: transparent;
 }
 </style>
