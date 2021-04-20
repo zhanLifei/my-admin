@@ -164,7 +164,8 @@ export default {
           this.initPage(dataList);
         }
         this.loading = false;
-      }, 1000);
+      }, 1000
+      );
       
     },
     handleChange(value) {
@@ -209,7 +210,8 @@ export default {
           this.dataList = res.data.data;
           this.initPage(this.dataList)
           this.loading = false;
-        }, 1000);
+        }, 1000
+        );
       
     })
     // 筛选接口

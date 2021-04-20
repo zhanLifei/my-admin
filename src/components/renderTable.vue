@@ -117,7 +117,10 @@ export default {
   th>.cell{
     padding-left: 13px;
   }
-  th, tr{
+  th{
+    background: transparent;
+  }
+  tr{
     background: transparent;
   }
 }

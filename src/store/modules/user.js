@@ -1,6 +1,8 @@
 import { userLogin } from '../../api/user'
 const user = {
     state: {
+      username: 'zhanlifei123',
+      password: 'fei180123',
       token: localStorage.getItem("zhanlifeiAdmin"),
       roles: null,
       isMasterAccount:true,

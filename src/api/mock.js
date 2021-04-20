@@ -1,10 +1,18 @@
-var Mock = require('mockjs')
-var Random = Mock.Random
+var Mock = require('mockjs');
+var Random = Mock.Random ;  //随机
+// 登入
 var login = Mock.mock('http://api.com/login',{
+  "code": 200,
   "success" : "登入成功"
 });
-
+// 修改密码
+var passwordEdit = Mock.mock('http://api.com/passwordEdit',{
+  "code": 200,
+  "success" : "修改密码成功"
+});
+// 建设成本管理表数据
 var dataList = Mock.mock('http://api.com/dataList',{
+  "code": 200,
   "data|100": [{
     'buildingName|1': ['1号线一期','2号线一期','3号线一期','4号线一期','5号线一期','6号线一期','7号线一期','8号线一期','9号线一期','10号线一期'],
     'id':'@id',
@@ -19,8 +27,9 @@ var dataList = Mock.mock('http://api.com/dataList',{
     'preparationTime|1': ['2015-09', '2015-10', '2015-11', '2015-12', '2015-13', ],
   }],
 });
- 
+// 建设成本管理筛选数据
 var screenList = Mock.mock('http://api.com/screenList',{
+    "code": 200,
     'data':[
         {   
             'id': 1,
@@ -84,7 +93,8 @@ var screenList = Mock.mock('http://api.com/screenList',{
 });
 
 var treeData = Mock.mock('http://api.com/treeData',{
+  "code": 200,
   "treeData|10":[],
 })
  
-export {login,dataList,screenList,treeData}
+export {login,passwordEdit,dataList,screenList,treeData}

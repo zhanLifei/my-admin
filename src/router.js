@@ -177,6 +177,34 @@ export default new Router({
           ]
         }
       ]
+    },
+    {
+      path: "/app",
+      name: "app",
+      component: () => import("./views/app/index.vue"),
+      redirect: { name: 'home' },
+      children: [
+        {
+          path: "/home",
+          name: "home",
+          component: () => import("./views/app/components/home.vue"),
+        },
+        {
+          path: "/cart",
+          name: "cart",
+          component: () => import("./views/app/components/cart.vue"),
+        },
+        {
+          path: "/classify",
+          name: "classify",
+          component: () => import("./views/app/components/classify.vue"),
+        },
+        {
+          path: "/my",
+          name: "my",
+          component: () => import("./views/app/components/my.vue"),
+        }
+      ]
     }
   ]
 });

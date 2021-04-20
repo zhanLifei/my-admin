@@ -7,3 +7,11 @@ export function userLogin(data) {
     data
   })
 }
+
+export function userPasswordEdit(data) {
+  return request({
+    url: '/passwordEdit',
+    method: 'post',
+    data
+  })
+}
