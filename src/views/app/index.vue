@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="warpper">
     <!-- 内容 -->
     <div>
         <router-view></router-view>

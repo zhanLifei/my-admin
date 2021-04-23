@@ -103,7 +103,9 @@ export default {
             console.log(params)
             this.$router.push({
                 name: `details`,
-                params: params
+                query: {
+                    id: params.id
+                }
             })
         }
     },
