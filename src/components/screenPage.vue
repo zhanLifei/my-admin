@@ -5,70 +5,26 @@
             <div class="flex-fs custom-type">
                 <span>筛选条件:</span>
                 <div class="t-wrap">
-                <ul class="flex-cw">
-                    <li class="active">概算</li>
-                </ul>
+                    <ul class="flex-cw" style="min-height:22px">
+                        <li class="active" v-for="(item,index) in curCompanyArr" :key="index" @click="removerScreen(item)">{{item.name}}<i class="el-icon-close"></i></li>
+                    </ul>
                 </div>
+                <el-button type='danger' plain size='mini' class="reset" @click="resetClick()">重置</el-button>
             </div>
 
-            <div class="flex-fs custom-type">
-                <span>阶段:</span>
+            <div class="flex-fs custom-type" v-for="(item, index) in screenList" :key="index"> 
+                <span>{{item.title}}:</span>
                 <div class="t-wrap">
-                <ul class="flex-cw">
-                    <li :class="{active: curCompanyTypeCode === ''}" @click="toggleCompanyType('')">全部</li>
-                    <li 
-                        :class="{active: curCompanyTypeCode === index}"
-                        v-for="(item, index) in screenList[0].children" 
-                        :key="index"
-                        @click="toggleCompanyType(index)">
-                        {{item}}
-                    </li>
-                </ul>
-                </div>
-            </div>
-            <div class="flex-fs custom-type">
-                <span>规划区:</span>
-                <div class="t-wrap">
-                <ul class="flex-cw">
-                    <li :class="{active: curQuoteTypeCode === ''}" @click="toggleQuoteType('')">全部</li>
-                    <li 
-                        :class="{active: curQuoteTypeCode === index}"
-                        v-for="(item, index) in screenList[1].children" 
-                        :key="index"
-                        @click="toggleQuoteType(index)">
-                        {{item}}
-                    </li>
-                </ul>
-                </div>
-            </div>
-            <div class="flex-fs custom-type">
-                <span>线路:</span>
-                <div class="t-wrap">
-                <ul class="flex-cw">
-                    <li :class="{active: curCheckState === ''}" @click="toggleCheckState('')">全部</li>
-                    <li 
-                    :class="{active: curCheckState === index}"
-                    v-for="(item, index) in screenList[2].children" 
-                    :key="index"
-                    @click="toggleCheckState(index)">
-                    {{item}}
-                    </li>
-                </ul>
-                </div>
-            </div>
-            <div class="flex-fs custom-type">
-                <span>地区:</span>
-                <div class="t-wrap">
-                <ul class="flex-cw">
-                    <li :class="{active: curQuoteState === ''}" @click="toggleQuoteState('')">全部</li>
-                    <li 
-                    :class="{active: curQuoteState === index}"
-                    v-for="(item, index) in screenList[3].children"
-                    :key="index"
-                    @click="toggleQuoteState(index)">
-                    {{item}}
-                    </li>
-                </ul>
+                    <ul class="flex-cw" :ref="`ulRef${item.id}`">
+                        <li @click="toggleCompanyAll(item.type, item.id)" class="active">全部</li>
+                        <li
+                            :class="{active: curCompanyTypeCode.includes(child.name)}"
+                            v-for="(child, idx) in item.children"
+                            :key="idx"
+                            @click="toggleQuoteType(item.type, item.id, child, idx)">
+                            {{child.name}}
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="flex-c custom-type">
@@ -96,55 +52,129 @@
 </template>
 
 <script>
+// import { screenList } from '@/api/screenList'
 export default {
+    props:{
+        screenList:{
+            type: Array,
+            default() {
+                return [];
+            },
+        }
+    },
     data () {
         return {
-            curCompanyTypeCode: '',
-            curQuoteTypeCode: '',
-            curCheckState: '',
-            curQuoteState: '',
-            screenList: [
-                {
-                    title: '阶段',
-                    children: ['估算','概算','招标','投标','合同','结算',]
-                },
-                {
-                    title: '规划区',
-                    children: ['一期','二期','三期','三期调整','四期',]
-                },
-                {
-                    title: '线路',
-                    children: ['2号线三期','6号线二期','9号线二期','16号线一期','12号线一期','5号线二期','9号线一期','6号线一期','14号线一期','17号线一期','18号线一期']
-                },
-                {
-                    title: '地区',
-                    children: ['南山区','罗湖区','龙华区','宝安区','龙岗区','福田区','盐田区','光明区']
-                }
-            ]
+            curCompanyTypeCode: [],
+            curCompanyArr: [],
+            validStartDate:'',
+            validEndDate:'',
+            // screenList: []
         }
     },
     methods: {
-        toggleCompanyType(typeCode) {
-            this.curCompanyTypeCode = typeCode
-            this.getUsersList()
+        // 全部
+        toggleCompanyAll(type, index) {
+            // 1: es6 转真数组
+            let elem = Array.from(this.$refs['ulRef'+index][0].children);
+            // 遍历dom
+            elem.forEach((item,i)=>{
+                // 每个li清除active类名
+                item.className  = '';
+                if(i == 0) {
+                    item.className  = 'active';
+                }
+                // 删除筛选
+                this.screeningInit(item.innerText)
+            })
+            this.$emit('screeningToggleQuote',this.curCompanyArr, this.curCompanyTypeCode)
         },
-        toggleQuoteType(typeCode) {
-            this.curQuoteTypeCode = typeCode
-            this.getUsersList()
+        // 筛选
+        toggleQuoteType(type, rowindex, item, index) {
+            // 单选
+            if(type=='radio'){
+                // 如果点击的是包含已有的筛选字段就删除已有的
+                if(this.curCompanyTypeCode.includes(item.name)){
+                    // 删除筛选
+                    this.screeningInit(item.name, rowindex, true)
+                } else {
+                    // es6 转真数组
+                    let elem = Array.from(this.$refs['ulRef'+rowindex][0].children);
+                    // 遍历dom
+                    elem.forEach((item,i)=>{
+                        // 每个li清除active类名
+                        item.className  = '';
+                        // 删除筛选
+                        this.screeningInit(item.innerText)
+                    })
+                    this.curCompanyTypeCode.push(item.name);
+                    this.curCompanyArr.push(item)
+                }
+            } else { //多选
+                // 清除第一个active的类名
+                this.$refs['ulRef'+rowindex][0].children[0].className = ''
+                // 如果点击的是包含已有的筛选字段就删除已有的
+                if(this.curCompanyTypeCode.includes(item.name)){
+                    // 删除筛选
+                    this.screeningInit(item.name)
+                    let elem = Array.from(this.$refs['ulRef'+rowindex][0].children);
+                    let newElem = elem.filter((item,i)=>{
+                        return item.className == 'active'
+                    })
+                    if(newElem.length == 1){
+                        this.$refs['ulRef'+rowindex][0].children[0].className = 'active'
+                    }
+                } else {
+                    this.curCompanyTypeCode.push(item.name);
+                    this.curCompanyArr.push(item)
+                }
+            }
+            this.$emit('screeningToggleQuote',this.curCompanyArr, this.curCompanyTypeCode)
         },
-        toggleCheckState(state) {
-            this.curCheckState = state
-            this.getUsersList()
+        // 删除
+        removerScreen(obj){
+            let index = obj.pid
+            let elem = Array.from(this.$refs['ulRef'+index][0].children);
+            let newElem = elem.filter((item,i)=>{
+                return item.className == 'active'
+            })
+            if(newElem.length == 1){
+                this.$refs['ulRef'+index][0].children[0].className = 'active'
+            }
+            // 删除筛选
+            this.screeningInit(obj.name)
+            this.$emit('screeningToggleQuote',this.curCompanyArr, this.curCompanyTypeCode)
         },
-        toggleQuoteState(state) {
-            this.curQuoteState = state
-            this.getUsersList()
+        // 重置
+        resetClick(){
+            let thes = this;
+            this.curCompanyArr.forEach(function(item, i, array) {
+                thes.$refs['ulRef'+item.pid][0].children[0].className = 'active'
+            })
+            this.curCompanyTypeCode = [];
+            this.curCompanyArr = [];
+            this.$emit('screeningToggleQuote',this.curCompanyArr, this.curCompanyTypeCode)
+        },
+        screeningInit(name, rowindex, isTrue){
+            let thes = this;
+            this.curCompanyTypeCode.forEach(function(type, i, array) {
+                if (type == name) {
+                    array.splice(i, 1);
+                    if(isTrue){
+                        thes.$refs['ulRef'+rowindex][0].children[0].className = 'active'
+                    }
+                }
+            });
+            this.curCompanyArr.forEach(function(item, i, array) {
+                if (item.name == name) {
+                    array.splice(i, 1);
+                }
+            });
         },
         // 选择适用时间
         toggleDate(type) {
-            this.getUsersList()
+            
         },
-    }
+    },
 }
 </script>
 
@@ -156,7 +186,7 @@ export default {
         width: 100%;
         .custom-type,
         .norm-type {
-            > span {
+            span {
                 margin-right: 15px;
                 color: #999;
                 font-size: 13px;
@@ -171,7 +201,7 @@ export default {
                 background: #8B99BF;
             }
             .t-wrap {
-                max-width: 100%;
+                max-width: 90%;
                 box-sizing: border-box;
                 ul {
                     margin-bottom: 10px;
@@ -202,6 +232,11 @@ export default {
                         }
                     }
                 }
+            }
+            .reset{
+                margin-left: auto;
+                margin-top: -8px;
+                cursor: pointer;
             }
         }
     }

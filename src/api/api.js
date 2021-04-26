@@ -1,10 +1,10 @@
-import axios from 'axios';
-// 创建 axios 实例
-const request = axios.create({
- // API 请求的默认前缀
- baseURL: process.env.VUE_APP_BASE_URL,
- timeout: 10000, // 请求超时时间
-});
 
+import axios from 'axios'
 
-export default request;
+const api = axios.create();
+api.defaults.baseURL = 'http://api.com';
+api.defaults.timeout = 5000;
+api.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+api.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest'
+
+export default api

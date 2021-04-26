@@ -1,28 +1,30 @@
 <template>
-<div>
-  <div>{{counts}}</div>
-  <el-button @click="toClick">同步修改counts</el-button>
-</div>
+  <div>
+    <div>{{ counts }}</div>
+    <el-button @click="toClick">同步修改counts</el-button>
+  </div>
 </template>
 
 <script>
 export default {
   computed: {
-    counts(){
-      return this.$store.state.counts
-    }
+    counts() {
+      return this.$store.state.counts;
+    },
   },
 
   methods: {
-    toClick(){
+    toClick() {
       setInterval(() => {
-        this.$store.commit('increment',parseInt(20))
+        this.$store.commit("increment", parseInt(20));
       }, 1000);
-    }
-  }
-}
+    },
+  },
+  mounted() {
+
+  },
+};
 </script>
 
 <style>
-
 </style>

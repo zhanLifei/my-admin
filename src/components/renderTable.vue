@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-table :data="tableData">
+    <el-table :data="tableData" v-loading="loading">
       <el-table-column type='selection' width="40" v-if="selection"></el-table-column>
       <el-table-column
         v-for="(column,index) in columns"
@@ -21,7 +21,7 @@
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page="page.currentPage"
-        :page-sizes="[1,2,3,4]"
+        :page-sizes="[5,10,15,20]"
         :page-size="page.pageSize"
         :total="page.total"
         layout="total, sizes, prev, pager, next, jumper"
@@ -77,6 +77,10 @@ export default {
       type: Boolean,
       default: false
     },
+    loading: {
+      type: Boolean,
+      default: false
+    },
     page: {
       type: Object,
       default: {}
@@ -84,7 +88,6 @@ export default {
   },
   data() {
     return {
-      
     };
   },
   methods: {
@@ -98,7 +101,6 @@ export default {
     },
   },
   mounted () {
-    console.log(this.$parent.columns);
   }
 };
 </script>
@@ -115,5 +117,14 @@ export default {
   th>.cell{
     padding-left: 13px;
   }
+  th{
+    background: transparent;
+  }
+  tr{
+    background: transparent;
+  }
+}
+/deep/ .el-table, /deep/ .el-table__expanded-cell {
+  background: transparent;
 }
 </style>

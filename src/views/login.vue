@@ -36,13 +36,23 @@ export default {
     login () {
       // 数据的验证
       this.$refs.loginForm.validate((valid) => {
-        if (valid && this.loginForm.username =='zhanlifei123' && this.loginForm.password =='fei180123') {
-            localStorage.setItem('zhanlifeiAdmin', 'avsavavvasdsbbiuvbsvbaiubuibqivbbaoblvizhblid')
-            // 进行路由跳转
-            this.$router.push({ name: 'contaihome' })
+        if (valid) {
+            this.$store.dispatch('Login', this.loginForm).then(() => {
+              //登录成功之后
+              this.$router.push({ name: 'contaihome' })
+              this.$message({
+                message: '登录成功!',
+                type: 'success'
+              })
+            }).catch(() => {
+                this.$message({
+                  message: '登录失败!',
+                  type: 'error'
+                })
+            })
         } else {
           this.$message({
-            message: '账户名或者密码错误',
+            message: '请输入账户名或者密码!',
             type: 'error'
           })
           // 只有return false才能阻止请求

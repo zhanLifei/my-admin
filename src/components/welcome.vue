@@ -139,7 +139,6 @@ export default {
         method:'GET',
         url:'http://api.btstu.cn/sjbz/api.php?lx=fengjing&format=json'
       }).then(res=>{
-        console
         this.imageURL = res.data.imgurl
       })
     },

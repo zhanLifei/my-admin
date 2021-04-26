@@ -1,5 +1,4 @@
 <template>
-  
   <div class="wappess">
         <div class="effect resources">
             <h2 class="title">vuex</h2>
@@ -8,24 +7,18 @@
             </div>
             <div class="extraImg"><img alt="图片" src="https://gw.alipayobjects.com/zos/rmsportal/RzwpdLnhmvDJToTdfDPe.png"></div>
         </div>
-        <div class="effect pd15">
-            <router-view/>
-        </div>
   </div>
 </template>
 
 <script>
 export default {
-    data () {
-        return {
-            
-        }
-    }
+
 }
 </script>
 
 <style lang="scss" scoped>
 .wappess{
+  background: #f1f1f1;
   padding-bottom: 1px;
   .resources{
     width: 100%;

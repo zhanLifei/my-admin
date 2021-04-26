@@ -20,7 +20,6 @@ import Dialogs from "../../common/Dialog";
 import FlBotton from "../../common/botton";
 import radio from "../../common/radio";
 import Cascader from "../../common/Cascader";
-import mock from '../../api/mock.js'
 export default {
   components: {
     Dialogs,
@@ -48,7 +47,7 @@ export default {
       this.$index({message:'23443432',msg:'哈哈'});
       this.$api({
         method:'get',
-        url:'/getArticleList'
+        url:'/category'
       }).then(res=>{
         console.log(res);
       })
