@@ -17,13 +17,13 @@ export default {
         },
         {
           id: '2',
-          name: "功能组件",
+          name: "建设成本管理",
           icon: "el-icon-share",
           children: [
             {
               cid: "2-1",
               path: "myBookmark",
-              name: "拖拽窗口",
+              name: "建设成本管理",
             },
           ],
         },

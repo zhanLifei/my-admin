@@ -47,6 +47,7 @@
     }
     .message{
         position: fixed;
+        text-align:center;
         top: 15px;
         right: 36%;
         width: 22%;

@@ -1,13 +1,13 @@
 <template>
     <div id="tree1">
         <tree :treeData="treeDataone"
-        :isAllOpen="false"
+        :isAllOpen="true"
         @inselectnode="selectnode"
         @inpulldown="pulldown"
         @incheckednode="checkednode"
         :isShowcheck="true"
         :isMultiple="true"
-        :depthShow="2"></tree>
+        :depthShow="1"></tree>
     </div>
 
 </template>
@@ -30,9 +30,11 @@ export default {
     },
     selectnode(obj) {
       console.log(obj);
+      this.$index({message:obj.fileName})
     },
     checkednode(arr) {
       console.log(arr);
+      
     }
   }
 };
