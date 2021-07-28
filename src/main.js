@@ -15,7 +15,8 @@ import Message from "./components/ui/message/message";
 import index from "./components/ui/demo/index";
 import ECharts from 'vue-echarts'
 import 'echarts/lib/chart/line'
-
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
 
 
 Vue.component('chart', ECharts)

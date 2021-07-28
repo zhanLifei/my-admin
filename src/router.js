@@ -104,6 +104,11 @@ export default new Router({
           name: "slot",
           component: () => import("@/views/demo/slot.vue")
         },
+        {
+          path: "/echarts",
+          name: "echarts",
+          component: () => import("@/views/demo/echarts.vue")
+        },
         // {
         //   path: "/css手机充电特效1",
         //   name: "css手机充电特效1",
