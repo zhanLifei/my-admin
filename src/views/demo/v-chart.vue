@@ -213,7 +213,7 @@ export default {
       yAxis: {},
       dataEmpty:true,
       // 工单统计
-      orderData2: {
+      orderData: {
         columns: ["type", "count"],
         rows: [
           { type: "1/1", count: 1393 },

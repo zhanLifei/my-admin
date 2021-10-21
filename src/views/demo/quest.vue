@@ -12,7 +12,7 @@
         </div>
       </el-col>
       <el-col :span="20" style="height:80vh;overflow: scroll;">
-        <add-normal ref="addNormal" :quesList="quesList" @deleteList="deleteList"></add-normal>
+        <add-normal ref="addNormal" :quesList="quesList"></add-normal>
       </el-col>
     </el-row>
   </div>
@@ -38,6 +38,9 @@ export default {
     };
   },
   methods: {
+    aaa(){
+      console.log(55555555555);
+    },
     singleChoice(item) {
       this.$refs.addNormal.isAdd = true;
       this.$refs.addNormal.isEdit = true;

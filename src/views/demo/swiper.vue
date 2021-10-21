@@ -1,48 +1,46 @@
 <template>
+  <!-- 轮播图 -->
   <div class="boxswiper">
-    <swiper :options="swiperOption">
-      <swiper-slide>
-        <img class="images" src="../../assets/微信图片_20200404105918.jpg" alt />
-      </swiper-slide>
-      <swiper-slide>
-        <img class="images" src="../../assets/微信图片_20200404105925.jpg" alt />
-      </swiper-slide>
-      <swiper-slide>
-        <img class="images" src="../../assets/微信图片_20200404105930.jpg" alt />
-      </swiper-slide>
-      <swiper-slide>
-        <img class="images" src="../../assets/微信图片_20200404105935.jpg" alt />
-      </swiper-slide>
-      <swiper-slide>
-        <img class="images" src="../../assets/微信图片_20200404105800.jpg" alt />
-      </swiper-slide>
-      <swiper-slide>
-        <img class="images" src="../../assets/微信图片_20200404105821.jpg" alt />
-      </swiper-slide>
-      <swiper-slide>
-        <img class="images" src="../../assets/微信图片_20200404105828.jpg" alt />
-      </swiper-slide>
-      <swiper-slide>
-        <img class="images" src="../../assets/微信图片_20200404105836.jpg" alt />
-      </swiper-slide>
-      <swiper-slide>
-        <img class="images" src="../../assets/微信图片_20200404105841.jpg" alt />
-      </swiper-slide>
-      <swiper-slide>
-        <img class="images" src="../../assets/微信图片_20200404105846.jpg" alt />
-      </swiper-slide>
-      <swiper-slide>
-        <img class="images" src="../../assets/微信图片_20200404105852.jpg" alt />
-      </swiper-slide>
-      <swiper-slide>
-        <img class="images" src="../../assets/微信图片_20200404105857.jpg" alt />
-      </swiper-slide>
-      <swiper-slide>
-        <img class="images" src="../../assets/微信图片_20200404105912.jpg" alt />
-      </swiper-slide>
+    <swiper class="swiper" :options="swiperOption">
+      <swiper-slide v-for="(item,index) in ['Slide1', 'Slide2','Slide3', 'Slide4','Slide5', 'Slide6','Slide7', 'Slide8','Slide9', 'Slide10']" :key="index" >{{item}}</swiper-slide>
+      <div class="swiper-pagination" slot="pagination"></div>
+    </swiper>
+
+    <swiper class="swiper" :options="swiperOption1">
+      <swiper-slide v-for="(item,index) in ['Slide1', 'Slide2','Slide3', 'Slide4','Slide5', 'Slide6','Slide7', 'Slide8','Slide9', 'Slide10']" :key="index" >{{item}}</swiper-slide>
+      <div class="swiper-pagination" slot="pagination"></div>
+    </swiper>
+
+    <swiper class="swiper" :options="swiperOption2">
+      <swiper-slide v-for="(item,index) in ['Slide1', 'Slide2','Slide3', 'Slide4','Slide5', 'Slide6','Slide7', 'Slide8','Slide9', 'Slide10']" :key="index" >{{item}}</swiper-slide>
+      <div class="swiper-pagination" slot="pagination"></div>
+    </swiper>
+
+    <swiper class="swiper" :options="swiperOption3">
+      <swiper-slide v-for="(item,index) in ['Slide1', 'Slide2','Slide3', 'Slide4','Slide5', 'Slide6','Slide7', 'Slide8','Slide9', 'Slide10']" :key="index" >{{item}}</swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
       <div class="swiper-button-prev" slot="button-prev"></div>
       <div class="swiper-button-next" slot="button-next"></div>
+    </swiper>
+
+    <swiper class="swiper" :options="swiperOption4">
+      <swiper-slide class="slide-1"></swiper-slide>
+      <swiper-slide class="slide-2"></swiper-slide>
+      <swiper-slide class="slide-3"></swiper-slide>
+      <swiper-slide class="slide-4"></swiper-slide>
+      <swiper-slide class="slide-5"></swiper-slide>
+      <div
+        class="swiper-pagination swiper-pagination-white"
+        slot="pagination"
+      ></div>
+      <div
+        class="swiper-button-prev swiper-button-white"
+        slot="button-prev"
+      ></div>
+      <div
+        class="swiper-button-next swiper-button-white"
+        slot="button-next"
+      ></div>
     </swiper>
   </div>
 </template>
@@ -53,44 +51,87 @@ import { swiper, swiperSlide } from "vue-awesome-swiper";
 export default {
   components: {
     swiper,
-    swiperSlide
+    swiperSlide,
   },
   data() {
     return {
       swiperOption: {
-        slidesPerView: 1,
-        spaceBetween: 20,
-        slidesPerGroup: 1,
-        loop: true, //是否循环,不循环
+        loop: true,
+        slidesPerView: 3,
+        spaceBetween: 30,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      },
+      swiperOption1: {
+        slidesPerView: "auto",
+        spaceBetween: 30,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      },
+      swiperOption2: {
+        slidesPerView: 4,
+        spaceBetween: 30,
+        centeredSlides: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      },
+      swiperOption3: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        slidesPerGroup: 3,
+        loop: true,
         loopFillGroupWithBlank: true,
         pagination: {
           el: ".swiper-pagination",
-          clickable: true
+          clickable: true,
         },
         navigation: {
           nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev"
-        }
-      }
+          prevEl: ".swiper-button-prev",
+        },
+      },
+      swiperOption4: {
+        spaceBetween: 30,
+        effect: "fade",
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      },
     };
   },
-  methods: {
-    imgClick(index, item) {
-      this.image = item.pic;
-    }
-  },
-  mounted() {}
+  methods: {},
+  mounted() {},
 };
 </script>
 
 <style scoped>
-.boxswiper {
-  padding: 40px;
-  background-color: #ccc;
+.swiper {
+  height: 300px;
+  margin-bottom: 20px;
 }
-.images {
-  width: 100px;
-  height: 100px;
-  display: inline-block;
+.swiper /deep/ .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: 700;
+  font-size: 36.4px;
+  background-color: rgb(228, 222, 222);
 }
+.swiper /deep/ .slide-1{background: #ff9600;}
+.swiper /deep/ .slide-2{background: #d3743e;}
+.swiper /deep/ .slide-3{background: #4db632;}
+.swiper /deep/ .slide-4{background: #3dbbcc;}
+.swiper /deep/ .slide-5{background: #b975ca;}
 </style>

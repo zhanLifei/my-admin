@@ -26,6 +26,13 @@
                     <div class="new-construction" v-if="status !== 'view'" @click="newConstruction(index)">新建选项</div>
                   </el-form-item>
                 </div>
+                <div v-if="item.type=='textarea' || item.type=='text' ">
+                  多行文本题,文本题
+                </div>
+
+                <div v-if="item.type=='degreestar' || item.type=='degreesnum' ">
+                  星评,满意度
+                </div>
               </div>
               <div class="btnBox">
                 <div class="handles dele">拖拽</div>
@@ -122,6 +129,8 @@ export default {
     },
     // 新建选项
     newConstruction(index) {
+      
+      console.log(this.$parent);
       if(this.formData.documentList[index].options.length >= 10) {
         this.$Message.error('选项数目最多10个！')
         return
@@ -183,6 +192,9 @@ export default {
     //     // this.delayedDragging = true
     //   })
     // }
+  },
+  mounted () {
+    
   },
   created () {
     // 阻止火狐浏览器默认的拖拽搜索行为

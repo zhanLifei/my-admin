@@ -1,336 +1,275 @@
 <template>
-  <div>
-    <div class="backlog">
-      <div class="info-title">
-        <div class="inif-name">
-          <div style="margin-bottom: 5px">早上好, 湛礼飞</div>
-          <div style="font-size: 12px; color: #999">
-            深圳地铁项目组 &nbsp;前端开发
-          </div>
-        </div>
-        <div class="inif-name">
-          <div style="margin-bottom: 5px">24℃ 多云</div>
-          <div style="font-size: 12px; color: #999">12月5日 星期四</div>
+  <div class="wappess" :style="{background: 'url( '+ imageURL +') no-repeat center / 100% 100%'}">
+    <div class="top" @click="myAdemin">
+      <span class="el-icon-s-platform">  我的后台</span>
+    </div>
+    <div class="baidu-box">
+      <img src="../assets/baidu.png" alt="">
+    </div>
+    <div class="search">
+      <div class="transparent-search" v-if="switchVlue">
+        <el-input placeholder="请输入内容" v-model="inputText" class="input-with-select">
+          <el-button slot="append" icon="el-icon-search" @click="btnSave"></el-button>
+        </el-input>
+      </div>
+      <div class="white-search" v-else>
+        <el-input placeholder="请输入内容" v-model="inputText" class="input-with-select">
+          <el-button slot="append" icon="el-icon-search" @click="btnSave"></el-button>
+        </el-input>
+      </div>
+      <div class="content" :style="{'background': switchVlue ? ' rgba(0,0,0, .1)': '#fff'}">
+        <div class="item" v-for="item in urlList" :key="item.img" @click="toPageLink(item)">
+          <img :src="item.img" alt="">
+          <div class="title" :style="{'color': switchVlue ? '#fff': '#333'}">{{item.name}}</div>
         </div>
       </div>
-    </div>
-    <div class="contentBox">
-      <div style="float:right">
-        <span style="font-size: 14px">选择年份：</span>
-        <el-select v-model="value" @change="handChangeDate" size="mini" placeholder="请选择年份">
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-        <el-button style="margin-left: 15px" type="success" round size='mini' @click="drawer = true">明细</el-button>
+      <div class="footer-bg">
+        <span style="color:#fff;font-size: 14px;margin-right: 5px">{{switchVlue == true ? '透明':'白底'}}</span>
+        <el-switch
+          @change='changeSwitch'
+          v-model="switchVlue"
+          active-color="#13ce66"
+          inactive-color="#ff4949"
+          style="margin-right: 10px">
+        </el-switch>
+        <el-button type="success" size='mini' round @click="switchType">切换背景</el-button>
+        <el-button type="success" size='mini' round @click="selectImages"><i class="el-icon-picture-outline"></i></el-button>
       </div>
-      <div id="line-chart1"></div>
     </div>
-
-    <!-- 弹窗 -->
-    <el-drawer
-      title="我是标题"
-      :visible.sync="drawer"
-      :direction="direction"
-      :before-close="handleClose">
-      <span>我来啦!</span>
-    </el-drawer>
+    <div class="Drawer-box" ref="DrawerRef">
+        <imagePreview></imagePreview>
+    </div>
   </div>
 </template>
 
 <script>
-// 引入封装的格式化时间
-// import { formatTime } from "../ulit/dateTime";
-import echarts from "echarts";
-
+import imagePreview from '../components/image-preview';
 export default {
-  data() {
+  components: {
+    imagePreview
+  },
+  data(){
     return {
-      options: [
+      inputText: '',
+      switchVlue: true,
+      imageURL: 'https://tva4.sinaimg.cn/large/9bd9b167gy1g2rkvh7aw7j21hc0u0gwd.jpg',
+      imageGetList:[
         {
-          value: '2020',
-          label: '2020年'
-        }, {
-          value: '2021',
-          label: '2021年'
-        }],
-      value: '2020',
-      lineChart1: {},
-      lineoption1: {},
-      // 支付宝消费
-      AlipayData: [
-        {
-          DateValue: 2020,
-          xAxisData: ["1月份", "2月份", "3月份", "4月份", "5月份", "6月份", "7月份", "8月份", "9月份", "10月份", "11月份", "12月份", ],
-          // 支出
-          expenditure: [3267,63693.05,4198.49,1410.28,1540.65,2303.79,2433.20,1373.79,9910.16,7160.59,3867.37,12,3599.82],
-          // 收入
-          income: [39.46,3427,0,17.43,200,0,0,0,0,40,0,816.01],
+          name: '动漫',
+          preview: '',
+          url: 'http://api.btstu.cn/sjbz/api.php?lx=dongman&format=json',
+          type: 'api'
         },
         {
-          DateValue: 2021,
-          xAxisData: ["1月份"],
-          // 支出
-          expenditure: [4762.36],
-          // 收入
-          income: [1100],
+          name: '美女',
+          preview: '',
+          url: 'http://api.btstu.cn/sjbz/api.php?lx=meizi&format=json',
+          type: 'api'
+        },
+        {
+          name: '风景',
+          preview: '',
+          url: 'http://api.btstu.cn/sjbz/api.php?lx=fengjing&format=json',
+          type: 'api'
+        },
+        {
+          name: '随机',
+          preview: '',
+          url: 'http://api.btstu.cn/sjbz/api.php?lx=suiji&format=json',
+          type: 'api'
         }
       ],
-      drawer: false,
-      direction: 'rtl',
-    };
+      urlList: [
+        {
+          img: require('../assets/icon/juejin-icon.jpg'),
+          url: 'https://juejin.cn/',
+          name: '掘金'
+        },
+        {
+          img: require('../assets/icon/zhihu-icon.png'),
+          url: 'https://www.zhihu.com',
+          name: '知乎'
+        },
+        {
+          img: require('../assets/icon/bilibili-icon.jpg'),
+          url: 'https://www.bilibili.com/',
+          name: '哔哩哔哩'
+        },
+        {
+          img: require('../assets/icon/GitHub.jpg'),
+          url: 'https://github.com/',
+          name: 'GutHub'
+        },
+        {
+          img: require('../assets/icon/CSDN-icon.png'),
+          url: 'https://www.csdn.net/',
+          name: 'CSDN'
+        },
+        {
+          img: require('../assets/icon/LeetCode-icon.png'),
+          url: 'https://leetcode-cn.com/',
+          name: 'LeetCode'
+        },
+        {
+          img: require('../assets/icon/vue-icon.png'),
+          url: 'https://cn.vuejs.org/',
+          name: 'Vue'
+        },
+        {
+          img: require('../assets/icon/react-icon.png'),
+          url: 'https://react.docschina.org/',
+          name: 'React'
+        },
+        {
+          img: require('../assets/icon/langhu-icon.jpg'),
+          url: 'https://lanhuapp.com/',
+          name: '蓝湖'
+        },
+        {
+          img: require('../assets/icon/element-icon.png'),
+          url: 'https://element.eleme.cn/2.15/#/zh-CN/component/quickstart',
+          name: 'Elenent-UI'
+        },
+      ]
+    }
   },
-  methods: {
-    handChangeDate(val){
-      if(val == '2021'){
-        this.lineChart1.setOption({
-          xAxis:[
-            {
-              data: this.AlipayData[1].xAxisData,
-            }
-          ],
-          yAxis:[
-            {
-              max: Math.ceil(Math.max.apply(null,this.AlipayData[1].expenditure)/5) *5,
-					    interval: Math.ceil(Math.max.apply(null,this.AlipayData[1].expenditure)/5),
-            },
-            {
-              max: Math.ceil(Math.max.apply(null,this.AlipayData[1].income)/5) *5,
-					    interval: Math.ceil(Math.max.apply(null,this.AlipayData[1].income)/5),
-            }
-          ],
-          series: [
-            {
-              data: this.AlipayData[1].expenditure,
-            },
-            {
-              data: this.AlipayData[1].income,
-            }
-          ],
-        });
-      } else {
-        this.lineChart1.setOption({
-          xAxis:[
-            {
-              data: this.AlipayData[0].xAxisData,
-            }
-          ],
-          yAxis:[
-            {
-              max: Math.ceil(Math.max.apply(null,this.AlipayData[0].expenditure)/5) *5,
-					    interval: Math.ceil(Math.max.apply(null,this.AlipayData[0].expenditure)/5),
-            },
-            {
-              max: Math.ceil(Math.max.apply(null,this.AlipayData[0].income)/5) *5,
-					    interval: Math.ceil(Math.max.apply(null,this.AlipayData[0].income)/5),
-            }
-          ],
-          series: [
-            {
-              data: this.AlipayData[0].expenditure,
-            },
-            {
-              data: this.AlipayData[0].income,
-            }
-          ],
-        });
+  methods:{
+    init(){
+      this.$api({
+        method:'GET',
+        url:'http://api.btstu.cn/sjbz/api.php?lx=fengjing&format=json'
+      }).then(res=>{
+        this.imageURL = res.data.imgurl
+      })
+    },
+    btnSave(){
+      this.$router.push({ 
+        path: "/iframeDiv",
+        query: {
+          value: this.inputText
+        }
+      });
+    },
+    myAdemin(){
+      this.$router.push({ name: 'contaihome' })
+    },
+    // 切换背景
+    switchType(){
+      this.init()
+    },
+    // 选择图库
+    selectImages(){
+      this.$refs.DrawerRef.style.top = '6%';
+    },
+    changeSwitch(type){
+      console.log(type);
+    },
+    toPageLink(url){
+      window.open().location.href = url.url;
+    }
+  },
+
+  mounted(){
+    var channel = new BroadcastChannel('test_channel');
+      channel.onmessage = event =>{
+          this.imageURL = event.data;
       }
-    },
-    handleClose(done) {
-      this.$confirm('确认关闭？')
-        .then(_ => {
-          done();
-        })
-        .catch(_ => {});
-    },
-    init() {
-      this.lineChart1 = echarts.init(document.getElementById("line-chart1")); //建设动态成本监控
-      this.lineoption1 = {
-        title: {
-          text: "2020年度消费情况",
-          textStyle: {
-            //主标题文本样式{"fontSize": 18,"fontWeight": "bolder","color": "#333"}
-            color: "#333",
-            fontSize: 16,
-            fontWeight: "bold",
-            fontFamily: "Microsoft YaHei",
-          },
-        },
-        tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            // 坐标轴指示器，坐标轴触发有效
-            type: "shadow", // 默认为直线，可选为：'line' | 'shadow'
-          },
-        },
-        legend: {
-          textStyle: {
-            color: "#999999",
-          },
-          left: "right",
-        },
-        calculable: true,
-        grid: {
-          x: 25,
-          x2: 25,
-          y: 80,
-          y2: 0,
-          containLabel: true, //根据刻度值自适应边距
-        },
-        xAxis: [
-          {
-            type: "category",
-            data: this.AlipayData[0].xAxisData,
-            // boundaryGap: false,
-            axisPointer: {
-              type: "shadow",
-            },
-            axisLine: {
-              lineStyle: {
-                color: "#ddd",
-              },
-            },
-            axisLabel: {
-              textStyle: {
-                color: "#999999",
-              },
-              interval: 0,
-              rotate: 30,
-            },
-          },
-        ],
-        yAxis: [
-          {
-            type: "value",
-            name: "单位：元",
-            max: Math.ceil(Math.max.apply(null,this.AlipayData[0].expenditure)/5) *5,
-					  interval: Math.ceil(Math.max.apply(null,this.AlipayData[0].expenditure)/5),
-            nameTextStyle: {
-              color: "#999",
-              padding: [0, 0, 10, 40], // 四个数字分别为上右下左与原位置距离
-            },
-            axisLine: {
-              lineStyle: {
-                color: "#ddd",
-              },
-            },
-            axisLabel: {
-              textStyle: {
-                color: "#999999",
-              },
-            },
-            splitLine: {
-              //show: false,
-              lineStyle: {
-                color: "#ddd",
-              },
-            },
-          },
-          {
-            type: "value",
-            name: "单位：元",
-            max: Math.ceil(Math.max.apply(null,this.AlipayData[0].income,)/5) *5,
-					  interval: Math.ceil(Math.max.apply(null,this.AlipayData[0].income,)/5),
-            nameTextStyle: {
-              color: "#999",
-              padding: [0, 0, 10, -40], // 四个数字分别为上右下左与原位置距离
-            },
-            axisLine: {
-              lineStyle: {
-                color: "#ddd",
-              },
-            },
-            axisLabel: {
-              textStyle: {
-                color: "#999999",
-              },
-            },
-            splitLine: {
-              //show: false,
-              lineStyle: {
-                color: "#ddd",
-              },
-            },
-          },
-        ],
-        series: [
-          {
-            type: "bar",
-            barWidth: 20,
-            name: "支付宝消费",
-            data: this.AlipayData[0].expenditure,
-            itemStyle: {
-              normal: {
-                color: "#1a9a46",
-                borderColor: "#1a9a46",
-              },
-            },
-          },
-          {
-            name: "支付宝收入",
-            type: "line",
-            smooth: true,
-            yAxisIndex: 1,	// 右刻度
-            label: {
-              show: true,
-              position: "top",
-              textStyle: {
-                color: "#B7D342", //改变折线点的文字颜色
-              },
-            },
-            itemStyle: {
-              normal: {
-                color: "#b7d342",
-                borderColor: "#b7d342",
-                borderWidth: 1,
-                lineStyle: {
-                  color: "#b7d342",
-                },
-              },
-            },
-            data: this.AlipayData[0].income,
-          }
-        ],
-      };
-      this.lineChart1.setOption(this.lineoption1);
-    },
-  },
-  mounted() {
-    this.init();
-  },
-  beforeDestroy() {},
+  }
+  
 };
 </script>
 
 <style lang="scss" scoped>
-.backlog {
+.wappess{
   width: 100%;
-  padding-right: 20px;
-  border-bottom: 1px solid #e5e5e5;
-  border-left: 4px solid #409eff;
-  padding: 8px 15px 8px 15px;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  padding-top: 5%;
   box-sizing: border-box;
-  background: #fff;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-  .info-title {
-    display: flex;
-    justify-content: space-between;
+  .top{
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    color: #fff;
+    cursor: pointer;
   }
 }
-.contentBox {
-  margin: 20px 0 20px 0;
-  padding: 24px 24px 24px 24px;
-  border-radius: 0px;
-  background-color: #fff;
+.baidu-box{
+  width: 100%;
+  height: 137.59px;
   position: relative;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-  #line-chart1 {
-    margin-top: 50px;
-    width: 100%;
-    height: 400px;
+  img{
+    width: 288px;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    margin-left: -144px;
   }
+}
+.search{
+  width: 500px;
+  margin: 0 auto;
+  margin-top: 20px;
+  .transparent-search{
+      /deep/ .el-input__inner,/deep/ .el-input-group__append{
+      background: transparent;
+      box-shadow: 0px 0px 10px #fff inset;
+      border: 1px solid #fff;
+      border-right: none;
+      color: #fff;
+    }
+  }
+  .white-search{
+      /deep/ .el-input__inner,/deep/ .el-input-group__append{
+      background: #fff;
+      box-shadow: 0px 0px 10px #fff inset;
+      border: 1px solid #eee;
+      border-right: none;
+      color: #333;
+    }
+  }
+  .content{
+    background: rgba(0,0,0, .1);
+    padding: 20px 15px 0;
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-radius: 8px;
+    .item{
+      width: 20%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #fff;
+      font-size: 14px;
+      img{
+        width: 40%;
+        border-radius: 50%;
+        margin: 10px 0;
+      }
+      .title{
+        display: inline-block;
+        font-size: 12px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
+.footer-bg{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+.Drawer-box{
+  position: fixed;
+  top: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: all 1s;
+  overflow: auto;
 }
 </style>

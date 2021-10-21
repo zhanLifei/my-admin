@@ -191,6 +191,9 @@ export default {
                     class: {
                       checkbox_msg: true
                     },
+                    attrs: {
+                      'title': item.fileName
+                    },
                     domProps: {
                       linkData: item
                     },
