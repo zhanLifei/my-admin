@@ -129,8 +129,6 @@ export default {
     },
     // 新建选项
     newConstruction(index) {
-      
-      console.log(this.$parent);
       if(this.formData.documentList[index].options.length >= 10) {
         this.$Message.error('选项数目最多10个！')
         return
@@ -181,17 +179,7 @@ export default {
         };
         this.formData.documentList.push(obj);
       }
-    },
-    // 拖拽事件
-    // isDragging (newValue, oldValue) {
-    //   if (newValue) {
-    //     // this.delayedDragging = true
-    //     return
-    //   }
-    //   this.$nextTick(() => {
-    //     // this.delayedDragging = true
-    //   })
-    // }
+    }
   },
   mounted () {
     

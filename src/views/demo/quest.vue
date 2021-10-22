@@ -15,6 +15,7 @@
         <add-normal ref="addNormal" :quesList="quesList"></add-normal>
       </el-col>
     </el-row>
+    <el-button style="margin-left: 48%" @click="save">保存题目</el-button>
   </div>
 </template>
 
@@ -38,8 +39,8 @@ export default {
     };
   },
   methods: {
-    aaa(){
-      console.log(55555555555);
+    save(){
+      console.log(this.$refs.addNormal.formData);
     },
     singleChoice(item) {
       this.$refs.addNormal.isAdd = true;
@@ -49,27 +50,7 @@ export default {
   }
 };
 </script>
-<style scoped>
- /* 编辑滚动条样式 */
-    ::-webkit-scrollbar {
-        width: 8px !important;
-        height: 8px !important;
-        background: transparent !important;
-    }
-    ::-webkit-scrollbar-thumb {
-        background: transparent !important;
-        border-radius: 8px !important;
-    }
 
-    :hover::-webkit-scrollbar-thumb {
-        background: hsla(0, 2%, 75%, 0.4) !important;
-    }
-
-    :hover::-webkit-scrollbar-track {
-        background: hsla(0, 2%, 75%, 0.1) !important;
-    }
-
-</style>
 <style lang="less" scoped>
 .dele {
   width: 80px;
