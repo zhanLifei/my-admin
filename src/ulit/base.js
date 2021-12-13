@@ -132,6 +132,11 @@ export default {
               path: "EventEmitter",
               name: "EventEmitter",
             },
+            {
+              cid: "5-19",
+              path: "images-etidor",
+              name: "images-etidor",
+            },
           ],
         },
         {

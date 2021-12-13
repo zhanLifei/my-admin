@@ -141,6 +141,11 @@ export default new Router({
           component: () => import("@/views/packaging/index.vue")
         },
         {
+          path: "/images-etidor",
+          name: "images-etidor",
+          component: () => import("@/views/demo/images-etidor.vue")
+        },
+        {
           path: "/vuex",
           name: "vuex",
           component: () => import("@/views/vuex/index.vue"),
