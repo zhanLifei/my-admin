@@ -46,10 +46,11 @@
 
 <script>
 import screenPage from "@/components/screenPage";
+import renderTable from "@/components/render_table/renderTable";
 import { dataList } from '@/api/dataList'
 import { screenList } from '@/api/screenList'
 export default {
-  components: { screenPage },
+  components: { screenPage, renderTable },
   data() {
     return {
       newDataList: [],
