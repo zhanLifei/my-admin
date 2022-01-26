@@ -83,7 +83,7 @@ var screenList = Mock.mock('http://api.com/screenList',{
               {'pid': 4, 'name': '罗湖区'},
               {'pid': 4, 'name': '龙华区'},
               {'pid': 4, 'name': '宝安区'},
-              {'pid': 4, 'name': '龙岗区'},
+              {'pid': 4, 'name': '龙岗区'}, 
               {'pid': 4, 'name': '福田区'},
               {'pid': 4, 'name': '盐田区'},
               {'pid': 4, 'name': '光明区'},
