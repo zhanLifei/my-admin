@@ -171,9 +171,27 @@ export default {
 
   mounted(){
     var channel = new BroadcastChannel('test_channel');
-      channel.onmessage = event =>{
-          this.imageURL = event.data;
+    channel.onmessage = event =>{
+        this.imageURL = event.data;
+        console.log(this.imageURL)
+    }
+
+
+
+    const obj={
+      a:{
+        b:'',
+        c:''
       }
+    };  
+    if(checkNull(obj) == false){
+      obj = { a: {} }
+    }
+    if(checkNull(obj.a) == false){
+      obj.a['b'] = '',
+      obj.a['c'] = ''
+    }
+    const{a,a:{b,c}}=obj
   }
   
 };

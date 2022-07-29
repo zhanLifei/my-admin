@@ -40,9 +40,9 @@ export default new Router({
       children: [
         // 常用功能
         {
-          path: "/video",
-          name: "video",
-          component: () => import("@/views/demo/video.vue"),
+          path: "/infoTable",
+          name: "infoTable",
+          component: () => import("@/views/demo/infoTable.vue"),
         },
         {
           path: "/swiper",

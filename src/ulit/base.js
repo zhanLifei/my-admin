@@ -64,8 +64,8 @@ export default {
             },
             {
               cid: "5-3",
-              path: "video",
-              name: "video视频",
+              path: "infoTable",
+              name: "业务表格",
             },
             {
               cid: "5-4",

@@ -21,7 +21,7 @@ export default {
               "a",
               {
                 style: {
-                  color: '#1a73e8',
+                  color: '#f10125',
                   cursor: 'pointer',
                 },
                 on: {
@@ -99,11 +99,7 @@ export default {
 
   methods: {
     onClick(row){
-      this.$router.push({
-        path:'/table?id=4444545',
-        query:{name:'8888888888888888'}
-      })
-      console.log(row.name)
+      console.log(row)
     }
   },
   mounted () {
