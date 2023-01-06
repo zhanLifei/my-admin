@@ -36,9 +36,9 @@
     "xlink-lego": "3.1.1-midea-28"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.11.0",
+    "@vue/cli-plugin-babel": "^5.0.8",
     "@vue/cli-plugin-eslint": "^3.11.0",
-    "@vue/cli-service": "^3.11.0",
+    "@vue/cli-service": "^5.0.8",
     "bankcardinfo": "^2.0.6",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
