@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="video-wrapper">
-           <video ref="videoPlayer" class="video-js"></video>
+           <video ref="videoPlayer" :poster="options.sources[0].src+'?x-oss-process=video/snapshot,t_0,f_jpg'" class="video-js"></video>
         </div>
     </div>
 </template>
@@ -34,8 +34,7 @@ export default {
         }
     },
     mounted() {
-        this.player = videojs(this.$refs.videoPlayer, this.options, function onPlayerReady() {
-        });
+        this.player = videojs(this.$refs.videoPlayer, this.options, function onPlayerReady() {});
     },
     beforeDestroy() {
         if (this.player) {

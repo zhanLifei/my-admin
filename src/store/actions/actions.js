@@ -1,7 +1,10 @@
 var actions = {
-  updateCountAsync(store, data) {
+  updateCountAsync({commit}, data) {
     setInterval(() => {
-      store.commit('updateCount',data)
+      return new Promise((resolve, reject) => {
+        commit('updateCount',data)
+        reject()
+      })
     }, 1);
   }
 }

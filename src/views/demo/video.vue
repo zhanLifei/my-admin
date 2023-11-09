@@ -1,12 +1,8 @@
 <template>
   <div class="app-container">
-    <div><video-player :options="videoOption" class="video" /></div>
-    <quill-editor
-    :content="content"
-    :options="editorOption"
-    @change="onEditorChange($event)"
-  />
-  <div id="div1"></div>
+    <div>
+      <video-player :options="videoOption" class="video" />
+    </div>
   </div>
 </template>
 
@@ -14,29 +10,21 @@
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
-import { quillEditor } from 'vue-quill-editor'
-import E from 'wangeditor'
-const editor = new E('#div1')
-editor.create()
 require("videojs-flash");
 import VideoPlayer from "@/components/VideoPlayer.vue";
 export default {
   components: {
-    VideoPlayer,
-    quillEditor
+    VideoPlayer
   },
   data() {
     return {
-      videoSrc: 'rtmp://live.hkstv.hk.lxdns.com/live/hks1'
+      videoSrc: 'https://img.cdn.aliyun.dcloud.net.cn/guide/uniapp/%E7%AC%AC1%E8%AE%B2%EF%BC%88uni-app%E4%BA%A7%E5%93%81%E4%BB%8B%E7%BB%8D%EF%BC%89-%20DCloud%E5%AE%98%E6%96%B9%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B@20200317.mp4'
+      // videoSrc: 'http://vjs.zencdn.net/v/oceans.mp4'
     };
   },
   computed: {
     videoOption() {
       return {
-        content: '<h2>I am Example</h2>',
-        editorOption: {
-          // Some Quill options...
-        },
         autoplay: true, //自动播放
         controls: true, //显示控件
         width:400,
@@ -44,7 +32,7 @@ export default {
         sources: [
           {
             src: this.videoSrc,
-            type: "rtmp/flv"
+            // type: "rtmp/mp4"
           }
         ],
       };
@@ -53,10 +41,7 @@ export default {
   mounted() {},
 
   methods: {
-   onEditorChange({ quill, html, text }) {
-        console.log('editor change!', quill, html, text)
-        this.content = html
-      }
+
   }
 };
 </script>

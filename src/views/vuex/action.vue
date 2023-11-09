@@ -15,7 +15,11 @@ export default {
 
   methods: {
     toClick(){
-      this.$store.dispatch('updateCountAsync',20)
+      this.$store.dispatch('updateCountAsync',20).then(result => {
+        console.log(result)
+      }).catch(error => {
+       
+      })
     }
   }
 }

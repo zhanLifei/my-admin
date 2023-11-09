@@ -20,7 +20,7 @@ npm run test
 
 ### Lints and fixes files
 ```
-npm run lint
+npm run lint 123
 ```
 
 ### Customize configuration
